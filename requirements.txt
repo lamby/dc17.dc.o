@@ -1,0 +1,8 @@
+# Available in jessie-backports
+Django==1.8.14
+
+# Available in Debian
+psycopg2
+
+# From the cheeseshop
+wafer==0.4.0

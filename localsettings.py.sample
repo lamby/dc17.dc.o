@@ -1,0 +1,61 @@
+import os
+
+from wafer.settings import INSTALLED_APPS
+
+checkout = os.path.dirname(__file__)
+
+DEBUG = True
+ALLOWED_HOSTS = ['debconf17.debconf.org']
+
+DATABASES = {}
+DATABASES['default'] = {
+  'ENGINE': "django.db.backends.sqlite3",
+  'NAME': "dc17.db",
+  'HOST': "",
+  'USER': "",
+  'PASSWORD': "",
+}
+
+MEDIA_ROOT = os.path.join(checkout, 'localmedia/')
+
+SECRET_KEY = 'gWPuTxtz3dC92QzYgAzKwAlrYrY2imxqnjXaBlC0'
+
+WAFER_CACHE = 'default'
+CACHES = {
+   'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(checkout, 'wafer.log')
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+# See https://docs.djangoproject.com/en/1.9/topics/e-mail/#smtp-backend
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '25'
+
+import sys
+if 'test' in sys.argv:
+    try:
+        from testsettings import *
+    except ImportError:
+        pass

@@ -1,0 +1,14 @@
+{
+  "name": "dc17.dc.o",
+  "private": true,
+  "version": "0.0.0",
+  "devDependencies": {
+    "bootstrap-less": "3.3.x",
+    "gulp": "3.9.x",
+    "gulp-concat": "2.6.x",
+    "gulp-less": "3.1.x",
+    "gulp-sourcemaps": "1.6.x",
+    "gulp-uglify": "2.0.x",
+    "jquery": "3.1.x"
+  }
+}
