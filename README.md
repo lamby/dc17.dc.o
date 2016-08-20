@@ -11,7 +11,7 @@
 * Run the webserver: `./manage.py runserver`
 
 # Installing in production
-* apt install python memcached npm python3-libravatar python3-memcached \
+* apt install python3 memcached npm python3-libravatar \
   python3-tz python3-requests python3-pil python3-psycopg2 virtualenv
 
 # Also see
