@@ -18,7 +18,7 @@ except ImportError:
 root = os.path.dirname(__file__)
 
 INSTALLED_APPS = (
-#    'dc17',
+    'dc17',
 #    'volunteers'
 ) + INSTALLED_APPS
 
@@ -131,3 +131,5 @@ WAFER_REGISTRATION_MODE = 'form'
 #WAFER_TALK_FORM = 'dc16.talks.TalkForm'
 
 WAFER_PUBLIC_ATTENDEE_LIST = False
+
+PAGE_DIR = os.path.join(root, 'pages/')

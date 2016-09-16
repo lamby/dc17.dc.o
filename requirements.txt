@@ -3,6 +3,7 @@ Django==1.8.14
 
 # Available in Debian
 psycopg2
+PyYAML
 
 # From the cheeseshop
 python-memcached

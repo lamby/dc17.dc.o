@@ -12,7 +12,8 @@
 
 # Installing in production
 * apt install python3 memcached npm python3-libravatar \
-  python3-tz python3-requests python3-pil python3-psycopg2 virtualenv
+  python3-tz python3-requests python3-pil python3-psycopg2 python3-yaml \
+  virtualenv
 
 # Also see
 

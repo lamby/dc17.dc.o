@@ -16,6 +16,7 @@ if ! cmp -s requirements.txt .deployed.requirements.txt; then
 fi
 ../virtualenv/bin/python manage.py collectstatic --noinput
 ../virtualenv/bin/python manage.py migrate --noinput
+../virtualenv/bin/python manage.py load_pages
 
 if [ $rebuilt_ve -gt 0 ]; then
 	sudo service apache2 reload
