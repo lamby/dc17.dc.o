@@ -1,4 +1,5 @@
 import os
+import sys
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -8,18 +9,17 @@ import yaml
 
 
 class Command(BaseCommand):
-    help = 'Load pages from yaml files into the DB'
+    help = 'Load pages from markdown files into the DB'
 
     def handle(self, *args, **options):
         for dirpath, dirnames, filenames in os.walk(settings.PAGE_DIR):
             parent = self.get_parent(dirpath)
             for fn in filenames:
-                if not fn.endswith('.yaml'):
+                if not fn.endswith('.md'):
                     continue
-                slug = fn[:-5]
-                with open(os.path.join(dirpath, fn)) as f:
-                    contents = yaml.load(f)
-                self.load_page(parent, slug, contents)
+                slug = fn[:-3]
+                meta, content = self.read_page(os.path.join(dirpath, fn))
+                self.load_page(parent, slug, meta, content)
 
     def get_parent(self, directory):
         """
@@ -37,16 +37,30 @@ class Command(BaseCommand):
                 page = Page.objects.get(parent=page, slug=slug)
         return page
 
-    def load_page(self, parent, slug, contents):
+    def read_page(self, fn):
+        with open(fn) as f:
+            if f.readline() != '---\n':
+                self.stderr.write('Missing front matter in %s\n' % fn)
+                sys.exit(1)
+            front_matter = []
+            for line in f:
+                if line == '---\n':
+                    break
+                front_matter.append(line)
+            meta = yaml.load(''.join(front_matter))
+            contents = f.read()
+        return meta, contents
+
+    def load_page(self, parent, slug, meta, content):
         page, created = Page.objects.get_or_create(parent=parent, slug=slug)
-        page.name = contents['name']
-        page.content = contents['content']
-        page.include_in_menu = contents.get('include_in_menu', False)
-        page.exclude_from_static = contents.get('exclude_from_static', False)
+        page.name = meta['name']
+        page.content = content
+        page.include_in_menu = meta.get('include_in_menu', False)
+        page.exclude_from_static = meta.get('exclude_from_static', False)
         page.people.clear()
         page.people.add(*(
             get_user_model().objects.get(username=person)
-            for person in contents.get('people', ())
+            for person in meta.get('people', ())
         ))
         page.save()
         self.stdout.write('Loaded page %s\n' % '/'.join(page.get_path()))
