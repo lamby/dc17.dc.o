@@ -62,8 +62,26 @@ h1, h2, h3 {
   color: #1b75bc;
 }
 
-.navbar-static-top a {
-  color: #fff;
+.navbar-inverse {
+  .navbar-brand {
+    color: #fff;
+  }
+
+  .navbar-nav > li > a {
+    color: #fff;
+  }
+
+  .navbar-nav > li > a:focus,
+  .navbar-nav > li > a:hover{
+    background-color: #eeeeee;
+    color: #337ab7;
+  }
+
+  .navbar-nav > .open >  a:focus,
+  .navbar-nav > .open >  a:hover{
+    background-color: #eeeeee;
+    color: #337ab7;
+  }
 }
 
 footer {
