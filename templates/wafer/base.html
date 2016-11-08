@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ STATIC_URL }}css/debconf17.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}css/custom-debconf17.css" rel="stylesheet" media="screen">
     <link href="{{ STATIC_URL }}css/wafer.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|PT+Sans" rel="stylesheet">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -25,11 +27,14 @@
             {% endfor %}
         </div>
         {% endif %}
-{% block content %}
-    <h1>{{ WAFER_CONFERENCE_NAME }}</h1>
-{% endblock %}
+
+        {% block content %}
+            <h1>{{ WAFER_CONFERENCE_NAME }}</h1>
+        {% endblock %}
+
     </div>
-    {% sponsors %}
+    {% include 'wafer/footer.html' %}
+
     <script src="{{ STATIC_URL }}js/debconf17.js"></script>
     {% block extra_foot %}{% endblock %}
 </body>
