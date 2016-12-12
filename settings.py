@@ -28,9 +28,9 @@ STATICFILES_DIRS = (
     os.path.join(root, 'static'),
 )
 
-TEMPLATE_DIRS = (
+TEMPLATES[0]['DIRS'] = TEMPLATES[0]['DIRS'] + (
     os.path.join(root, 'templates'),
-) + TEMPLATE_DIRS
+)
 
 
 # Menu system 101:
