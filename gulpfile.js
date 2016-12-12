@@ -28,4 +28,11 @@ gulp.task('js', function() {
     .pipe(gulp.dest('static/js'));
 });
 
-gulp.task('default', ['css', 'js']);
+gulp.task('assets', function(){
+
+    gulp.src(
+        'assets/**/**/*')
+        .pipe(gulp.dest('static/'));
+});
+
+gulp.task('default', ['css', 'js', 'assets']);
