@@ -32,7 +32,7 @@ gulp.task('js', function() {
 
 gulp.task('assets', function(){
     gulp.src(
-        'assets/*/**/*')
+        'assets/{img,fonts}/**/*')
         .pipe(gulp.dest('static/'));
 });
 
