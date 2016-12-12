@@ -1,4 +1,32 @@
-@import "bootstrap/index";
+$dc17-blue: #1b75bc;
+$dc17-red: #bc312e;
+
+// Bootstrap 4 customization
+
+$brand-inverse: $dc17-blue; // Nav background (amongst other things)
+$brand-primary: $dc17-blue;
+
+@import "bootstrap/scss/bootstrap.scss";
+
+// Bootstrap overrides
+
+h1, h2, h3,
+.h1, .h2, .h3 {
+  font-family: 'Monoton', cursive;
+  color: $dc17-blue;
+}
+
+.navbar-static-top {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+}
+
+// Temporary hack until https://github.com/CTPUG/wafer/pull/330
+@include media-breakpoint-up(xs) {
+  .navbar-right {
+    @include float-right();
+  }
+}
 
 /* latin */
 @font-face {
@@ -41,56 +69,29 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-
-h1, h2, h3 {
-  font-family: 'Monoton', cursive;
-  color: #1b75bc;
+// Logo animation:
+.blue {
+  color: $dc17-blue;
 }
 
-.blue { color: #1b75bc; }
-.red { color: #bc312e; }
-
-.navbar-static-top {
-  color: #fff;
-  background-color: #1b75bc;
-  font-family: 'PT Sans', sans-serif;
-  font-weight: bold;
-}
-
-.navbar-static-top a:focus,
-.navbar-static-top a:hover {
-  color: #1b75bc;
-}
-
-.navbar-inverse {
-  .navbar-brand {
-    color: #fff;
-  }
-
-  .navbar-nav > li > a {
-    color: #fff;
-  }
-
-  .navbar-nav > li > a:focus,
-  .navbar-nav > li > a:hover{
-    background-color: #eeeeee;
-    color: #337ab7;
-  }
-
-  .navbar-nav > .open >  a:focus,
-  .navbar-nav > .open >  a:hover{
-    background-color: #eeeeee;
-    color: #337ab7;
-  }
+.red {
+  color: $dc17-red;
 }
 
 footer {
-  background-color: #e9f1f8;
-  border-top: 2px solid #1b75bc;
+  background-color: transparentize($dc17-blue, 0.9);
+  border-top: 2px solid $dc17-blue;
   margin-top: 2em;
   padding: 1em;
-  color: #808080;
+  color: $gray-light;
+
+  a {
+    color: $dc17-blue;
+
+    @include hover-focus {
+      color: $gray;
+    }
+  }
 }
 
-footer a { color: #1b75bc; }
-footer a:hover { color: #545454; }
+// vim: set et ts=2:

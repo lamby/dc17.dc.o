@@ -1,17 +1,18 @@
 var concat = require('gulp-concat');
 var gulp = require('gulp');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
 gulp.task('css', function() {
-  return gulp.src('assets/less/*.less')
+  return gulp.src('assets/scss/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(less({
-      paths: [
-        'node_modules/bootstrap-less',
-      ]
-    }))
+    .pipe(
+      sass({
+        includePaths: 'node_modules',
+      })
+      .on('error', sass.logError)
+    )
     .pipe(sourcemaps.write('../maps'))
     .pipe(gulp.dest('static/css/'));
 });
@@ -19,7 +20,8 @@ gulp.task('css', function() {
 gulp.task('js', function() {
   return gulp.src([
       'node_modules/jquery/dist/jquery.js',
-      'node_modules/bootstrap-less/js/bootstrap.min.js',
+      'node_modules/bootstrap/node_modules/tether/dist/js/tether.js',
+      'node_modules/bootstrap/dist/js/bootstrap.js',
     ])
     .pipe(sourcemaps.init())
     .pipe(concat('debconf17.js'))
@@ -29,9 +31,8 @@ gulp.task('js', function() {
 });
 
 gulp.task('assets', function(){
-
     gulp.src(
-        'assets/**/**/*')
+        'assets/*/**/*')
         .pipe(gulp.dest('static/'));
 });
 
