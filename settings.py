@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import os
+from pathlib import Path
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -15,21 +15,22 @@ try:
 except ImportError:
     pass
 
-root = os.path.dirname(__file__)
+root = Path(__file__).parent
 
 INSTALLED_APPS = (
     'dc17',
+    'news',
 #    'volunteers'
 ) + INSTALLED_APPS
 
-STATIC_ROOT = os.path.join(root, 'localstatic/')
+STATIC_ROOT = str(root / 'localstatic/')
 
 STATICFILES_DIRS = (
-    os.path.join(root, 'static'),
+    str(root / 'static'),
 )
 
 TEMPLATES[0]['DIRS'] = TEMPLATES[0]['DIRS'] + (
-    os.path.join(root, 'templates'),
+    str(root / 'templates'),
 )
 
 
@@ -132,4 +133,4 @@ WAFER_REGISTRATION_MODE = 'form'
 
 WAFER_PUBLIC_ATTENDEE_LIST = False
 
-PAGE_DIR = os.path.join(root, 'pages/')
+PAGE_DIR = '%s/' % (root / 'pages')
