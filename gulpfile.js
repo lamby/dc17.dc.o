@@ -30,10 +30,14 @@ gulp.task('js', function() {
     .pipe(gulp.dest('static/js'));
 });
 
-gulp.task('assets', function(){
-    gulp.src(
-        'assets/{img,fonts}/**/*')
-        .pipe(gulp.dest('static/'));
+gulp.task('assets', function() {
+  return gulp.src('assets/{img,fonts}/**/*')
+    .pipe(gulp.dest('static/'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch('assets/js/*.js', ['js']);
+  gulp.watch('assets/scss/*.scss', ['css']);
 });
 
 gulp.task('default', ['css', 'js', 'assets']);
