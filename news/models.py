@@ -50,7 +50,7 @@ class NewsItemManager(object):
 
     @classmethod
     def _read_story(cls, path):
-        with path.open() as f:
+        with path.open(encoding='utf-8') as f:
             if f.readline() != '---\n':
                 raise Exception('Missing front matter in %s\n' % path)
             front_matter = []
