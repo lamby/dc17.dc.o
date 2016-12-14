@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <footer class="footer">
     <p class="float-xs-right">
         <a href="#">Back to top</a>
@@ -39,9 +40,9 @@
                 </ul>
             </div>
             <div class="col-lg-3">
-                <a href="http://debian.org" style="float: right;"><img src="{{STATIC_URL}}/img/dd.png" /></a>
-                <a href="#"><img src="{{STATIC_URL}}/img/spi.png" /></a>
-                <a href="#"><img src="{{STATIC_URL}}/img/ffis.png" /></a>
+                <a href="http://debian.org" style="float: right;"><img src="{% static 'img/dd.png' %}" /></a>
+                <a href="#"><img src="{% static 'img/spi.png' %}" /></a>
+                <a href="#"><img src="{% static 'img/ffis.png' %}" /></a>
             </div>
         </div>
 

@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ STATIC_URL }}css/debconf17.css" rel="stylesheet" media="screen">
-    <link href="{{ STATIC_URL }}css/wafer.css" rel="stylesheet" media="screen">
+    <link href="{% static 'css/debconf17.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/wafer.css' %}" rel="stylesheet" media="screen">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -32,7 +33,7 @@
     </div>
     {% include 'wafer/footer.html' %}
 
-    <script src="{{ STATIC_URL }}js/debconf17.js"></script>
+    <script src="{% static 'js/debconf17.js' %}"></script>
     {% block extra_foot %}{% endblock %}
 </body>
 </html>

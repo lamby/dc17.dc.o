@@ -29,6 +29,9 @@ STATICFILES_DIRS = (
     str(root / 'static'),
 )
 
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage.ManifestStaticFilesStorage')
+
 TEMPLATES[0]['DIRS'] = TEMPLATES[0]['DIRS'] + (
     str(root / 'templates'),
 )
