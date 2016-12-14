@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from news.views import NewsItemView, NewsFeedView
+from news.views import NewsAtomView, NewsItemView, NewsFeedView, NewsRSSView
 
 
 urlpatterns = [
@@ -8,4 +8,8 @@ urlpatterns = [
         NewsFeedView.as_view(), name='news'),
     url(r'^(?P<date>[0-9]{4}-[0-9]{2}-[0-9]{2})-(?P<slug>[^/]+)/$',
         NewsItemView.as_view(), name='news_item'),
+    url(r'^feed/rss.xml$',
+        NewsRSSView(), name='news_rss'),
+    url(r'^feed/atom.xml$',
+        NewsAtomView(), name='news_atom'),
 ]
