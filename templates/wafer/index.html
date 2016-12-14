@@ -1,7 +1,6 @@
 {% extends 'wafer/base.html' %}
 {% load i18n %}
-{% load crispy_forms_tags %}
-{% load wafer_crispy %}
+{% load news %}
 
 {% block title %}Login - {{ WAFER_CONFERENCE_NAME }}{% endblock title %}
 
@@ -177,21 +176,8 @@
 
             <!-- Itens -->
             <div class="col-lg-8">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <h4 class="list-group-item-heading">12 Out 2016 - Become a sponsor - Download our Brochure</h4>
-                        <p class="list-group-item-text">Debian is a huge fast-growing community, with developers and users from all over the world, while the Debian operating system is universan community is a world-wide phenomenon and a great opportunity for you to promote your business and your company, allowi...</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <h4 class="list-group-item-heading">2 Aug 2016 - Download our Brochure - Become a sponsor</h4>
-                        <p class="list-group-item-text">Debian is a huge fast-growing community, with developers and users from all over the world, while the Debian operating system is universal and free in every sense of the word, used on countless computers, machines and platforms. Aity is a world-wide phenomenon and a great opportunity for you to promote your business and your company, allowi...</p>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <h4 class="list-group-item-heading">10 Jul 2016 - DebConf16 announce DebConf17</h4>
-                        <p class="list-group-item-text">Debian is a huge fast-growing community, with developers and users from all over the world, while the Debian operating sysch, the Debian community is a world-wide phenomenon and a great opportunity for you to promote your business and your company, allowi...</p>
-                    </a>
-                </div>
-                <p><a href="#" class="btn btn-primary btn-lg">More news</a></p>
+                {% recent_news 3 %}
+                <p><a href="{% url 'news' %}" class="btn btn-primary btn-lg">More news</a></p>
             </div> <!-- .col-lg-8 -->
             <div class="col-lg-4">
 

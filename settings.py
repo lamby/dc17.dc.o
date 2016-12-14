@@ -116,7 +116,7 @@ WAFER_MENUS += (
     }
 )
 
-ROOT_URLCONF = 'wafer.urls'
+ROOT_URLCONF = 'urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CRISPY_FAIL_SILENTLY = not DEBUG
@@ -134,3 +134,4 @@ WAFER_REGISTRATION_MODE = 'form'
 WAFER_PUBLIC_ATTENDEE_LIST = False
 
 PAGE_DIR = '%s/' % (root / 'pages')
+NEWS_DIR = '%s/' % (root / 'news' / 'stories')
