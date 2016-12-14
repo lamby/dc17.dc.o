@@ -58,7 +58,13 @@ class NewsRSSView(Feed):
         dt = datetime.datetime.combine(item.date, datetime.time())
         return make_aware(dt)
 
+    def item_updateddate(self, item):
+        return self.item_pubdate(item)
+
 
 class NewsAtomView(NewsRSSView):
     feed_type = Atom1Feed
     subtitle = NewsRSSView.description
+
+    def item_author_name(self, item):
+        return self.title
