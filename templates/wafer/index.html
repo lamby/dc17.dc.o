@@ -10,7 +10,9 @@
 
 {% block content %}
     <div class="col-lg-7">
-        <img src="{% static 'img/dc17-logo-animated.svg' %}">
+        <object type="image/svg+xml" data="{% static 'img/dc17-logo-animated.svg' %}">
+            <img src="{% static 'img/dc17-logo-animated.svg' %}">
+        </object>
     </div>
 
     <div class="col-lg-5">
