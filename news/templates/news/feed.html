@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load news %}
 {% block title %}{{ WAFER_CONFERENCE_NAME }}: News{% endblock %}
+{% block extra_head %}
+<link rel="alternate" type="application/rss+xml" title="{{ CONFERENCE_NAME }} RSS Feed" href="{% url 'news_rss' %}">
+<link rel="alternate" type="application/atom+xml" title="{{ CONFERENCE_NAME }} Atom Feed" href="{% url 'news_rss' %}">
+{% endblock extra_head %}
 {% block content %}
 <section class="wafer wafer-news">
 <h1>{% trans 'News' %}</h1>
