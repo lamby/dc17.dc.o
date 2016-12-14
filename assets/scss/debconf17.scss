@@ -21,13 +21,6 @@ h1, h2, h3,
   font-weight: bold;
 }
 
-// Temporary hack until https://github.com/CTPUG/wafer/pull/330
-@include media-breakpoint-up(xs) {
-  .navbar-right {
-    @include float-right();
-  }
-}
-
 /* latin */
 @font-face {
   font-family: 'Monoton';
