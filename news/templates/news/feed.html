@@ -1,6 +1,7 @@
 {% extends "wafer/base.html" %}
 {% load i18n %}
 {% load news %}
+{% block title %}{{ WAFER_CONFERENCE_NAME }}: News{% endblock %}
 {% block content %}
 <section class="wafer wafer-news">
 <h1>{% trans 'News' %}</h1>
