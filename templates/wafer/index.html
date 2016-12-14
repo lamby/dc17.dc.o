@@ -3,161 +3,154 @@
 {% load news %}
 {% load static from staticfiles %}
 {% block extra_head %}
-<link rel="alternate" type="application/rss+xml" title="{{ CONFERENCE_NAME }} RSS Feed" href="{% url 'news_rss' %}">
-<link rel="alternate" type="application/atom+xml" title="{{ CONFERENCE_NAME }} Atom Feed" href="{% url 'news_rss' %}">
+    <link rel="alternate" type="application/rss+xml" title="{{ CONFERENCE_NAME }} RSS Feed" href="{% url 'news_rss' %}">
+    <link rel="alternate" type="application/atom+xml" title="{{ CONFERENCE_NAME }} Atom Feed" href="{% url 'news_rss' %}">
 {% endblock%}
 
 {% block content %}
-        <div class="col-lg-7">
-            <img src="{% static 'img/dc17-logo-animated.svg' %}">
+    <div class="col-lg-7">
+        <img src="{% static 'img/dc17-logo-animated.svg' %}">
+    </div>
+
+    <div class="col-lg-5">
+        <div class="jumbotron">
+            <p>The 18th annual DebConf will take place in Montreal, Canada from August 6 to August 12, 2017.<br />
+                It will be preceded by DebCamp, July 31st to August 4th, and Debian Day, August 5th.</p>
+            <p><a href="{% url 'wafer_page' 'about/debconf' %}" class="btn btn-primary btn-lg">Learn more</a></p>
         </div>
+    </div>
 
-        <div class="col-lg-5">
-            <div class="jumbotron">
-                <p>The 18th annual DebConf will take place in Montreal, Canada from August 6 to August 12, 2017.<br />
-                    It will be preceded by DebCamp, July 31st to August 4th, and Debian Day, August 5th.</p>
-                <p><a href="{% url 'wafer_page' 'about/debconf' %}" class="btn btn-primary btn-lg">Learn more</a></p>
-            </div>
-        </div>
-
-
-        <!-- News section -->
-        <div id="news-section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <h1 id="news">News</h1>
-                    </div>
+    <!-- News section -->
+    <div id="news-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1 id="news">News</h1>
                 </div>
             </div>
+        </div>
 
-            <!-- Itens -->
-            <div class="col-lg-8">
-                {% recent_news 3 %}
-                <p><a href="{% url 'news' %}" class="btn btn-primary btn-lg">More news</a></p>
-            </div> <!-- .col-lg-8 -->
-            <div class="col-lg-4">
+        <div class="col-lg-8">
+            {% recent_news 3 %}
+            <p><a href="{% url 'news' %}" class="btn btn-primary btn-lg">More news</a></p>
+        </div>
 
+        <div class="col-lg-4">
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Information Banner</div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Trip Banner/Icon</div>
+                </a>
+                <a href="#" class="list-group-item">
+                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Program Banner/Icon</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- News End -->
+
+    <!-- Sponsors -->
+    <div id="sponsors-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1 class="red" id="sponsors">Sponsors</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
                 <div class="list-group">
                     <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Information Banner</div>
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
                     </a>
                     <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Trip Banner/Icon</div>
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
                     </a>
                     <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Program Banner/Icon</div>
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
                     </a>
                 </div>
-
             </div>
-
-        </div> <!-- News End -->
-
-
-        <!-- Sponsors -->
-        <div id="sponsors-section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <h1 class="red" id="sponsors">Sponsors</h1>
-                    </div>
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                        </a>
-                    </div>
+        <div class="row"> <!-- row Silver -->
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <div class="row"> <!-- row Silver -->
-                <div class="col-lg-2">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
-                        </a>
-                    </div>
+        <div class="row"> <!-- row Bronze -->
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <div class="row"> <!-- row Bronze -->
-                <div class="col-lg-2">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
-                        </a>
-                    </div>
+    </div>
+    <!-- End Sponsors -->
+
+    <!-- Testimonials -->
+    <div id="testimonials-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1 id="testimonials">Testimonials</h1>
                 </div>
             </div>
+        </div>
 
-        </div><!-- #sponsors-section -->
-        <!-- End Sponsors -->
-
-
-        <!-- Testimonials -->
-        <div id="testimonials-section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <h1 id="testimonials">Testimonials</h1>
-                    </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <blockquote class="blockquote">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="bs-component">
-                        <blockquote class="blockquote">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-                        </blockquote>
-                        <div style="display: none;" id="source-button" class="btn btn-primary btn-xs">&lt; &gt;</div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="bs-component">
-                        <blockquote class="blockquote blockquote-reverse">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-                        </blockquote>
-                    </div>
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <blockquote class="blockquote blockquote-reverse">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
                 </div>
             </div>
-        </div><!-- #testimonials-section -->
-        <!-- End Testimonials -->
+        </div>
+    </div>
+    <!-- End Testimonials -->
 {%endblock%}
