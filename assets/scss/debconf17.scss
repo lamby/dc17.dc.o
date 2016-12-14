@@ -92,6 +92,32 @@ footer {
       color: $gray;
     }
   }
+
+  .logo {
+    display: block;
+    width: 112px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 112px 70px;
+  }
+
+  .spi-logo {
+    background-image: url(../img/spi.svg);
+    background-size: 85px;
+  }
+
+  .ffis-logo {
+    background-image: url(../img/ffis.png);
+  }
+
+  .debian-logo {
+    @include float-right();
+    width: 70px;
+    height: 87px;
+    background-image: url(../img/debian.svg);
+    background-size: 70px 87px;
+  }
 }
 
 // vim: set et ts=2:
