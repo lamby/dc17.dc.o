@@ -1,0 +1,12 @@
+{% for package in packages %}
+  {% if package.sponsors.exists and package.order < 5 %}
+    <div class="row list-group sponsors-{{package.name | lower }}">
+      {% for sponsor in package.sponsors.all %}
+        <a href="{{ sponsor.url }}" class="list-group-item col-lg-{% if package.name == 'Platinum'%}6{% elif package.name == 'Gold' %}3{% else %}2{% endif %}">
+           <img src="{{ sponsor.files.first.item.url }}"
+                alt="{{ sponsor.name }}">
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}

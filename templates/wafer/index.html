@@ -1,6 +1,7 @@
 {% extends 'wafer/base.html' %}
 {% load i18n %}
 {% load news %}
+{% load sponsors %}
 {% load static from staticfiles %}
 {% block extra_head %}
     <link rel="alternate" type="application/rss+xml" title="{{ CONFERENCE_NAME }} RSS Feed" href="{% url 'news_rss' %}">
@@ -60,66 +61,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Platinum</div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 150px; width: 100%; display: block;">Gold</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row"> <!-- row Silver -->
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Silver</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row"> <!-- row Bronze -->
-            <div class="col-lg-2">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <div style="background: #efefef; height: 60px; width: 100%; display: block;">Bronze</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        {% sponsors %}
     </div>
     <!-- End Sponsors -->
 
