@@ -28,7 +28,7 @@ class NewsItemManager(object):
 
     @classmethod
     def all(cls):
-        items = sorted(NEWS_DIR.iterdir())
+        items = sorted(NEWS_DIR.iterdir(), reverse=True)
         for item in items:
             if item.name.startswith('.'):
                 continue
