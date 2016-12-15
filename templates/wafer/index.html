@@ -35,10 +35,9 @@
 
         <div class="col-lg-8">
             {% recent_news 3 %}
-            <p></p>
-            <p>
-                    <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
-            </p>
+            <div id="more-news-link">
+                <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
+            </div>
         </div>
 
         <div class="col-lg-4">
