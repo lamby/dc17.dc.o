@@ -9,6 +9,9 @@
 {% endblock%}
 
 {% block content %}
+
+    <p></p>
+
     <div class="col-lg-7">
         <object type="image/svg+xml" data="{% static 'img/dc17-logo-animated.svg' %}">
             <img src="{% static 'img/dc17-logo-animated.svg' %}">
@@ -35,11 +38,9 @@
 
         <div class="col-lg-8">
             {% recent_news 3 %}
+            <p></p>
             <p>
-                <div class="form-group">
-                    &nbsp;
                     <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
-                </div>
             </p>
         </div>
 
