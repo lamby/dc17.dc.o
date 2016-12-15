@@ -35,7 +35,12 @@
 
         <div class="col-lg-8">
             {% recent_news 3 %}
-            <div class="control-group"><a href="{% url 'news' %}" class="btn btn-primary">More news</a></div>
+            <p>
+                <div class="form-group">
+                    &nbsp;
+                    <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
+                </div>
+            </p>
         </div>
 
         <div class="col-lg-4">
