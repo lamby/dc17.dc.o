@@ -5,14 +5,11 @@ $dc17-red: #bc312e;
 
 $brand-inverse: $dc17-blue; // Nav background (amongst other things)
 $brand-primary: $dc17-blue;
+$font-size-root: 14px;
 
 @import "bootstrap/scss/bootstrap.scss";
 
 // Bootstrap overrides
-
-html {
-  font-size: 14px;
-}
 
 h1, h2, h3,
 .h1, .h2, .h3 {
