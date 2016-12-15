@@ -38,6 +38,8 @@ gulp.task('assets', function() {
 gulp.task('watch', function() {
   gulp.watch('assets/js/*.js', ['js']);
   gulp.watch('assets/scss/*.scss', ['css']);
+  gulp.watch('assets/img/*', ['assets']);
+  gulp.watch('assets/fonts/*', ['assets']);
 });
 
 gulp.task('default', ['css', 'js', 'assets']);
