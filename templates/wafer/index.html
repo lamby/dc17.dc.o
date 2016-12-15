@@ -33,24 +33,26 @@
             </div>
         </div>
 
-        <div class="col-lg-8">
-            {% recent_news 3 %}
-            <div id="more-news-link">
-                <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
+        <div class="row">
+            <div class="col-lg-8">
+                {% recent_news 3 %}
+                <div id="more-news-link">
+                    <a href="{% url 'news' %}" class="btn btn-primary">More news</a>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg-4">
-            <div class="list-group">
-                <a href="#" class="list-group-item">
-                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Information Banner</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Trip Banner/Icon</div>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div style="background: #efefef; height: 100px; width: 100%; display: block;">Program Banner/Icon</div>
-                </a>
+            <div class="col-lg-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Information Banner</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Trip Banner/Icon</div>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <div style="background: #efefef; height: 100px; width: 100%; display: block;">Program Banner/Icon</div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
