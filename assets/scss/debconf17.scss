@@ -81,6 +81,10 @@ h1, h2, h3,
   color: $dc17-red;
 }
 
+#big-logo {
+  max-height: 330px;
+}
+
 #sponsors-section {
   a {
     background: $gray-lighter;
