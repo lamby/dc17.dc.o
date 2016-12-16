@@ -16,7 +16,8 @@ and improvement of the Debian distribution.
 DebConf is organized solely by volunteers; no conference fee is asked of the
 participants in general.  Thus, DebConf depends on sponsors and donations.
 
-For further details, feel free to contact the [sponsors@debconf.org][] with any leads.
+For further details, or if you have any leads, feel free to contact the
+sponsors team ([sponsors@debconf.org][]).
 
 [sponsorship brochure]: https://media.debconf.org/dc17/fundraising/debconf17_sponsorship_brochure_en.pdf
 [flyer]: https://media.debconf.org/dc17/fundraising/debconf17_sponsorship_flyer_en.pdf
