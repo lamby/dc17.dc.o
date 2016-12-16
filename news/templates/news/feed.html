@@ -9,7 +9,7 @@
 {% block content %}
 <section class="wafer wafer-news">
 <h1>{% trans 'News' %}</h1>
-{% recent_news 3 %}
+{% include "news/feed_snippet.html" %}
 </section>
 {% if is_paginated %}
 <section class="wafer wafer-pagination">

@@ -27,7 +27,7 @@ class NewsFeedView(TemplateView):
 
     def get_context_data(self, page=0):
         context = super(NewsFeedView, self).get_context_data()
-        context['objects'] = NewsItem.objects.all()
+        context['stories'] = NewsItem.objects.all()
         return context
 
 
