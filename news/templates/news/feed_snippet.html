@@ -5,7 +5,7 @@
         <a href="{{ story.get_absolute_url }}" class="list-group-item list-group-item-action">
             <h4 class="list-group-item-heading">{{ story.date }}: {{ story.title }}</h4>
             <div class="list-group-item-text">
-                {{ story.body | render_markup | safe | truncatewords_html:50 }}
+                {{ story.body | render_markup | striptags | truncatewords_html:50 }}
             </div>
         </a>
     {% empty %}
