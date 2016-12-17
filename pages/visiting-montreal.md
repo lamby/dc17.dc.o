@@ -30,7 +30,7 @@ Visa Application process
 ------------------------
 
 Other attendees need to apply for a visa. Visa applications don't need to be
-made in-person — there is no visa interview — they can be done by courier or 
+made in-person — there is no visa interview — they can be done by courier or
 online. Some countries citizens are charged fees for a visa, for others the visa
 is free of charge.
 
