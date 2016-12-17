@@ -85,7 +85,7 @@ WAFER_MENUS += (
             },
             {
                 'menu': 'become_sponsor',
-                'label': 'Become a sponsor',
+                'label': 'Become a Sponsor',
                 'url': reverse_lazy('wafer_page', args=('sponsors/become-a-sponsor',))
             }
         ],
