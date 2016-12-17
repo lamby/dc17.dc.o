@@ -27,13 +27,13 @@ remote collaboration among our contributors during the remainder of the year.
 | Contribution in CAD$                         | < $2,600  | $2,600 | $6,500 | $13,000 | $26,000  |
 | Contribution in USD$                         | < $2,000  | $2,000 | $5,000 | $10,000 | $20,000  |
 | Logo on sponsor webpage                      | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
-| Logo with backlink on all webpages           |           | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i>  | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Access to swag bag                           |           | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i>  | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Logo on t-shirt and conference bag           |           |        | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i>  | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Presence at job fair                         |           |        | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i>  | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Logo on video streams and conference banners |           |        |        | <i class="fa fa-check" aria-hidden="true"></i>  | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Logo on podium banners                       |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i>   |
-| Mention in press releases                    |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i>   |
+| Logo with backlink on all webpages           |           | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
+| Access to swag bag                           |           | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
+| Logo on t-shirt and conference bag           |           |        | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
+| Presence at job fair                         |           |        | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
+| Logo on video streams and conference banners |           |        |        | <i class="fa fa-check" aria-hidden="true"></i> | <i class="fa fa-check" aria-hidden="true"></i> |
+| Logo on podium banners                       |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i> |
+| Mention in press releases                    |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i> |
 
 Thank you very much, in advance, for your support.
 
