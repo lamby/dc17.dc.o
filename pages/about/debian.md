@@ -4,7 +4,7 @@ name: About Debian
 About Debian
 ============
 
-<img class="img-fluid float-md-right" style="width: 33%; padding: 5%" src="/static/img/debian-openlogo.svg" alt="">
+<img class="img-fluid float-md-right" style="width: 33%; padding: 5%" src="{% static 'img/debian-openlogo.svg' %}" alt="">
 
 The Debian Project is an association of individuals who have made common cause
 to create a free operating system. This operating system that we have created is

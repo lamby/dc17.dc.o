@@ -124,6 +124,7 @@ MARKITUP_FILTER = ('markdown.markdown', {
         'markdown.extensions.smarty',
         'markdown.extensions.tables',
         'markdown.extensions.toc',
+        'dc17.markdown',
     ],
     'output_format': 'html5',
     'safe_mode': False,
