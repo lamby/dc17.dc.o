@@ -1,6 +1,6 @@
 import re
 
-from django.templatetags.static import static
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from markdown.extensions import Extension
 from markdown.postprocessors import Postprocessor
