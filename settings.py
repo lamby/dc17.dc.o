@@ -57,11 +57,6 @@ WAFER_MENUS += (
                 'url': reverse_lazy('wafer_page', args=('about/debian',))
             },
             {
-                'menu': 'dates',
-                'label': 'Dates',
-                'url': reverse_lazy('wafer_page', args=('about/dates',))
-            },
-            {
                 'menu': 'registration_information',
                 'label': 'Registration Information',
                 'url': reverse_lazy('wafer_page', args=('about/registration',))
@@ -89,32 +84,21 @@ WAFER_MENUS += (
         'label': 'Schedule',
         'items': [
             {
-                'menu': 'schedule',
-                'label': 'Schedule',
-                'url': reverse_lazy('wafer_full_schedule')
+                'menu': 'important_dates',
+                'label': 'Important Dates',
+                'url': reverse_lazy('wafer_page', args=('schedule/important_dates',))
             },
             {
-                'menu': 'talks',
-                'label': 'Talks',
+                'menu': 'confirmed_talks',
+                'label': 'Confirmed Talks',
                 'url': reverse_lazy('wafer_users_talks')
             },
             {
-                'menu': 'mobile_friendly_schedule',
-                'label': 'Mobile-friendly Schedule',
-                'url': reverse_lazy(
-                    'wafer_page',
-                    args=('mobile-friendly-schedule',))
+                'menu': 'debian_day',
+                'label': 'Debain Day',
+                'url': reverse_lazy('wafer_page', args=('schedule/debian_day',))
             },
-            {
-                'menu': 'open-weekend',
-                'label': 'Open Weekend',
-                'url': reverse_lazy('wafer_page', args=('open-weekend',))
-            },
-            {
-                'menu': 'debcamp-sprints',
-                'label': 'DebCamp Sprints',
-                'url': reverse_lazy('wafer_page', args=('debcamp-sprints',))
-            }
+
         ]
     }
 )
