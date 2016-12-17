@@ -14,9 +14,9 @@ $font-size-root: 14px;
 h1, h2, h3,
 .h1, .h2, .h3 {
   border-bottom: 1px solid #ccc;
-  padding-top: 3rem;
-  padding-bottom: 0.5rem;
+  margin-top: 3rem;
   margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   font-family: 'Monoton', 'Arial Black', sans-serif;
   color: $dc17-blue;
 }
@@ -75,7 +75,7 @@ h1, h2, h3,
 }
 
 #main {
-  padding-top: 2rem;
+  margin-top: 2rem;
 }
 
 .blue {
