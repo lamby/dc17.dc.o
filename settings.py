@@ -95,9 +95,9 @@ WAFER_MENUS += (
         'label': 'Schedule',
         'items': [
             {
-                'menu': 'important_dates',
+                'menu': 'important-dates',
                 'label': 'Important Dates',
-                'url': reverse_lazy('wafer_page', args=('schedule/important_dates',))
+                'url': reverse_lazy('wafer_page', args=('schedule/important-dates',))
             },
             {
                 'menu': 'confirmed_talks',
@@ -105,9 +105,9 @@ WAFER_MENUS += (
                 'url': reverse_lazy('wafer_users_talks')
             },
             {
-                'menu': 'debian_day',
+                'menu': 'debian-day',
                 'label': 'Debian Day',
-                'url': reverse_lazy('wafer_page', args=('schedule/debian_day',))
+                'url': reverse_lazy('wafer_page', args=('schedule/debian-day',))
             },
 
         ]
