@@ -75,9 +75,20 @@ WAFER_MENUS += (
         ],
     },
     {
-        'menu': 'sponsors',
+        'menu': 'sponsors_index',
         'label': 'Sponsors',
-        'url': reverse_lazy('wafer_sponsors')
+        'items': [
+            {
+                'menu': 'sponsors',
+                'label': 'Our Sponsors',
+                'url': reverse_lazy('wafer_sponsors')
+            },
+            {
+                'menu': 'become_sponsor',
+                'label': 'Become a sponsor',
+                'url': reverse_lazy('wafer_page', args=('sponsors/become-a-sponsor',))
+            }
+        ],
     },
     {
         'menu': 'schedule_index',
