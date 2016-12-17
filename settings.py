@@ -121,7 +121,9 @@ CRISPY_FAIL_SILENTLY = not DEBUG
 
 MARKITUP_FILTER = ('markdown.markdown', {
     'extensions': [
+        'markdown.extensions.smarty',
         'markdown.extensions.tables',
+        'markdown.extensions.toc',
     ],
     'output_format': 'html5',
     'safe_mode': False,
