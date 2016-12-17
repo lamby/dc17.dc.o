@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "bootstrap": "4.0.0-alpha.5",
+    "font-awesome": "4.7.x",
     "gulp": "3.9.x",
     "gulp-concat": "2.6.x",
     "gulp-sass": "3.0.x",
