@@ -2,7 +2,7 @@
 name: About DebConf
 ---
 About DebConf
--------------
+=============
 
 DebConf is the annual conference for Debian contributors and
 users interested in improving Debian.

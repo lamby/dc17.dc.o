@@ -2,7 +2,7 @@
 name: Bursaries
 ---
 Applying for a Bursary to DebConf
----------------------------------
+=================================
 
 There are a few different types of bursary available for DebConf, funded from
 different budgets:
