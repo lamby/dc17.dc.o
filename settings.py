@@ -124,7 +124,12 @@ ROOT_URLCONF = 'urls'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CRISPY_FAIL_SILENTLY = not DEBUG
 
-MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
+MARKITUP_FILTER = ('markdown.markdown', {
+    'safe_mode': False,
+    'extensions': [
+        'markdown.extensions.tables',
+    ],
+})
 MARKITUP_SET = 'markitup/sets/markdown/'
 
 DEFAULT_FROM_EMAIL = 'registration@debconf.org'
