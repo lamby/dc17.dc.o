@@ -92,8 +92,13 @@ h1, h2, h3,
   color: $dc17-red;
 }
 
-#big-logo {
-  max-height: 330px;
+.big-logo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  img {
+    max-height: 330px;
+  }
 }
 
 #more-news-link {
