@@ -95,7 +95,7 @@ WAFER_MENUS += (
             },
             {
                 'menu': 'debian_day',
-                'label': 'Debain Day',
+                'label': 'Debian Day',
                 'url': reverse_lazy('wafer_page', args=('schedule/debian_day',))
             },
 
