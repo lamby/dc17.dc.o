@@ -125,10 +125,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CRISPY_FAIL_SILENTLY = not DEBUG
 
 MARKITUP_FILTER = ('markdown.markdown', {
-    'safe_mode': False,
     'extensions': [
         'markdown.extensions.tables',
     ],
+    'output_format': 'html5',
+    'safe_mode': False,
 })
 MARKITUP_SET = 'markitup/sets/markdown/'
 
