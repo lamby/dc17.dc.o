@@ -1,6 +1,9 @@
 ---
 name: About Debian
 ---
+About Debian
+------------
+
 <img class="img-responsive" style="width:33%; float: right; padding: 5%;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Debian-OpenLogo.svg/775px-Debian-OpenLogo.svg.png" alt="" />
 
 The Debian Project is an association of individuals who have made common cause

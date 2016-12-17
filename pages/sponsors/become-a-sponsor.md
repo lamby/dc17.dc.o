@@ -1,6 +1,9 @@
 ---
 name: Become a Sponsor
 ---
+Become a Sponsor
+----------------
+
 Thank you for your interest in DebConf, the annual conference of the
 Debian Project!
 
