@@ -67,10 +67,10 @@ WAFER_MENUS += (
                 'url': reverse_lazy('wafer_page', args=('about/bursaries',))
             },
             {
-                'menu': 'visiting_canada',
-                'label': 'Visiting Canada',
+                'menu': 'visiting_montreal',
+                'label': 'Visiting Montreal',
                 'url': reverse_lazy(
-                    'wafer_page', args=('about/visiting-canada',))
+                    'wafer_page', args=('about/visiting-montreal',))
             },
         ],
     },
