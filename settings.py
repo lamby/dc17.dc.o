@@ -7,9 +7,6 @@ from wafer.settings import *
 
 TIME_ZONE = 'America/Montreal'
 
-WAFER_TALKS_OPEN = False
-WAFER_REGISTRATION_OPEN = False
-
 try:
     from localsettings import *
 except ImportError:
