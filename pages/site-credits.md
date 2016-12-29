@@ -1,15 +1,17 @@
 ---
 name: Site Credits
 ---
-This site is built on the [wafer][] conference management system.
+
+[Source for this site](https://anonscm.debian.org/cgit/debconf-data/dc17.dc.o.git).
+
+The site is built on the [wafer][] conference management system.
 Wafer uses the [Django][] framework, and is licensed under the [ISC license][].
 
 [wafer]: https://github.com/CTPUG/wafer
 [Django]: https://www.djangoproject.com/
 [ISC license]: https://github.com/CTPUG/wafer/blob/master/LICENSE
 
-This site is also licensed under the ISC license. With the exception
-of:
+The site is also licensed under the ISC license. With the exception of:
 
 * Sponsor & Company logos
 * Images obtained from third parties - [see list](https://anonscm.debian.org/cgit/debconf-data/dc17.dc.o.git/tree/assets/img/AUTHORS)
