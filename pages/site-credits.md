@@ -20,7 +20,7 @@ The site is also licensed under the ISC license. With the exception of:
 
 ---
 
-Copyright (c) 2016 Stefano Rivera, Noel Rignon
+Copyright (c) 2016 Stefano Rivera, Noel Rignon, Valessio Brito
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
