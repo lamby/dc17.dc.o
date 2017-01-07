@@ -101,12 +101,33 @@ $(function() {
         $('#id_1-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
     });
 
-    $('#div_id_3-accomm_food i.fa-toggle-on').each(function() {
+    function updateButton(toggle, checkboxes) {
+        if (checkboxes.filter(':checked').length == 0) {
+            toggle.addClass('fa-square-o')
+                .removeClass('fa-minus-square-o fa-check-square-o');
+        } else if (checkboxes.filter(':not(:checked)').length == 0) {
+            toggle.addClass('fa-check-square-o')
+                .removeClass('fa-square-o fa-minus-square-o');
+        } else {
+            toggle.addClass('fa-minus-square-o')
+                .removeClass('fa-square-o fa-check-square-o');
+        }
+    }
+
+    $('#div_id_3-accomm_food i.fa-square-o').each(function() {
+        var toggle = $(this);
+        var checkboxes = $(this).closest('tr').find('input');
+        updateButton(toggle, checkboxes);
         $(this).parent().on('click', function(e) {
-            var checkboxes = $(this).closest('tr').find('input');
-            var select = checkboxes.filter(':not(:checked)').length > 0;
+            var select = checkboxes.filter(':checked').length == 0;
             checkboxes.each(function() {
                 this.checked = select;
+            });
+            updateButton(toggle, checkboxes);
+        });
+        checkboxes.each(function() {
+            $(this).on('click', function() {
+                updateButton(toggle, checkboxes);
             });
         });
     });
