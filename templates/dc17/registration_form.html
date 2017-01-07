@@ -1,0 +1,127 @@
+{% extends "wafer/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block extra_head %}
+{{ wizard.form.media.css }}
+<style>
+  #div_id_1-arrival, #div_id_1-departure {
+      position: relative;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Registration</h1>
+<form action="" method="post">{% csrf_token %}
+    {{ wizard.management_form }}
+    {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+            {% crispy form %}
+        {% endfor %}
+    {% else %}
+        {% crispy wizard.form %}
+    {% endif %}
+    <p id="steps">Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+    <progress class="progress" value="{{ wizard.steps.step1 }}" max="{{ wizard.steps.count }}"
+              aria-describedby="steps"></progress>
+    {% if wizard.steps.prev %}
+        <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+                value="{{ wizard.steps.first }}">First Page</button>
+        <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+                value="{{ wizard.steps.prev }}">Previous Page</button>
+    {% endif %}
+    <input type="submit" class="btn btn-primary" value="Save">
+</form>
+{% endblock %}
+
+{% block extra_foot %}
+{{ wizard.form.media.js }}
+<script type="text/javascript">
+'use strict';
+$(function() {
+    var minDate = moment('2017-07-31 00:00');
+    var maxDate = moment('2017-08-13 10:00');
+    var defaultDate = moment('2017-08-01 00:00');
+
+    function validatedDate() {
+        var current_value = moment(this.value);
+        if (!current_value.isValid() ||
+                current_value.diff(minDate) < 0 ||
+                current_value.diff(maxDate) > 0) {
+            return null;
+        }
+        return current_value;
+    }
+
+    function onShow(e) {
+        var validated = validatedDate.call(this);
+        // Hack: viewDate is busted
+        // https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1959
+        var setDate = $(this).data('DateTimePicker').date;
+        setDate(validated || defaultDate);
+        if (!validated) {
+            setDate(null);
+        }
+    }
+
+    $('.datetimeinput').each(function() {
+        var current_value = validatedDate.call(this);
+        $(this).datetimepicker({
+            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            format: 'YYYY-MM-DD HH:mm',
+            inline: true,
+            locale: 'en-gb',
+            maxDate: maxDate,
+            minDate: minDate,
+            sideBySide: true,
+            useCurrent: false,
+            icons: {
+                clear: 'fa fa-trash',
+                close: 'fa fa-times',
+                date: 'fa fa-calendar',
+                down: 'fa fa-chevron-down',
+                next: 'fa fa-chevron-right',
+                previous: 'fa fa-chevron-left',
+                time: 'fa fa-clock-o',
+                today: 'fa fa-dot-circle-o',
+                up: 'fa fa-chevron-up',
+            },
+        });
+        $(this).on('dp.show', onShow);
+        // Ensure onShow is initially called. And that we don't render the page
+        // with just the departure widget shown, because that's just weird.
+        $(this).data('DateTimePicker').hide();
+    });
+
+    $('#id_1-arrival').on('dp.change', function(e) {
+        $('#id_1-departure').data('DateTimePicker').minDate(e.date || minDate);
+    });
+    $('#id_1-departure').on('dp.change', function(e) {
+        $('#id_1-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
+    });
+
+    $('#div_id_3-accomm_food i.fa-toggle-on').each(function() {
+        $(this).parent().on('click', function(e) {
+            var checkboxes = $(this).closest('tr').find('input');
+            var select = checkboxes.filter(':not(:checked)').length > 0;
+            checkboxes.each(function() {
+                this.checked = select;
+            });
+        });
+    });
+
+    $('#div_id_4-bursary input').each(function() {
+        $(this).on('click', function(e) {
+            var state = this.checked ? 'show' : 'hide';
+            $('#bursary-details').collapse(state);
+        });
+        if (! this.checked) {
+            // Immediately hide, without any animation
+            $('#bursary-details').removeClass('in');
+        }
+    });
+
+});
+</script>
+{% endblock %}

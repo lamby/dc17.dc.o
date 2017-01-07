@@ -150,6 +150,10 @@ h1, .h1 {
   }
 }
 
+.asteriskField {
+  color: $dc17-red;
+}
+
 footer {
   background-color: transparentize($dc17-blue, 0.9);
   border-top: 2px solid $dc17-blue;

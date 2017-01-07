@@ -17,6 +17,8 @@ root = Path(__file__).parent
 INSTALLED_APPS = (
     'dc17',
     'news',
+    'django_countries',
+    'formtools',
 #    'volunteers'
 ) + INSTALLED_APPS
 
