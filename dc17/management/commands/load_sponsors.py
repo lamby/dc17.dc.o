@@ -51,6 +51,7 @@ class Command(BaseCommand):
         sponsor, created = Sponsor.objects.get_or_create(name=meta['name'])
         sponsor.description = meta['name']
         sponsor.order = meta['order']
+        sponsor.url = meta['url']
         self.ensure_only(sponsor.packages, package)
         self.ensure_only(sponsor.files, file_)
         sponsor.save()
