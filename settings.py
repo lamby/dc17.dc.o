@@ -139,3 +139,4 @@ WAFER_PUBLIC_ATTENDEE_LIST = False
 
 PAGE_DIR = '%s/' % (root / 'pages')
 NEWS_DIR = '%s/' % (root / 'news' / 'stories')
+SPONSORS_DIR = '%s/' % (root / 'sponsors')
