@@ -4,6 +4,20 @@ name: Visiting Montreal
 Visiting Montreal
 =================
 
+Montreal's airport (codenamed YUL) is the third-busiest airport in
+Canada. [Direct flights](http://www.admtl.com/en/flights/direct-flights)
+are provided from a lot of major European and South American cities.
+
+The airport is located within the city on the [mid-western section](http://www.openstreetmap.org/way/11027582#map=14/45.4688/-73.7463)
+of the island of Montreal.
+
+Going from the airport to the downtown area can be achieved by a
+dedicated bus line (line number 747) for 7 CAD$ or by taxi which
+is more expensive.
+
+Visas
+=====
+
 Requirements for all visitors to Canada
 
 * A valid and acceptable passport or travel document for your intended stay.
