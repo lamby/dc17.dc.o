@@ -1,9 +1,9 @@
 {% extends "wafer/base.html" %}
 {% load i18n %}
-{% block title %}{% trans 'Sponsors' %} - {{ WAFER_CONFERENCE_NAME }}{% endblock %}
+{% block title %}{% trans 'Our Sponsors' %} - {{ WAFER_CONFERENCE_NAME }}{% endblock %}
 {% block content %}
 <section class="wafer wafer-sponsors">
-<h1>{% trans 'Sponsors' %}</h1>
+<h1>{% trans 'Our Sponsors' %}</h1>
 <div id="sponsors-section">
   <div>{# noop for ifchanged to be useful #}
   {% for sponsor in sponsor_list %}
