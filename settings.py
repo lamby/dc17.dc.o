@@ -108,7 +108,13 @@ WAFER_MENUS += (
             },
 
         ]
+    },
+    {
+        'menu': 'contact',
+        'label': 'Contact us',
+        'url': reverse_lazy('wafer_page', args=('contact',))
     }
+
 )
 
 ROOT_URLCONF = 'urls'
