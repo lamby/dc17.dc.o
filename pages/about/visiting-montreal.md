@@ -65,4 +65,4 @@ need an invitation letter, please send your request to visa@debconf.org and make
 sure to include your full name, passport number and expiration date as well as
 your physical address.
 
-You can start the online visa application process [here](http://onlineservices-servicesenligne.cic.gc.ca/eapp/eapp.do).
+You can start the online visa application process [here](http://www.cic.gc.ca/english/visit/apply-how.asp).
