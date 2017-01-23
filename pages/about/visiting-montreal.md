@@ -5,14 +5,19 @@ Visiting Montreal
 =================
 
 Montreal's airport (codenamed YUL) is the third-busiest airport in
-Canada. [Direct flights](http://www.admtl.com/en/flights/direct-flights)
-are provided from a lot of major European and South American cities.
-The airport is located within the city on the [mid-western section](http://www.openstreetmap.org/way/11027582#map=14/45.4688/-73.7463)
+Canada.
+[Direct flights][] are provided from a lot of major European and South
+American cities.
+The airport is located within the city on the [mid-western section][]
 of the island of Montreal.
 
-Going from the airport to the downtown area can be achieved by a
-[dedicated bus line](http://www.stm.info/en/info/networks/bus/shuttle/more-about-747-aeroport-p-e-trudeau-centre-ville-shuttle)
-for 10 CAD$, by taxi or by taking a Uber.
+[direct flights]: http://www.admtl.com/en/flights/direct-flights
+[mid-western section]: http://www.openstreetmap.org/way/11027582#map=14/45.4688/-73.7463
+
+There is a [dedicated bus line][] from the airport to the city centre.
+Fares are 10 CAD$. Alternatively, there are taxis and Uber.
+
+[dedicated bus line]: http://www.stm.info/en/info/networks/bus/shuttle/more-about-747-aeroport-p-e-trudeau-centre-ville-shuttle
 
 Visas
 =====
