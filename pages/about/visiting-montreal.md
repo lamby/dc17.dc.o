@@ -35,8 +35,10 @@ Countries requiring visas
 -------------------------
 
 Since November 10th 2016, people who don't require visas to enter Canada still
-need to fill in an Electronic Travel Authorisation (eTA). Exceptions include
+need to fill in an [Electronic Travel Authorisation (eTA)][eta]. Exceptions include
 U.S. citizens and travellers with a valid Canadian visa.
+
+[eta]: http://www.cic.gc.ca/english/visit/apply-who.asp#eta
 
 Many nationalities are exempt from requiring a visa to enter Canada. Citizens of
 these countries may visit Canada for up to 6 months without a visa. This
