@@ -47,3 +47,5 @@ against those who do not cease unacceptable behaviour.
 
 See the [DebConf Code of Conduct](https://debconf.org/codeofconduct.shtml) and
 the [Debian Code of Conduct](https://www.debian.org/code_of_conduct).
+
+[antiharassment@debian.org]: mailto:antiharassment@debian.org
