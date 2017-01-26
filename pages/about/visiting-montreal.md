@@ -70,8 +70,8 @@ your physical address.
 If you need to state the name and the address of the institution inviting you,
 please use theses:
 
-Name: *Conférence DebConf17 Montréal*
-Address: *33-6640 av. Fielding Montréal (Québec) H4V1N3 Canada*
+* Name: *Conférence DebConf17 Montréal*
+* Address: *33-6640 av. Fielding Montréal (Québec) H4V1N3 Canada*
 
 Please note that this is not the address of the venue, but the registered
 address of the non-profit we created for DC17.
