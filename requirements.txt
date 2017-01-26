@@ -7,4 +7,4 @@ PyYAML
 
 # From the cheeseshop
 python-memcached
-wafer==0.5.0
+wafer==0.5.1
