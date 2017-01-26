@@ -5,11 +5,9 @@ About DebConf
 =============
 
 DebConf is the annual conference for Debian contributors and
-users interested in improving Debian.
-Previous Debian conferences have featured speakers and attendees from all
-around the world.
-DebConf16 took place in Cape Town, South Africa and was attended by 280
-participants from 30 countries.
+users interested in improving Debian. Previous Debian conferences have featured
+speakers and attendees from all around the world. DebConf16 took place in Cape
+Town, South Africa and was attended by 280 participants from 30 countries.
 
 DebConf17 will take place in August 2017 in Montreal, Canada from August 6 to
 August 12, 2017.
