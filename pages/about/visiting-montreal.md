@@ -44,7 +44,9 @@ Many nationalities are exempt from requiring a visa to enter Canada. Citizens of
 these countries may visit Canada for up to 6 months without a visa. This
 includes most of Western Europe and USA.
 
-You can find if you need a visa by visiting [this website](http://www.cic.gc.ca/english/visit/visas-all.asp).
+You can find if you need a visa by visiting [this website][].
+
+[this website]: http://www.cic.gc.ca/english/visit/visas-all.asp
 
 Visa Application process
 ------------------------
@@ -65,4 +67,15 @@ need an invitation letter, please send your request to visa@debconf.org and make
 sure to include your full name, passport number and expiration date as well as
 your physical address.
 
-You can start the online visa application process [here](http://www.cic.gc.ca/english/visit/apply-how.asp).
+If you need to state the name and the address of the institution inviting you,
+please use theses:
+
+Name: *Conférence DebConf17 Montréal*
+Address: *33-6640 av. Fielding Montréal (Québec) H4V1N3 Canada*
+
+Please note that this is not the address of the venue, but the registered
+address of the non-profit we created for DC17.
+
+You can start the online visa application process [here][].
+
+[here]: http://www.cic.gc.ca/english/visit/apply-how.asp
