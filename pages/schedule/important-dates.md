@@ -13,7 +13,7 @@ Important Dates
 | Wednesday, 2nd August | Third day of DebCamp                            |
 | Thursday, 3rd August  | Fourth day of DebCamp                           |
 | Friday, 4 August      | Fifth day of DebCamp                            |
-| Saturday, 5 August    | Debian Day, Arrival day for DebConf, Set-up     |
+| Saturday, 5 August    | Open Day, Arrival day for DebConf, Set-up       |
 | Sunday, 6 August      | First day of DebConf: Opening Ceremony          |
 | Monday, 7 August      | Second day of DebConf                           |
 | Tuesday, 8 August     | Third day of DebConf                            |

@@ -12,7 +12,7 @@ Town, South Africa and was attended by 280 participants from 30 countries.
 DebConf17 will take place in August 2017 in Montreal, Canada from August 6 to
 August 12, 2017.
 
-It will be preceded by DebCamp, July 31st to August 4th, and Debian Day, August
+It will be preceded by DebCamp, July 31st to August 4th, and Open Day, August
 5th.
 
 The Venue

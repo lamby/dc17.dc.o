@@ -102,9 +102,9 @@ WAFER_MENUS += (
                 'url': reverse_lazy('wafer_users_talks')
             },
             {
-                'menu': 'debian-day',
-                'label': 'Debian Day',
-                'url': reverse_lazy('wafer_page', args=('schedule/debian-day',))
+                'menu': 'open-day',
+                'label': 'Open Day',
+                'url': reverse_lazy('wafer_page', args=('schedule/open-day',))
             },
 
         ]
