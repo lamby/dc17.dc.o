@@ -322,7 +322,7 @@ class RegistrationForm4(RegistrationFormStep):
                 if cleaned_data.get(field):
                     self.add_error(
                         field,
-                        'You have not applied for a busrary')
+                        'You have not applied for a bursary')
         else:
             if not cleaned_data.get('bursary_reason'):
                 self.add_error(
