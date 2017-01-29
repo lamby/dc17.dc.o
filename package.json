@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "devDependencies": {
-    "bootstrap": "4.0.0-alpha.5",
+    "bootstrap": "4.0.0-alpha.6",
     "eonasdan-bootstrap-datetimepicker": "git+https://github.com/Eonasdan/bootstrap-datetimepicker.git#4.17.44",
     "font-awesome": "4.7.x",
     "gulp": "3.9.x",
