@@ -21,15 +21,6 @@ ACCOM_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Accomodation" tar
 BURSARIES_LINK = '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">DebConf bursary instructions</a>'
 
 
-def tshirt_sizes():
-    yield None, 'No t-shirt, please'
-    for size in ('xs', 's', 'm', 'l', 'xl', '2xl', '3xl', '4xl', '5xl'):
-        for cut in ('straight', "women's fitted"):
-            short = '%s:%s' % (cut[0], size)
-            label = '%s (%s cut)' % (size.upper(), cut)
-            yield short, label
-
-
 def nights_meals(orga=False):
     day = datetime.date(2016, 7, 31)
     if orga:
@@ -168,9 +159,26 @@ class RegistrationForm1(RegistrationFormStep):
 
 
 class RegistrationForm2(RegistrationFormStep):
-    t_shirt = forms.ChoiceField(
+    t_shirt_cut = forms.ChoiceField(
+        label='My T-shirt cut',
+        choices=(
+            ('s', 'Straight cut'),
+            ('w', "Women's fitted cut"),
+        ),
+        required=False,
+    )
+    t_shirt_size = forms.ChoiceField(
         label='My T-shirt size',
-        choices=tshirt_sizes(),
+        choices=(
+            ('xs', 'Extra small'),
+            ('s', 'Small'),
+            ('m', 'Medium'),
+            ('l', 'Large'),
+            ('xl', 'Extra large'),
+            ('2xl', '2X Large'),
+            ('3xl', '3X Large'),
+            ('4xl', '4X Large'),
+            ('5xl', '5X Large'),
         required=False,
     )
     gender = forms.ChoiceField(
