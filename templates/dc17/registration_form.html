@@ -22,9 +22,14 @@
     {% else %}
         {% crispy wizard.form %}
     {% endif %}
-    <p id="steps">Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-    <progress class="progress" value="{{ wizard.steps.step1 }}" max="{{ wizard.steps.count }}"
-              aria-describedby="steps"></progress>
+    <div class="progress mb-3">
+      <div class="progress-bar" role="progressbar"
+           aria-valuenow="{{ wizard.steps.step1 }}" aria-valuemin="0"
+           aria-valuemax="{{ wizard.steps.count }}"
+           style="width: {% widthratio wizard.steps.step1 wizard.steps.count 100 %}%;">
+        Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
+      </div>
+    </div>
     {% if wizard.steps.prev %}
         <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
                 value="{{ wizard.steps.first }}">First Page</button>
