@@ -16,10 +16,9 @@ class OptionalCountries(Countries):
     override = {'--': 'Decline to state'}
 
 
-# TODO: Link to real things
-FOOD_LINK = '<a href="#" target="blank">More information</a>'
-ACCOM_LINK = '<a href="#" target="blank">More information</a>'
-BURSARIES_LINK = '<a href="#" target="blank">DebConf bursary instructions</a>'
+FOOD_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Catering" target="blank">More information</a>'
+ACCOM_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Accomodation" target="blank">More information</a>'
+BURSARIES_LINK = '<a href="https://wiki.debconf.org/DebConf17/Bursaries" target="blank">DebConf bursary instructions</a>'
 
 
 def tshirt_sizes():
