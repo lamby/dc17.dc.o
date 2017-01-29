@@ -179,6 +179,7 @@ class RegistrationForm2(RegistrationFormStep):
             ('3xl', '3X Large'),
             ('4xl', '4X Large'),
             ('5xl', '5X Large'),
+        ),
         required=False,
     )
     gender = forms.ChoiceField(
