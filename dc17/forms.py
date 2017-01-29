@@ -81,6 +81,13 @@ class RegistrationForm0(RegistrationFormStep):
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
+    # Purposefully left unchecked by default to make this opt-in.
+    announce_me = forms.BooleanField(
+        label='Announce my arrival',
+        help_text='If checked your name will be announced in the IRC channel when '
+                  'you check in during conference',
+        required=False,
+    )
 
 
 class RegistrationForm1(RegistrationFormStep):
