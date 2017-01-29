@@ -1,0 +1,38 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<div class="{{ field_class }}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+  {% include 'bootstrap4/layout/field_errors_block.html' %}
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th>Select All</th>
+        <th>Day &amp; Night of</th>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+        <th>Accommodation</th>
+      </tr>
+    </thead>
+    {% for choice in field.field.choices %}
+      {% if forloop.counter0|divisibleby:4 %}
+        <tr>
+          <td>
+            <i class="fa fa-square-o" aria-hidden="true"></i>
+          </td>
+          <td>
+            {{ choice.0|slice:"-10:" }}
+          </td>
+      {% endif %}
+          <td>
+            <div class="checkbox">
+              <input type="checkbox"{% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|stringformat:"s" %} checked="checked"{% endif %} name="{{ field.html_name }}" id="id_{{ field.html_name }}_{{ forloop.counter }}" value="{{ choice.0|unlocalize }}" {{ field.field.widget.attrs|flatatt }}>
+            </div>
+          </td>
+      {% if forloop.counter0|add:1|divisibleby:4 %}
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+  {% include 'bootstrap4/layout/help_text.html' %}
+</div>

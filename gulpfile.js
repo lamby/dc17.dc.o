@@ -22,6 +22,9 @@ gulp.task('js', function() {
       'node_modules/jquery/dist/jquery.js',
       'node_modules/bootstrap/node_modules/tether/dist/js/tether.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
+      'node_modules/eonasdan-bootstrap-datetimepicker/node_modules/moment/moment.js',
+      'node_modules/eonasdan-bootstrap-datetimepicker/node_modules/moment/locale/en-gb.js',
+      'node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
     ])
     .pipe(sourcemaps.init())
     .pipe(concat('debconf17.js'))

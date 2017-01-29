@@ -17,6 +17,8 @@ root = Path(__file__).parent
 INSTALLED_APPS = (
     'dc17',
     'news',
+    'django_countries',
+    'formtools',
 #    'volunteers'
 ) + INSTALLED_APPS
 
@@ -119,7 +121,7 @@ WAFER_MENUS += (
 
 ROOT_URLCONF = 'urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_FAIL_SILENTLY = not DEBUG
 
 MARKITUP_FILTER = ('markdown.markdown', {

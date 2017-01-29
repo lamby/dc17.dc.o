@@ -10,6 +10,13 @@ $font-size-root: 14px;
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome/scss/font-awesome";
 
+// The datetimepicker hasn't been ported to Bootstrap 4
+$border-radius-base: $border-radius;
+$screen-sm-min: map-get($grid-breakpoints, 'sm');
+$screen-md-min: map-get($grid-breakpoints, 'md');
+$screen-lg-min: map-get($grid-breakpoints, 'lg');
+@import "eonasdan-bootstrap-datetimepicker/src/sass/_bootstrap-datetimepicker.scss";
+
 // Bootstrap overrides
 
 h1, h2, h3,
@@ -139,6 +146,10 @@ h1, .h1 {
   }
 
   margin-bottom: 3rem;
+}
+
+.asteriskField {
+  color: $dc17-red;
 }
 
 footer {
