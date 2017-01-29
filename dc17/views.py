@@ -1,8 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
-
 from formtools.wizard.views import SessionWizardView
+from wafer.utils import LoginRequiredMixin
 
 from dc17.forms import (
     RegistrationForm0,
@@ -14,7 +14,7 @@ from dc17.forms import (
 )
 
 
-class RegistrationWizard(SessionWizardView):
+class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
     template_name = 'dc17/registration_form.html'
     form_list = [
         RegistrationForm0,
