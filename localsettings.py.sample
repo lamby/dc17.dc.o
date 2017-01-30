@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['debconf17.debconf.org']
 
 WAFER_TALKS_OPEN = True
 WAFER_REGISTRATION_OPEN = True
-RECONFIRMATION = False
+CONFIRMATION = False
 
 DATABASES = {}
 DATABASES['default'] = {
