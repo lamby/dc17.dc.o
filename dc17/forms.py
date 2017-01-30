@@ -107,9 +107,9 @@ class RegistrationForm1(RegistrationFormStep):
     fee = forms.ChoiceField(
         label='My registration fee',
         choices=(
-            ('', 'Basic attendee - Free'),
-            ('pro', 'Professional level - $200'),
-            ('corp', 'Corporate level - $500'),
+            ('', 'Regular - Free'),
+            ('pro', 'Professional - $200'),
+            ('corp', 'Corporate - $500'),
         ),
         help_text='Prices in CAD. We encourage attendees to pay for their '
                   'attendance if they can afford to do so.',
