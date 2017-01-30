@@ -261,12 +261,12 @@ class RegistrationForm3(RegistrationFormStep):
 
 class RegistrationForm4(RegistrationFormStep):
     bursary = forms.BooleanField(
-        label='I am applying for a bursary',
+        label='I am applying for a travel bursary',
         required=False,
     )
 
     bursary_reason = forms.CharField(
-        label='Details of my bursary request',
+        label='Details of my travel bursary request',
         help_text='This is where you explain your needs, and involvement in '
                   'Debian, that justify a bursary. See the ' + BURSARIES_LINK,
         widget=forms.Textarea(attrs={'rows': 5}),
@@ -275,7 +275,7 @@ class RegistrationForm4(RegistrationFormStep):
     bursary_need = forms.ChoiceField(
         label='My level of need',
         choices=(
-            ('', 'N/A (not requesting a bursary)'),
+            ('', 'N/A (not requesting a travel bursary)'),
             ('unable', 'Without this funding I will be absolutely '
                        'unable to attend'),
             ('sacrifice', 'Without the requested funding I will have to '
