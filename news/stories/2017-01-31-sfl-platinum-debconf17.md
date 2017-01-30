@@ -5,11 +5,11 @@ title: Savoir-faire Linux Platinum Sponsor of DebConf17
 We are very pleased to announce that [**Savoir-faire Linux**][] 
 has committed support to [DebConf17][] as a **Platinum sponsor**.
 
-*"Debian acts as a model for both Free Software and developer
+*\"Debian acts as a model for both Free Software and developer
 communities. Savoir-faire Linux promotes both vision and values of
-Debian. Indeed, we believe that it's an essential piece, in a social
+Debian. Indeed, we believe that it\'s an essential piece, in a social
 and political way, to the freedom of users using modern technological
-systems"*, said Cyrille Béraud, president of Savoir-faire Linux.
+systems\"*, said Cyrille Béraud, president of Savoir-faire Linux.
 
 
 Savoir-faire Linux is a Montreal-based Free/Open-Source Software company
