@@ -138,11 +138,11 @@ class RegistrationForm1(RegistrationFormStep):
                   'sure about the details yet. It helps us to plan.',
         required=False,
     )
-    if settings.CONFIRMATION:
+    if settings.RECONFIRMATION:
         reconfirm = forms.BooleanField(
-            label='I confirm my attendance',
+            label='I reconfirm my attendance',
             help_text="If you do not select this by July, we'll assume you "
-                      "are not coming",
+                      "aren't coming",
             required=False,
         )
 
