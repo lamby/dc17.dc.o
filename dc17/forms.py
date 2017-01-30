@@ -43,6 +43,9 @@ class RegistrationFormStep(forms.Form):
 
 
 class RegistrationForm0(RegistrationFormStep):
+    #
+    # Contact informations
+    #
     name = forms.CharField(
         label='My name is',
         help_text='This will appear on your name tag, and in public areas of '
@@ -166,6 +169,9 @@ class RegistrationForm1(RegistrationFormStep):
 
 
 class RegistrationForm2(RegistrationFormStep):
+    #
+    # Personnal information
+    #
     t_shirt_cut = forms.ChoiceField(
         label='My T-shirt cut',
         choices=(
@@ -218,6 +224,9 @@ class RegistrationForm2(RegistrationFormStep):
 
 
 class RegistrationForm3(RegistrationFormStep):
+    #
+    # Accommodation & Food
+    #
     accomm_food = forms.MultipleChoiceField(
         label='I request Accommodation and Food for',
         choices=nights_meals(),
@@ -260,6 +269,9 @@ class RegistrationForm3(RegistrationFormStep):
 
 
 class RegistrationForm4(RegistrationFormStep):
+    #
+    # Travel bursaries
+    #
     bursary = forms.BooleanField(
         label='I am applying for a travel bursary',
         required=False,
@@ -337,6 +349,9 @@ class RegistrationForm4(RegistrationFormStep):
 
 
 class RegistrationForm5(RegistrationFormStep):
+    #
+    # Billing information
+    #
     billing_address = forms.CharField(
         label='My billing address',
         widget=forms.Textarea(attrs={'rows': 3}),
