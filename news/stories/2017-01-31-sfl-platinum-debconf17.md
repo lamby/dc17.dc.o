@@ -37,7 +37,7 @@ Thank you very much Savoir-faire Linux, for your support of DebConf17!
 
 DebConf17 is still accepting sponsors. 
 Interested companies and organizations may contact the DebConf team 
-through [sponsors@debconf.org][mailto:sponsors@debconf.org], and
+through [sponsors@debconf.org][], and
 get more information here in the DebConf17 website.
 
 
@@ -45,4 +45,5 @@ This news item was originally posted in the [Debian blog][].
 
 [**Savoir-faire Linux**]: https://www.savoirfairelinux.com/
 [DebConf17]: https://debconf17.debconf.org/
+[sponsors@debconf.org]: mailto:sponsors@debconf.org
 [Debian blog]: https://bits.debian.org/2016/09/debconf17-organization-started.html
