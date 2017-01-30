@@ -38,7 +38,10 @@ remote collaboration among our contributors during the remainder of the year.
 | Logo on podium banners                       |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i> |
 | Mention in press releases                    |           |        |        |         | <i class="fa fa-check" aria-hidden="true"></i> |
 
-Thank you very much, in advance, for your support.
+If you want more details about Debian, DebConf and sponsorship
+opportunities, please read our [sponsorship brochure][].
+
+[sponsorship brochure]: http://media.debconf.org/dc17/fundraising/debconf17_sponsorship_brochure_en.pdf
 
 If you have any questions or ideas to discuss, we look forward to hearing from
 you at [sponsors@debconf.org](mailto:sponsors@debconf.org) and to working with
