@@ -169,6 +169,7 @@ class RegistrationForm2(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
         label='My T-shirt cut',
         choices=(
+            ('n', "I don't want a t-shirt"),
             ('s', 'Straight cut'),
             ('w', "Women's fitted cut"),
         ),
@@ -177,6 +178,7 @@ class RegistrationForm2(RegistrationFormStep):
     t_shirt_size = forms.ChoiceField(
         label='My T-shirt size',
         choices=(
+            ('n', ''),
             ('xs', 'Extra small'),
             ('s', 'Small'),
             ('m', 'Medium'),
