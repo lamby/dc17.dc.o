@@ -5,10 +5,10 @@ name: Important Dates
 Important Dates
 ===============
 
-| **July**                                                                |
+| **July**              |                                                 |
 |-----------------------|-------------------------------------------------|
 | Monday, 31 July       | First day of DebCamp                            |
-| **August**                                                              |
+| **August**            |                                                 |
 | Tuesday, 1st August   | Second day of DebCamp                           |
 | Wednesday, 2nd August | Third day of DebCamp                            |
 | Thursday, 3rd August  | Fourth day of DebCamp                           |
