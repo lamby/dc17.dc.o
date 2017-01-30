@@ -229,8 +229,6 @@ class RegistrationForm3(RegistrationFormStep):
         label='My diet',
         choices=(
             ('', 'I will be happy to eat whatever is provided'),
-            ('pescatarian', "I am pescatarian, don't provide meat, "
-                            "but I'll eat fish"),
             ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
                            "meat/fish for me"),
             ('vegan', "I am strict vegatarian (vegan), don't provide any "
