@@ -2,7 +2,7 @@
 title: Savoir-faire Linux Platinum Sponsor of DebConf17
 ---
 
-We are very pleased to announce that [**Savoir-faire Linux**][] 
+We are very pleased to announce that [**Savoir-faire Linux**][]
 has committed support to [DebConf17][] as a **Platinum sponsor**.
 
 *\"Debian acts as a model for both Free Software and developer
@@ -17,7 +17,7 @@ with offices in Quebec City, Toronto, Paris and Lyon. It offers Linux and
 Free Software integration solutions in order to provide performance,
 flexibility and independence for its clients. The company actively contributes
 to many free software projects, and provide mirrors of Debian, Ubuntu, Linux
-and others. 
+and others.
 
 Savoir-faire Linux was present at DebConf16 program with a talk about Ring, its
 GPL secure and distributed communication system. Ring package was accepted in
@@ -25,18 +25,18 @@ Debian testing during DebCamp in 2016 and will be part of Debian Stretch.
 OpenDHT, the distributed hash table implementation used by Ring, also appeared
 in Debian experimental during last DebConf.
 
-With this commitment as Platinum Sponsor, 
+With this commitment as Platinum Sponsor,
 Savoir-faire Linux contributes to make possible our annual conference,
-and directly supports the progress of Debian and Free Software 
-helping to strengthen the community that continues to collaborate on 
+and directly supports the progress of Debian and Free Software
+helping to strengthen the community that continues to collaborate on
 Debian projects throughout the rest of the year.
 
 Thank you very much Savoir-faire Linux, for your support of DebConf17!
 
 ## Become a sponsor too!
 
-DebConf17 is still accepting sponsors. 
-Interested companies and organizations may contact the DebConf team 
+DebConf17 is still accepting sponsors.
+Interested companies and organizations may contact the DebConf team
 through [sponsors@debconf.org][], and
 get more information here in the DebConf17 website.
 
