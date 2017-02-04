@@ -28,6 +28,12 @@ h1, h2, h3,
   font-family: 'Monoton', 'Arial Black', sans-serif;
   color: $dc17-blue;
   word-spacing: 0.5ex;
+
+  &.card-title {
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 h1, .h1 {
