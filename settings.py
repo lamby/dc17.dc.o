@@ -100,7 +100,7 @@ WAFER_MENUS += (
             },
             {
                 'menu': 'cfp',
-                'label': 'Call for Papers',
+                'label': 'Call for Proposals',
                 'url': reverse_lazy('wafer_page', args=('cfp',))
             },
             {
