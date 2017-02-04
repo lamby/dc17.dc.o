@@ -1,20 +1,16 @@
 ---
 name: Call for Proposals
-
 ---
 
 DebConf17: Call for Proposals
 =============================
 
 The DebConf Content team would like to Call for Proposals for the
-[DebConf17 conference][], to be held in Montreal, Canada, from August 6 through
-August 12, 2017.
+[DebConf17 conference](/), to be held in Montreal, Canada, from August 6
+through August 12, 2017.
 
-[DebConf17 conference]: https://debconf17.debconf.org/
-
-You can find this Call for Proposals in its latest form at: [https://debconf17.debconf.org/cfp][]
-
-[https://debconf17.debconf.org/cfp]: https://debconf17.debconf.org/cfp
+You can find this Call for Proposals in its latest form at:
+[https://debconf17.debconf.org/cfp/](/cfp/)
 
 Please refer to this URL for updates on the present information.
 
@@ -27,7 +23,7 @@ submissions of tutorials, performances, art installations, debates, or any
 other format of event that you think would be beneficial to the Debian
 community.
 
-[event proposal]: <https://debconf17.debconf.org/talks/new/>
+[event proposal]: </talks/new/>
 
 Please include a short title, suitable for a compact schedule, and an engaging
 description of the event. You should use the field "Notes" to provide us
@@ -50,8 +46,8 @@ Timeline
 ========
 
 The first batch of accepted proposals will be announced in April.
-If you depend on having your proposal accepted in order to attend the 
-conference, please submit it as soon as possible so that it can be considered 
+If you depend on having your proposal accepted in order to attend the
+conference, please submit it as soon as possible so that it can be considered
 during this first evaluation period.
 
 All proposals must be submitted before Sunday 4 June 2017 to be evaluated for
@@ -72,21 +68,21 @@ broad topics on which we encourage people to submit proposals, including:
 - Systems administration, automation and orchestration
 - Security
 
-You are welcome to either suggest more tracks, or become a coordinator for any of 
+You are welcome to either suggest more tracks, or become a coordinator for any of
 them; please refer to the [Content Tracks wiki page][] for more information on that.
 
 [Content Tracks wiki page]: https://wiki.debconf.org/wiki/DebConf17/ContentTracks
 
 Code of Conduct
-=============
+===============
+
 Our event is covered by a Code of Conduct designed to ensure everyone's safety
 and comfort. The code applies to all attendees, including speakers and the content
 of their presentations. For more information, please see the [Code on the Web][], and
-do not hesitate to contact us at [<content@debconf.org>][] if you have any questions
+do not hesitate to contact us at [content@debconf.org][] if you have any questions
 or are unsure about certain content you'd like to present.
 
 [Code on the Web]: https://debconf.org/codeofconduct.shtml
-[content@debconf.org]: mailto:content@debconf.org
 
 Video Coverage
 ==============
@@ -101,18 +97,20 @@ and papers whenever available.
 [license]: http://meetings-archive.debian.net/pub/debian-meetings/LICENSE
 
 DebConf would not be possible without the generous support of all our sponsors,
-especially our Platinum Sponsor [Savoir-Faire Linux][]. DebConf17 is still accepting sponsors;
-if you are interested, or think you know of others who would be willing to
-help, please [get in touch][]!
+especially our Platinum Sponsor [Savoir-Faire Linux][].
+DebConf17 is still accepting sponsors; if you are interested, or think
+you know of others who would be willing to help, please [get in
+touch][]!
 
 [Savoir-Faire Linux]: https://www.savoirfairelinux.com/en/
-[get in touch]: https://debconf17.debconf.org/sponsors/become-a-sponsor/
+[get in touch]: /sponsors/become-a-sponsor/
 
 
-In case of any questions, or if you wanted to bounce some ideas off us first, please do not
-hesitate to reach out to us at [<content@debconf.org>][].
+In case of any questions, or if you wanted to bounce some ideas off us
+first, please do not hesitate to reach out to us at
+[content@debconf.org][].
 
-[<content@debconf.org>]: mailto:content@debconf.org
+[content@debconf.org]: mailto:content@debconf.org
 
 
 We hope to see you in Montreal!
