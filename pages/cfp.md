@@ -12,9 +12,7 @@ August 12, 2017.
 
 [DebConf17 conference]: https://debconf17.debconf.org/
 
-You can find this Call for Proposals in its latest form at:
-
-    [https://debconf17.debconf.org/cfp][]
+You can find this Call for Proposals in its latest form at: [https://debconf17.debconf.org/cfp][]
 
 [https://debconf17.debconf.org/cfp]: https://debconf17.debconf.org/cfp
 
