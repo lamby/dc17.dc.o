@@ -99,6 +99,11 @@ WAFER_MENUS += (
                 'url': reverse_lazy('wafer_page', args=('schedule/important-dates',))
             },
             {
+                'menu': 'cfp',
+                'label': 'Call for Papers',
+                'url': reverse_lazy('wafer_page', args=('cfp',))
+            },
+            {
                 'menu': 'confirmed_talks',
                 'label': 'Confirmed Talks',
                 'url': reverse_lazy('wafer_users_talks')
