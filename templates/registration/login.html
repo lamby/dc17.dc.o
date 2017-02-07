@@ -7,51 +7,51 @@
 {% block title %}Login - {{ WAFER_CONFERENCE_NAME }}{% endblock title %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            {% url 'wafer.registration.views.debian_login' as debian_sso_url %}
-            <h2>Debian Members &amp; Contributors:</h2>
-            <p>
-                If you are a Debian Member or have an account on
-                <a href="https://alioth.debian.org/">alioth</a>, you can use
-                Debian SSO.
-            </p>
-            <img class="img-fluid" src="{% static 'img/alioth.png' %}">
-            <div class="vertically-padded">
-                <a class="btn btn-secondary" role="button" href="https://sso.debian.org/" target="blank">
-                    <i class="fa fa-fw fa-external-link"></i>
-                    Generate an SSO certificate
-                </a>
-                <a class="btn btn-info" role="button" href="https://wiki.debian.org/DebianSingleSignOn#Documentation_for_Users" target="blank">
-                    <i class="fa fa-fw fa-external-link"></i>
-                    Debian SSO Documentation
-                </a>
-            </div>
-            <p>Once you have a Debian SSO client certificate installed, you can:</p>
-            <div class="vertically-padded">
-                <a class="btn btn-primary" role="button" href="{{ debian_sso_url }}">
-                    Login with Debian SSO
-                </a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            {% url 'registration_register' as signup_url %}
-            <h2>Newcomers to Debian:</h2>
-            <p>
-                You don't need to have a Debian or Alioth account, you can also
-                <a href="{{ signup_url }}">sign up</a> with a username and
-                password, and use them to login.
-            </p>
-            <div class="vertically-padded">
-                <a class="btn btn-secondary" role="button" href="{{ signup_url }}">
-                    Sign Up without SSO
-                </a>
-            </div>
-            <div class="vertically-padded">
-                {% wafer_form_helper 'wafer.registration.forms.LoginFormHelper' as form_helper %}
-                {% crispy form form_helper %}
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      {% url 'wafer.registration.views.debian_login' as debian_sso_url %}
+      <h2>Debian Members &amp; Contributors:</h2>
+      <p>
+        If you are a Debian Member or have an account on
+        <a href="https://alioth.debian.org/">alioth</a>, you can use
+        Debian SSO.
+      </p>
+      <img class="img-fluid" src="{% static 'img/alioth.png' %}">
+      <div class="vertically-padded">
+        <a class="btn btn-secondary" role="button" href="https://sso.debian.org/" target="blank">
+          <i class="fa fa-fw fa-external-link"></i>
+          Generate an SSO certificate
+        </a>
+        <a class="btn btn-info" role="button" href="https://wiki.debian.org/DebianSingleSignOn#Documentation_for_Users" target="blank">
+          <i class="fa fa-fw fa-external-link"></i>
+          Debian SSO Documentation
+        </a>
+      </div>
+      <p>Once you have a Debian SSO client certificate installed, you can:</p>
+      <div class="vertically-padded">
+        <a class="btn btn-primary" role="button" href="{{ debian_sso_url }}">
+          Login with Debian SSO
+        </a>
+      </div>
     </div>
+    <div class="col-md-6">
+      {% url 'registration_register' as signup_url %}
+      <h2>Newcomers to Debian:</h2>
+      <p>
+        You don't need to have a Debian or Alioth account, you can also
+        <a href="{{ signup_url }}">sign up</a> with a username and
+        password, and use them to login.
+      </p>
+      <div class="vertically-padded">
+        <a class="btn btn-secondary" role="button" href="{{ signup_url }}">
+          Sign Up without SSO
+        </a>
+      </div>
+      <div class="vertically-padded">
+        {% wafer_form_helper 'wafer.registration.forms.LoginFormHelper' as form_helper %}
+        {% crispy form form_helper %}
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
