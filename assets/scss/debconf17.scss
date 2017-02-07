@@ -162,6 +162,15 @@ h1, .h1 {
   color: $dc17-red;
 }
 
+#login-debian-logos {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  img {
+    max-height: 4rem;
+  }
+}
+
 // Profile form
 form #div_id_twitter_handle, form #div_id_github_username {
   display: none;
