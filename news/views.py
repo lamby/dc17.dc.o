@@ -3,6 +3,7 @@ import datetime
 from django.contrib.sites.models import get_current_site
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse_lazy
+from django.http import Http404
 from django.utils.feedgenerator import Atom1Feed
 from django.utils.timezone import make_aware
 from django.utils.translation import ugettext_lazy as _
@@ -18,7 +19,10 @@ class NewsItemView(TemplateView):
 
     def get_context_data(self, date, slug):
         context = super(NewsItemView, self).get_context_data()
-        context['object'] = NewsItem.objects.get_by_url(date, slug)
+        try:
+            context['object'] = NewsItem.objects.get_by_url(date, slug)
+        except NewsItem.DoesNotExist:
+            raise Http404
         return context
 
 
