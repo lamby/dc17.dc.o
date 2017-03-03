@@ -1,6 +1,7 @@
 # Installing locally
 
 * Checkout this repository
+* Install Python and Node tools: `sudo apt install python3 virtualenv npm nodejs-legacy`
 * Create a py3k virtualenv: `virtualenv -p python3 ve`
 * Activate the virtualenv: `. ve/bin/activate`
 * Install the requirements: `pip install -r requirements.txt`
