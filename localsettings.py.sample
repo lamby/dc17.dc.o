@@ -63,6 +63,9 @@ LOGGING = {
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = '25'
 
+# Default for development: dumps all emails on the console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 import sys
 if 'test' in sys.argv:
     try:
