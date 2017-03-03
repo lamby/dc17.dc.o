@@ -7,7 +7,7 @@ Contact us
 Local and global team
 ---------------------
 
-DebConf Team mailing list: [debconf-team@lists.debconf.org][]. Use this for any non-specific-team questions. It has open subscription and public archives.
+DebConf Team mailing list: [debconf-team@lists.debconf.org][]. Use this for any non-specific-team questions. It has open subscription and [public archives][].
 
 DebConf IRC channel (chat): [#debconf on OFTC.net](irc://irc.debian.org/debconf) or use [webchat](https://webchat.oftc.net/?nick=&channels=#debconf).
 
@@ -43,6 +43,7 @@ Report harassment and anything contributing to a disrespectful environment to [a
 
 [antiharassment@debian.org]: mailto:antiharassment@debian.org
 [debconf-team@lists.debconf.org]: mailto:debconf-team@lists.debconf.org
+[public archives]: https://lists.debconf.org/lurker/list/debconf-team.en.html
 [registration@debconf.org]: mailto:registration@debconf.org
 [sponsors@debconf.org]: mailto:sponsors@debconf.org
 [talks@debconf.org]: mailto:talks@debconf.org
