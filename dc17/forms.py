@@ -383,21 +383,23 @@ class FoodForm(RegistrationFormStep):
 
 class AccommForm(RegistrationFormStep):
     venue_accom = forms.ChoiceField(
-        label='I want to stay on premises',
+        label='Do you need accommodation?',
         choices=(
             ('no', 'No, I will find my own accommodation'),
-            ('yes', 'Yes, I want to stay at the venue in classroom dorms '
-                    '(30 CAD$/night)'),
+            ('yes', 'Yes, I need accommodation'),
         ),
     )
     night_selection = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
+        help_text='By defautl, the accommodation provided is in shared '
+                  'classroom dorms on premises. The cost is 30 CAD$/night for '
+                  ' self-paying attendees',
         required=False,
     )
     alt_accom = forms.BooleanField(
-        label='I would like to request alternative accomodation',
+        label='I would like to request alternative accommodation',
         required=False,
     )
     alt_accom_choice = forms.ChoiceField(
