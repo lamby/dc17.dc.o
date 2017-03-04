@@ -341,7 +341,7 @@ class BursaryForm(RegistrationFormStep):
                     'please explain the level of need')
 
 
-class AccomFoodForm(RegistrationFormStep):
+class FoodForm(RegistrationFormStep):
     food_selection = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
@@ -362,6 +362,20 @@ class AccomFoodForm(RegistrationFormStep):
         ),
         required=False,
     )
+    special_diet = forms.CharField(
+        label='Details of my special dietary needs',
+        required=False,
+    )
+
+    def clean(self):
+        cleaned_data = super(FoodForm, self).clean()
+
+        if (cleaned_data.get('diet') == 'other' and
+                not cleaned_data.get('special_diet')):
+            self.add_error('special_diet', 'Required when diet is "other"')
+
+
+class AccommForm(RegistrationFormStep):
     venue_accom = forms.ChoiceField(
         label='I want to stay on premises',
         choices=(
@@ -393,7 +407,7 @@ class AccomFoodForm(RegistrationFormStep):
     )
     special_needs = forms.CharField(
         label='My special needs',
-        help_text='Wheelchair access, food allergies, other diets, etc.',
+        help_text='Wheelchair access, etc.',
         required=False,
     )
     family_usernames = forms.CharField(
@@ -403,13 +417,6 @@ class AccomFoodForm(RegistrationFormStep):
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
-
-    def clean(self):
-        cleaned_data = super(AccomFoodForm, self).clean()
-
-        if (cleaned_data.get('diet') == 'other' and
-                not cleaned_data.get('special_needs')):
-            self.add_error('special_needs', 'Required when diet is "other"')
 
 
 class BillingForm(RegistrationFormStep):
@@ -442,6 +449,7 @@ REGISTRATION_FORMS = [
     ConferenceRegistrationForm,
     PersonalInformationForm,
     BursaryForm,
-    AccomFoodForm,
+    FoodForm,
+    AccommForm,
     BillingForm,
 ]
