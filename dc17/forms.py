@@ -23,8 +23,8 @@ BURSARIES_LINK = (
 
 
 class OptionalCountries(Countries):
-    first = ('--',)
-    override = {'--': 'Decline to state'}
+    first = ('__',)
+    override = {'__': 'Decline to state'}
 
 
 # TODO: remove options for 2017-08-13 lunch and dinner
