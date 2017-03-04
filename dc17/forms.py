@@ -356,7 +356,7 @@ class AccomFoodForm(RegistrationFormStep):
         choices=meals(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
-        help_text="If you don't have a food bursaries, meal prices are: "
+        help_text="If you don't have a food bursary, meal prices are: "
                   "Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$",
         # TODO: Missing prices
     )
@@ -373,7 +373,7 @@ class AccomFoodForm(RegistrationFormStep):
         required=False,
     )
     venue_accom = forms.ChoiceField(
-        label='I want to stay on premise',
+        label='I want to stay on premises',
         choices=(
             ('no', 'No, I will find accommodation by myself'),
             ('yes', 'Yes, I want to stay at the venue in classroom dorms'
