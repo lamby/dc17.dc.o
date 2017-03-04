@@ -183,7 +183,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
 class PersonalInformationForm(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
-        label='My T-shirt cut',
+        label='My t-shirt cut',
         choices=(
             ('n', "I don't want a t-shirt"),
             ('s', 'Straight cut'),
@@ -192,7 +192,7 @@ class PersonalInformationForm(RegistrationFormStep):
         required=False,
     )
     t_shirt_size = forms.ChoiceField(
-        label='My T-shirt size',
+        label='My t-shirt size',
         choices=(
             ('', 'N/A'),
             ('xs', 'Extra small'),
