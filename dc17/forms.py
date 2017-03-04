@@ -258,7 +258,7 @@ class BursaryForm(RegistrationFormStep):
     bursary = forms.ChoiceField(
         label='I want to apply for a bursary',
         choices=(
-            ('', 'N/A (not requesting a bursary)'),
+            ('', "No, I'm not equesting a bursary"),
             ('f', 'Food and accommodation only'),
             ('t', 'Food, accommodation *and travel*'),
         ),
