@@ -125,11 +125,11 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         label='My registration fee',
         choices=(
             ('', 'Regular - Free'),
-            ('pro', 'Professional - $200'),
-            ('corp', 'Corporate - $500'),
+            ('pro', 'Professional - 200 CAD$'),
+            ('corp', 'Corporate - 500 CAD$'),
         ),
-        help_text='Prices in CAD. We encourage attendees to pay for their '
-                  'attendance if they can afford to do so.',
+        help_text='We encourage attendees to pay for their attendance if they '
+                  'can afford to do so.',
         widget=forms.RadioSelect,
         initial='pro',
         required=False,
@@ -358,6 +358,7 @@ class AccomFoodForm(RegistrationFormStep):
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursaries, meal prices are: "
                   "Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$",
+        # TODO: Missing prices
     )
     diet = forms.ChoiceField(
         label='My diet',
