@@ -119,16 +119,13 @@ $(function() {
         }
     }
 
-//    $('#div_id_2-t_shirt_cut input').each(function() {
-//        $(this).on('change', function(e) {
-//            var selectedVal = 'n';
-//            $('#tshirt-details').collapse(state);
-//        });
-//        if (! this.checked) {
-//            // Immediately hide, without any animation
-//            $('#tshirt-details').removeClass('in');
-//        }
-//    });
+    $('#id_2-t_shirt_cut').change(function () {
+      if (this.value == 'n') {
+        $('#tshirt-details').hide();
+      } else {
+        $('#tshirt-details').show();
+      }
+    });
 
     $('#div_id_3-bursary input').each(function() {
         $(this).on('click', function(e) {
