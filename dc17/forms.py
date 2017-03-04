@@ -30,14 +30,14 @@ PREAMBLE = (
     '<li>All registration, accommodation or catering fees must be paid either '
     'trough the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
-    '<li>You may update your registration information at any time before the '
-    'confirmation deadline, July 1st.</li>'
-    '<li>All registrations will need to be confirmed before July 1st. '
-    'Unconfirmed registrations past the deadline will be considered null and '
-    'void.</li>'
+    '<li>Please keep your registration information up to date. You can make'
+    'changes at any time through this form.</li>'
+    '<li>Registrations will need to be confirmed before July 1st. '
+    'We cannot guarantee availability of accomodation, catering or swag for '
+    'unconfirmed registrations.</li>'
     '<li>Badges will be available for pick-up at the front desk.</li>'
-    '<li>Bursary application deadline is May 1st. After this date, your '
-    "bursary application won't be considered.</li>"
+    '<li>The deadline to apply for a bursary is May 1st. After this date, '
+    "new bursary applications won't be considered.</li>"
     '</ol>'
 )
 
