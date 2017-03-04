@@ -59,10 +59,7 @@ class RegistrationFormStep(forms.Form):
         self.helper.form_tag = False
 
 
-class RegistrationForm0(RegistrationFormStep):
-    #
-    # Contact informations
-    #
+class ContactInformationForm(RegistrationFormStep):
     name = forms.CharField(
         label='My name is',
         help_text='This will appear on your name tag, and in public areas of '
@@ -110,7 +107,7 @@ class RegistrationForm0(RegistrationFormStep):
     )
 
 
-class RegistrationForm1(RegistrationFormStep):
+class ConferenceRegistrationForm(RegistrationFormStep):
     debcamp = forms.BooleanField(
         label='I plan to attend DebCamp (31 July to 4 August)',
         required=False,
@@ -167,7 +164,7 @@ class RegistrationForm1(RegistrationFormStep):
         )
 
     def clean(self):
-        cleaned_data = super(RegistrationForm1, self).clean()
+        cleaned_data = super(ConferenceRegistrationForm, self).clean()
         paid = bool(cleaned_data.get('fee'))
 
         if paid and not (cleaned_data.get('debcamp') or
@@ -185,10 +182,7 @@ class RegistrationForm1(RegistrationFormStep):
                         field, 'If your dates are final, pleas provide them')
 
 
-class RegistrationForm2(RegistrationFormStep):
-    #
-    # Personnal information
-    #
+class PersonalInformationForm(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
         label='My T-shirt cut',
         choices=(
@@ -240,7 +234,7 @@ class RegistrationForm2(RegistrationFormStep):
     )
 
 #    def __init__(self, *args, **kwargs):
-#        super(RegistrationForm2, self).__init__(*args, **kwargs)
+#        super(PersonalInformationForm, self).__init__(*args, **kwargs)
 #        self.helper.layout = Layout(
 #            Field('t_shirt_cut'),
 #            Fieldset(
@@ -260,10 +254,7 @@ class RegistrationForm2(RegistrationFormStep):
 #           TODO: add cleaned form
 
 
-class RegistrationForm3(RegistrationFormStep):
-    #
-    # Bursaries
-    #
+class BursaryForm(RegistrationFormStep):
     bursary = forms.BooleanField(
         label='I want to apply for a bursary',
         required=False,
@@ -313,7 +304,7 @@ class RegistrationForm3(RegistrationFormStep):
     )
 
     def __init__(self, *args, **kwargs):
-        super(RegistrationForm3, self).__init__(*args, **kwargs)
+        super(BursaryForm, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(
             Field('bursary'),
             Fieldset(
@@ -331,7 +322,7 @@ class RegistrationForm3(RegistrationFormStep):
         )
 
     def clean(self):
-        cleaned_data = super(RegistrationForm3, self).clean()
+        cleaned_data = super(BursaryForm, self).clean()
 
         if cleaned_data.get('travel_bursary') == 0:
             cleaned_data['travel_bursary'] = None
@@ -355,11 +346,7 @@ class RegistrationForm3(RegistrationFormStep):
                     'please explain the level of need')
 
 
-class RegistrationForm4(RegistrationFormStep):
-    #
-    # Accommodation & Food
-    #
-
+class AccomFoodForm(RegistrationFormStep):
     buy_food = forms.BooleanField(
         label='I want to buy meal tickets for onsite catering',
         required=False,
@@ -426,17 +413,14 @@ class RegistrationForm4(RegistrationFormStep):
     )
 
     def clean(self):
-        cleaned_data = super(RegistrationForm4, self).clean()
+        cleaned_data = super(AccomFoodForm, self).clean()
 
         if (cleaned_data.get('diet') == 'other' and
                 not cleaned_data.get('special_needs')):
             self.add_error('special_needs', 'Required when diet is "other"')
 
 
-class RegistrationForm5(RegistrationFormStep):
-    #
-    # Billing information
-    #
+class BillingForm(RegistrationFormStep):
     billing_address = forms.CharField(
         label='My billing address',
         widget=forms.Textarea(attrs={'rows': 3}),
@@ -452,10 +436,20 @@ class RegistrationForm5(RegistrationFormStep):
     )
 
     def clean(self):
-        cleaned_data = super(RegistrationForm5, self).clean()
+        cleaned_data = super(BillingForm, self).clean()
         step1_cleaned = self.wizard.get_cleaned_data_for_step(1) or {}
         paid = bool(step1_cleaned.get('fee'))
 
         if paid and not cleaned_data.get('billing_address'):
             self.add_error('billing_address',
                            'Paid attendees need to provide a billing address')
+
+
+REGISTRATION_FORMS = [
+    ContactInformationForm,
+    ConferenceRegistrationForm,
+    PersonalInformationForm,
+    BursaryForm,
+    AccomFoodForm,
+    BillingForm,
+]

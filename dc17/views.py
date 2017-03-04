@@ -4,26 +4,12 @@ from django.http import HttpResponseRedirect
 from formtools.wizard.views import SessionWizardView
 from wafer.utils import LoginRequiredMixin
 
-from dc17.forms import (
-    RegistrationForm0,
-    RegistrationForm1,
-    RegistrationForm2,
-    RegistrationForm3,
-    RegistrationForm4,
-    RegistrationForm5,
-)
+from dc17.forms import REGISTRATION_FORMS
 
 
 class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
     template_name = 'dc17/registration_form.html'
-    form_list = [
-        RegistrationForm0,
-        RegistrationForm1,
-        RegistrationForm2,
-        RegistrationForm3,
-        RegistrationForm4,
-        RegistrationForm5,
-    ]
+    form_list = REGISTRATION_FORMS
 
     def get_form_initial(self, step):
         initial = super(RegistrationWizard, self).get_form_initial(step)
