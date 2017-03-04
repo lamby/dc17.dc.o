@@ -24,7 +24,8 @@ PREAMBLE = (
     '<h2>Preamble</h2>'
     '<p>Thank you for your interest in attending DebConf17!</p>'
     '<p>Please read the following instructions carefully:</p>'
-    "<ol><li>This registration form requires Javascript. Without it, you won't "
+    '<ol>'
+    "<li>This registration form requires Javascript. Without it, you won't "
     'be able to register.</li>'
     '<li>All registration, accommodation or catering fees must be paid either '
     'trough the Stripe platform or in person at the front desk upon '
@@ -37,7 +38,8 @@ PREAMBLE = (
     '<li>Badges will be available for pick-up at the front desk.</li>'
     '<li>Bursary application deadline is May 1st. After this date, your '
     "bursary application won't be considered.</li>"
-    '<p>&nbsp;</p>')
+    '</ol>'
+)
 
 
 class OptionalCountries(Countries):
