@@ -21,7 +21,6 @@ BURSARIES_LINK = (
     '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
     'DebConf bursary instructions</a>')
 PREAMBLE = (
-    '<h2>Preamble</h2>'
     '<p>Thank you for your interest in attending DebConf17!</p>'
     '<p>Please read the following instructions carefully:</p>'
     '<ol>'
@@ -79,6 +78,8 @@ class RegistrationFormStep(forms.Form):
 
 
 class PreambleForm(RegistrationFormStep):
+    title = 'Preamble'
+
     def __init__(self, *args, **kwargs):
         super(PreambleForm, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(

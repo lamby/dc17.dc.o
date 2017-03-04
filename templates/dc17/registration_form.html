@@ -20,6 +20,7 @@
             {% crispy form %}
         {% endfor %}
     {% else %}
+        <h2>{{ form.title }}</h2>
         {% crispy wizard.form %}
     {% endif %}
     <div class="progress mb-3">
