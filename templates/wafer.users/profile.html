@@ -1,5 +1,6 @@
 {% extends "wafer/base.html" %}
 {% load i18n %}
+{% block title %}{{ object.userprofile.display_name }} - {{ WAFER_CONFERENCE_NAME }}{% endblock %}
 {% block content %}
 {% with profile=object.userprofile %}
 <div class="row">
@@ -22,7 +23,24 @@
             </div>
         {% endif %}
     </div>
-    <div class="col-md-7">
+    <div class="col-md-10">
+        {% if can_edit %}
+        <ul class="float-right btn-group btn-group-vertical profile-links">
+            <li><a href="{% url 'wafer_user_edit' object.username %}" class="btn btn-secondary">{% trans 'Edit User' %}</a></li>
+            <li><a href="{% url 'wafer_user_edit_profile' object.username %}" class="btn btn-secondary">{% trans 'Edit Profile' %}</a></li>
+            {% if WAFER_REGISTRATION_OPEN %}
+                {% if WAFER_REGISTRATION_MODE == 'form' %}
+                    {% url 'wafer_register_view' object.username as register_url %}
+                {% elif WAFER_REGISTRATION_MODE == 'ticket' and not profile.is_registered %}
+                    {% url 'wafer_ticket_claim' as register_url %}
+                {% endif %}
+                {% if register_url %}
+                    <li><a href="{{ register_url }}" class="btn btn-secondary">{% trans 'Register' %}</a></li>
+                {% endif %}
+            {% endif %}
+            <li><a href="{% url 'wafer_talk_submit' %}" class="btn btn-secondary">{% trans 'Submit Talk Proposal' %}</a></li>
+        </ul>
+        {% endif %}
         {% spaceless %}
         <h1>
             {% if profile.homepage %}
@@ -49,25 +67,6 @@
         {% endif %}
         {% endspaceless %}
     </div>
-    <div class="col-md-3">
-        {% if can_edit %}
-        <div class="list-group">
-            <a href="{% url 'wafer_user_edit' object.username %}" class="list-group-item list-group-item-action">{% trans 'Edit User' %}</a>
-            <a href="{% url 'wafer_user_edit_profile' object.username %}" class="list-group-item list-group-item-action">{% trans 'Edit Profile' %}</a>
-            {% if WAFER_REGISTRATION_OPEN %}
-                {% if WAFER_REGISTRATION_MODE == 'form' %}
-                    {% url 'wafer_register_view' object.username as register_url %}
-                {% elif WAFER_REGISTRATION_MODE == 'ticket' and not profile.is_registered %}
-                    {% url 'wafer_ticket_claim' as register_url %}
-                {% endif %}
-                {% if register_url %}
-                    <a href="/register" class="list-group-item list-group-item-action">{% trans 'Register' %}</a>
-                {% endif %}
-            {% endif %}
-            <a href="{% url 'wafer_talk_submit' %}" class="list-group-item list-group-item-action">{% trans 'Submit Talk Proposal' %}</a>
-        </div>
-        {% endif %}
-    </div>
 </div>
 {% if profile.bio %}
 <div class="well">
@@ -75,7 +74,7 @@
 </div>
 {% endif %}
 {% if can_edit %}
-    {% if profile.pending_talks.exists or profile.accepted_talks.exists %}
+    {% if profile.pending_talks.exists or profile.accepted_talks.exists or profile.provisional_talks.exists%}
         {% if profile.is_registered %}
             <div class="tag tag-success">
                 {% blocktrans %}
@@ -105,10 +104,29 @@
 </div>
 {% endfor %}
 {% endif %}
+{% if profile.cancelled_talks.exists %}
+<h2>{% trans 'Cancelled Talks:' %}</h2>
+{% for talk in profile.cancelled_talks %}
+<div class="well">
+    <a href="{{ talk.get_absolute_url }}">{{ talk.title }}</a>
+    <p>{{ talk.abstract.rendered|safe }}</p>
+</div>
+{% endfor %}
+{% endif %}
+{% if profile.provisional_talks.exists %}
+<h2>{% trans 'Provisionally Accepted Talks:' %}</h2>
+{% for talk in profile.provisional_talks %}
+<div class="well">
+    <a href="{{ talk.get_absolute_url }}">{{ talk.title }}</a>
+    <p>{{ talk.abstract.rendered|safe }}</p>
+</div>
+{% endfor %}
+{% endif %}
+
 {# Submitted talk proposals are only visible to the owner #}
 {% if can_edit %}
 {% if profile.pending_talks.exists %}
-<h2>{% trans 'Submitted Talks (under consideration):' %}</h2>
+<h2>{% trans 'Submitted or Under Consideration Talks:' %}</h2>
 {% for talk in profile.pending_talks %}
 <div class="well">
     <a href="{{ talk.get_absolute_url }}">{{ talk.title }}</a>
@@ -118,7 +136,7 @@
     the edit button for people with 'change-talk' permissions, but we
     accept that tradeoff for simplicity here.
     {% endcomment %}
-    <a href="{% url 'wafer_talk_edit' talk.pk %}" class="pull-xs-right btn btn-secondary btn-lg">{% trans 'Edit' %}</a>
+    <a href="{% url 'wafer_talk_edit' talk.pk %}" class="float-right btn btn-secondary btn-lg">{% trans 'Edit' %}</a>
     <p>{{ talk.abstract.rendered|safe }}</p>
 </div>
 {% endfor %}
