@@ -391,7 +391,7 @@ class AccommForm(RegistrationFormStep):
         ),
     )
     night_selection = forms.MultipleChoiceField(
-        label='I\'m requesting accommodation for these nights:',
+        label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
