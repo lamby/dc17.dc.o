@@ -342,17 +342,12 @@ class BursaryForm(RegistrationFormStep):
 
 
 class AccomFoodForm(RegistrationFormStep):
-    buy_food = forms.BooleanField(
-        label='I want to buy meal tickets for onsite catering',
-        required=False,
-    )
     food_selection = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursary, meal prices are: "
-                  "Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$",
-        # TODO: Missing prices
+                  "Breakfast 3 CAD$, Lunch 7.50 CAD$, Dinner 7.50 CAD$",
         required=False,
     )
     diet = forms.ChoiceField(
