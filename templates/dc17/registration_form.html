@@ -114,7 +114,7 @@ $(function() {
       }
     });
 
-    $('#div_id_3-bursary').change(function() {
+    $('#id_3-bursary').change(function() {
       if (this.value == '') {
         $('#bursary-details').hide();
       } else {
@@ -122,7 +122,7 @@ $(function() {
       }
     });
 
-    $('#div_id_5-venue_accom').change(function() {
+    $('#id_5-venue_accom').change(function() {
       if (this.value == 'no') {
         $('#night-details').hide();
       } else {
@@ -130,7 +130,7 @@ $(function() {
       }
     });
 
-    $('#div_id_5-alt_accom input').each(function() {
+    $('#id_5-alt_accom input').each(function() {
       $(this).on('click', function(e) {
         var state = this.checked ? 'show' : 'hide';
           $('#accom-details').collapse(state);
@@ -141,7 +141,7 @@ $(function() {
       }
     });
 
-    $('#div_id_5-childcare').change(function() {
+    $('#id_5-childcare').change(function() {
       if (this.value == 'no') {
         $('#childcare-details').hide();
       } else {
