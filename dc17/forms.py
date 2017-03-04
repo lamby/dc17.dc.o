@@ -303,7 +303,7 @@ class RegistrationForm3(RegistrationFormStep):
         self.helper.layout = Layout(
             Field('bursary'),
             Fieldset(
-                'Travel Bursary Details',
+                '',
                 'bursary_type',
                 'bursary_reason',
                 'bursary_need',
