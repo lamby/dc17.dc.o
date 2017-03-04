@@ -354,11 +354,11 @@ class AccomFoodForm(RegistrationFormStep):
     food_selection = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
-        required=False,
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursary, meal prices are: "
                   "Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$",
         # TODO: Missing prices
+        required=False,
     )
     diet = forms.ChoiceField(
         label='My diet',
@@ -384,8 +384,8 @@ class AccomFoodForm(RegistrationFormStep):
     night_selection = forms.MultipleChoiceField(
         label='I want to stay in classroom dorms these nights:',
         choices=nights(),
-        required=False,
         widget=forms.CheckboxSelectMultiple,
+        required=False,
     )
     alt_accom = forms.BooleanField(
         label='I would like to request alternative accomodation',
