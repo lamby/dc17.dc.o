@@ -220,14 +220,14 @@ class PersonalInformationForm(RegistrationFormStep):
         required=False,
     )
     country = LazyTypedChoiceField(
-        label='Country I call home',
+        label='The country I call home',
         help_text='For diversity statistics',
         choices=OptionalCountries(),
         required=False,
         widget=CountrySelectWidget(),
     )
     languages = forms.CharField(
-        label='Languages I speak',
+        label='The languages I speak',
         help_text='We will list these on your nametag',
         initial='en',
         required=False,
@@ -260,7 +260,7 @@ class BursaryForm(RegistrationFormStep):
         required=False,
     )
     bursary_type = forms.ChoiceField(
-        label='What type of bursary do you need?',
+        label='I want a bursary for',
         choices=(
             ('f', 'Food and accommodation only'),
             ('t', 'Food, accommodation *and travel*'),
