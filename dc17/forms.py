@@ -195,7 +195,7 @@ class PersonalInformationForm(RegistrationFormStep):
     t_shirt_size = forms.ChoiceField(
         label='My T-shirt size',
         choices=(
-            ('n', ''),
+            ('', 'N/A'),
             ('xs', 'Extra small'),
             ('s', 'Small'),
             ('m', 'Medium'),
