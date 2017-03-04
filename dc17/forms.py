@@ -412,6 +412,12 @@ class AccommForm(RegistrationFormStep):
         ),
         required=False,
     )
+    special_needs = forms.CharField(
+        label='My special needs',
+        help_text='Wheelchair access or other any other needs we should be '
+                  'aware of',
+        required=False,
+    )
     childcare = forms.BooleanField(
         label='I need childcare for my kid(s)',
         required=False,
@@ -427,12 +433,6 @@ class AccommForm(RegistrationFormStep):
         label='Important informations about my kid(s)',
         help_text='Number, ages, languages spoken, special needs, etc.',
         widget=forms.Textarea(attrs={'rows': 5}),
-        required=False,
-    )
-    special_needs = forms.CharField(
-        label='My special needs',
-        help_text='Wheelchair access or other any other needs we should be '
-                  'aware of',
         required=False,
     )
     family_usernames = forms.CharField(
