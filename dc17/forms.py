@@ -8,7 +8,7 @@ from django_countries.fields import LazyTypedChoiceField
 from django_countries.widgets import CountrySelectWidget
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Field, Fieldset, Layout
+from crispy_forms.layout import Field, Fieldset, Layout, HTML
 
 
 FOOD_LINK = (
@@ -56,6 +56,14 @@ class RegistrationFormStep(forms.Form):
         self.wizard = wizard
         self.helper = FormHelper()
         self.helper.form_tag = False
+
+
+class PreambuleForm(RegistrationFormStep):
+    def __init__(self, *args, **kwargs):
+        super(PreambuleForm, self).__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            HTML('<h2>My super preamble</h2><p>Foo bar this is some text</p>'),
+        )
 
 
 class ContactInformationForm(RegistrationFormStep):
@@ -508,6 +516,7 @@ class BillingForm(RegistrationFormStep):
 
 
 REGISTRATION_FORMS = [
+    PreambuleForm,
     ContactInformationForm,
     ConferenceRegistrationForm,
     PersonalInformationForm,
