@@ -127,15 +127,12 @@ $(function() {
       }
     });
 
-    $('#div_id_3-bursary input').each(function() {
-        $(this).on('click', function(e) {
-            var state = this.checked ? 'show' : 'hide';
-            $('#bursary-details').collapse(state);
-        });
-        if (! this.checked) {
-            // Immediately hide, without any animation
-            $('#bursary-details').removeClass('in');
-        }
+    $('#div_id_3-bursary').change(function() {
+      if (this.value == '') {
+        $('#bursary-details').hide();
+      } else {
+        $('#bursary-details').show();
+      }
     });
 
     $('#div_id_4-accomm_food i.fa-square-o').each(function() {
