@@ -238,54 +238,12 @@ class RegistrationForm2(RegistrationFormStep):
 #            Field('country'),
 #            Field('languages'),
 #        )
+#
+#
+#           TODO: add cleaned form
 
 
 class RegistrationForm3(RegistrationFormStep):
-    #
-    # Accommodation & Food
-    #
-    accomm_food = forms.MultipleChoiceField(
-        label='I request Accommodation and Food for',
-        choices=nights_meals(),
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-    )
-
-    diet = forms.ChoiceField(
-        label='My diet',
-        choices=(
-            ('', 'I will be happy to eat whatever is provided'),
-            ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
-                           "meat/fish for me"),
-            ('vegan', "I am strict vegatarian (vegan), don't provide any "
-                      "animal products for me"),
-            ('other', 'Other, described below'),
-        ),
-        required=False,
-    )
-    special_needs = forms.CharField(
-        label='My special needs',
-        help_text='Wheelchair access, food allergies, other diets, etc.',
-        required=False,
-    )
-
-    family_usernames = forms.CharField(
-        label='Usernames of my family members, '
-              'who have registered separately',
-        help_text="One per line. This isn't validated",
-        widget=forms.Textarea(attrs={'rows': 3}),
-        required=False,
-    )
-
-    def clean(self):
-        cleaned_data = super(RegistrationForm3, self).clean()
-
-        if (cleaned_data.get('diet') == 'other' and
-                not cleaned_data.get('special_needs')):
-            self.add_error('special_needs', 'Required when diet is "other"')
-
-
-class RegistrationForm4(RegistrationFormStep):
     #
     # Bursaries
     #
@@ -341,7 +299,7 @@ class RegistrationForm4(RegistrationFormStep):
     )
 
     def __init__(self, *args, **kwargs):
-        super(RegistrationForm4, self).__init__(*args, **kwargs)
+        super(RegistrationForm3, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(
             Field('bursary'),
             Fieldset(
@@ -359,7 +317,7 @@ class RegistrationForm4(RegistrationFormStep):
         )
 
     def clean(self):
-        cleaned_data = super(RegistrationForm4, self).clean()
+        cleaned_data = super(RegistrationForm3, self).clean()
 
         if cleaned_data.get('travel_bursary') == 0:
             cleaned_data['travel_bursary'] = None
@@ -381,6 +339,51 @@ class RegistrationForm4(RegistrationFormStep):
                     'bursary_need',
                     'A bursary has been requested, '
                     'please explain the level of need')
+
+
+class RegistrationForm4(RegistrationFormStep):
+    #
+    # Accommodation & Food
+    #
+    accomm_food = forms.MultipleChoiceField(
+        label='I request Accommodation and Food for',
+        choices=nights_meals(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    diet = forms.ChoiceField(
+        label='My diet',
+        choices=(
+            ('', 'I will be happy to eat whatever is provided'),
+            ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
+                           "meat/fish for me"),
+            ('vegan', "I am strict vegatarian (vegan), don't provide any "
+                      "animal products for me"),
+            ('other', 'Other, described below'),
+        ),
+        required=False,
+    )
+    special_needs = forms.CharField(
+        label='My special needs',
+        help_text='Wheelchair access, food allergies, other diets, etc.',
+        required=False,
+    )
+
+    family_usernames = forms.CharField(
+        label='Usernames of my family members, '
+              'who have registered separately',
+        help_text="One per line. This isn't validated",
+        widget=forms.Textarea(attrs={'rows': 3}),
+        required=False,
+    )
+
+    def clean(self):
+        cleaned_data = super(RegistrationForm4, self).clean()
+
+        if (cleaned_data.get('diet') == 'other' and
+                not cleaned_data.get('special_needs')):
+            self.add_error('special_needs', 'Required when diet is "other"')
 
 
 class RegistrationForm5(RegistrationFormStep):

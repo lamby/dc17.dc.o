@@ -130,7 +130,18 @@ $(function() {
 //        }
 //    });
 
-    $('#div_id_3-accomm_food i.fa-square-o').each(function() {
+    $('#div_id_3-bursary input').each(function() {
+        $(this).on('click', function(e) {
+            var state = this.checked ? 'show' : 'hide';
+            $('#bursary-details').collapse(state);
+        });
+        if (! this.checked) {
+            // Immediately hide, without any animation
+            $('#bursary-details').removeClass('in');
+        }
+    });
+
+    $('#div_id_4-accomm_food i.fa-square-o').each(function() {
         var toggle = $(this);
         var checkboxes = $(this).closest('tr').find('input');
         updateButton(toggle, checkboxes);
@@ -146,17 +157,6 @@ $(function() {
                 updateButton(toggle, checkboxes);
             });
         });
-    });
-
-    $('#div_id_4-bursary input').each(function() {
-        $(this).on('click', function(e) {
-            var state = this.checked ? 'show' : 'hide';
-            $('#bursary-details').collapse(state);
-        });
-        if (! this.checked) {
-            // Immediately hide, without any animation
-            $('#bursary-details').removeClass('in');
-        }
     });
 
 });
