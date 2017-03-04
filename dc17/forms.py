@@ -296,11 +296,10 @@ class BursaryForm(RegistrationFormStep):
         max_value=10000,
         required=False,
     )
-    travel_bursary_from = forms.CharField(
+    travel_from = forms.CharField(
         label="I'm traveling from",
-        help_text='Knowing where you travel from helps us estimate your '
-                  'travel needs',
-        widget=forms.Textarea(attrs={'rows': 1}),
+        help_text='Knowing where you need to travel from helps us evaluate '
+                  'the amount you are claiming.',
         required=False,
     )
 
@@ -314,7 +313,7 @@ class BursaryForm(RegistrationFormStep):
                 'bursary_reason',
                 'bursary_need',
                 'travel_bursary',
-                'travel_bursary_from',
+                'travel_from',
                 css_id='bursary-details',
                 # We do the collapsing in JS, so we can be sure that it'll
                 # expand, when necessary
