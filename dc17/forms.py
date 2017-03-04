@@ -287,15 +287,24 @@ class RegistrationForm3(RegistrationFormStep):
 
 class RegistrationForm4(RegistrationFormStep):
     #
-    # Travel bursaries
+    # Bursaries
     #
     bursary = forms.BooleanField(
-        label='I am applying for a travel bursary',
+        label='I want to apply for a bursary',
+        required=False,
+    )
+
+    bursary_type = forms.ChoiceField(
+        label='What type of bursary do you need?',
+        choices=(
+            ('f', 'Food and accommodation only'),
+            ('t', 'Food, accommodation *and travel*'),
+        ),
         required=False,
     )
 
     bursary_reason = forms.CharField(
-        label='Details of my travel bursary request',
+        label='Details of my bursary request',
         help_text='This is where you explain your needs, and involvement in '
                   'Debian, that justify a bursary. See the ' + BURSARIES_LINK,
         widget=forms.Textarea(attrs={'rows': 5}),
@@ -304,7 +313,7 @@ class RegistrationForm4(RegistrationFormStep):
     bursary_need = forms.ChoiceField(
         label='My level of need',
         choices=(
-            ('', 'N/A (not requesting a travel bursary)'),
+            ('', 'N/A (not requesting a bursary)'),
             ('unable', 'Without this funding I will be absolutely '
                        'unable to attend'),
             ('sacrifice', 'Without the requested funding I will have to '
@@ -323,6 +332,13 @@ class RegistrationForm4(RegistrationFormStep):
         max_value=10000,
         required=False,
     )
+    travel_bursary_from = forms.CharField(
+        label='I\'m traveling from',
+        help_text='Knowing where you travel from helps us estimate your travel '
+                  'needs',
+        widget=forms.Textarea(attrs={'rows': 1}),
+        required=False,
+    )
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm4, self).__init__(*args, **kwargs)
@@ -330,9 +346,11 @@ class RegistrationForm4(RegistrationFormStep):
             Field('bursary'),
             Fieldset(
                 'Travel Bursary Details',
+                'bursary_type',
                 'bursary_reason',
                 'bursary_need',
                 'travel_bursary',
+                'travel_bursary_from',
                 css_id='bursary-details',
                 # We do the collapsing in JS, so we can be sure that it'll
                 # expand, when necessary
