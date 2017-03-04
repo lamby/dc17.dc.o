@@ -274,11 +274,11 @@ class BursaryForm(RegistrationFormStep):
         label='My level of need',
         choices=(
             ('', 'N/A (not requesting a bursary)'),
-            ('unable', 'Without this funding I will be absolutely '
+            ('unable', 'Without this funding, I will be absolutely '
                        'unable to attend'),
-            ('sacrifice', 'Without the requested funding I will have to '
-                          'make financial sacrifices, to attend'),
-            ('inconvenient', 'Without the requested funding attending will '
+            ('sacrifice', 'Without the requested funding, I will have to '
+                          'make financial sacrifices to attend'),
+            ('inconvenient', 'Without the requested funding, attending will '
                              'be inconvenient for me'),
             ('non-financial', 'I am not applying based on financial need'),
         ),
