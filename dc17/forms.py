@@ -183,7 +183,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
 class PersonalInformationForm(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
-        label='My T-shirt cut',
+        label='My t-shirt cut',
         choices=(
             ('n', "I don't want a t-shirt"),
             ('s', 'Straight cut'),
@@ -192,7 +192,7 @@ class PersonalInformationForm(RegistrationFormStep):
         required=False,
     )
     t_shirt_size = forms.ChoiceField(
-        label='My T-shirt size',
+        label='My t-shirt size',
         choices=(
             ('', 'N/A'),
             ('xs', 'Extra small'),
@@ -274,11 +274,11 @@ class BursaryForm(RegistrationFormStep):
         label='My level of need',
         choices=(
             ('', 'N/A (not requesting a bursary)'),
-            ('unable', 'Without this funding I will be absolutely '
+            ('unable', 'Without this funding, I will be absolutely '
                        'unable to attend'),
-            ('sacrifice', 'Without the requested funding I will have to '
-                          'make financial sacrifices, to attend'),
-            ('inconvenient', 'Without the requested funding attending will '
+            ('sacrifice', 'Without the requested funding, I will have to '
+                          'make financial sacrifices to attend'),
+            ('inconvenient', 'Without the requested funding, attending will '
                              'be inconvenient for me'),
             ('non-financial', 'I am not applying based on financial need'),
         ),
@@ -362,7 +362,7 @@ class FoodForm(RegistrationFormStep):
             ('', 'I will be happy to eat whatever is provided'),
             ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
                            "meat/fish for me"),
-            ('vegan', "I am strict vegatarian (vegan), don't provide any "
+            ('vegan', "I am strict vegetarian (vegan), don't provide any "
                       "animal products for me"),
             ('other', 'Other, described below'),
         ),
@@ -383,21 +383,23 @@ class FoodForm(RegistrationFormStep):
 
 class AccommForm(RegistrationFormStep):
     venue_accom = forms.ChoiceField(
-        label='I want to stay on premises',
+        label='Do you need accommodation?',
         choices=(
             ('no', 'No, I will find my own accommodation'),
-            ('yes', 'Yes, I want to stay at the venue in classroom dorms '
-                    '(30 CAD$/night)'),
+            ('yes', 'Yes, I need accommodation'),
         ),
     )
     night_selection = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
+        help_text='By default, the accommodation provided is in shared '
+                  'classroom dorms on premises. The cost is 30 CAD$/night for '
+                  ' self-paying attendees',
         required=False,
     )
     alt_accom = forms.BooleanField(
-        label='I would like to request alternative accomodation',
+        label='I would like to request alternative accommodation',
         required=False,
     )
     alt_accom_choice = forms.ChoiceField(
@@ -410,30 +412,27 @@ class AccommForm(RegistrationFormStep):
         ),
         required=False,
     )
-    childcare = forms.ChoiceField(
-        label='Do you need childcare?',
-        choices=(
-            ('no', 'No, I do not need childcare'),
-            ('yes', 'Yes, I would like childcare for my kid(s)'),
-        ),
+    special_needs = forms.CharField(
+        label='My special needs',
+        help_text='Wheelchair access or other any other needs we should be '
+                  'aware of',
+        required=False,
+    )
+    childcare = forms.BooleanField(
+        label='I need childcare for my kid(s)',
+        required=False,
     )
     childcare_needs = forms.CharField(
-        label='Please specify what type of childcare services you need',
+        label='The childcare services I need are',
         help_text='How many hours a day? All the conference or only part of '
                   'it? etc.',
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
     childcare_details = forms.CharField(
-        label='Please specify all important informations about you kid(s)',
-        help_text='Number, age, language spoken, special needs, etc.',
+        label='Important informations about my kid(s)',
+        help_text='Number, ages, languages spoken, special needs, etc.',
         widget=forms.Textarea(attrs={'rows': 5}),
-        required=False,
-    )
-    special_needs = forms.CharField(
-        label='My special needs',
-        help_text='Wheelchair access or other any other needs we should be '
-                  'aware of',
         required=False,
     )
     family_usernames = forms.CharField(
