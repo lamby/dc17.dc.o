@@ -122,6 +122,14 @@ $(function() {
       }
     });
 
+    $('#id_3-bursary').change(function() {
+      if (this.value == 't') {
+        $('#travel-details').show();
+      } else {
+        $('#travel-details').hide();
+      }
+    });
+
     $('#id_5-venue_accom').change(function() {
       if (this.value == 'no') {
         $('#night-details').hide();

@@ -306,9 +306,16 @@ class BursaryForm(RegistrationFormStep):
                 '',
                 'bursary_reason',
                 'bursary_need',
+                css_id='bursary-details',
+                # We do the collapsing in JS, so we can be sure that it'll
+                # expand, when necessary
+                css_class='collapse in',
+            ),
+            Fieldset(
+                '',
                 'travel_bursary',
                 'travel_from',
-                css_id='bursary-details',
+                css_id='travel-details',
                 # We do the collapsing in JS, so we can be sure that it'll
                 # expand, when necessary
                 css_class='collapse in',
