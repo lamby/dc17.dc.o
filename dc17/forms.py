@@ -255,12 +255,8 @@ class PersonalInformationForm(RegistrationFormStep):
 
 
 class BursaryForm(RegistrationFormStep):
-    bursary = forms.BooleanField(
+    bursary = forms.ChoiceField(
         label='I want to apply for a bursary',
-        required=False,
-    )
-    bursary_type = forms.ChoiceField(
-        label='I want a bursary for',
         choices=(
             ('', 'N/A (not requesting a bursary)'),
             ('f', 'Food and accommodation only'),
@@ -309,7 +305,6 @@ class BursaryForm(RegistrationFormStep):
             Field('bursary'),
             Fieldset(
                 '',
-                'bursary_type',
                 'bursary_reason',
                 'bursary_need',
                 'travel_bursary',
