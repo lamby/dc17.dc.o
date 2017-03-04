@@ -379,10 +379,9 @@ class AccommForm(RegistrationFormStep):
         label='I want to stay on premises',
         choices=(
             ('no', 'No, I will find my own accommodation'),
-            ('yes', 'Yes, I want to stay at the venue in classroom dorms'
+            ('yes', 'Yes, I want to stay at the venue in classroom dorms '
                     '(30 CAD$/night)'),
         ),
-        required=False,
     )
     night_selection = forms.MultipleChoiceField(
         label='I\'m requesting accommodation for these nights:',
