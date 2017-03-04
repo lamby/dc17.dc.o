@@ -133,11 +133,10 @@ class ContactInformationForm(RegistrationFormStep):
         required=False,
     )
     register_ml = forms.BooleanField(
-        label='Suscribe me to the DebConf-Announce mailing list',
+        label="Don't suscribe me to the DebConf-Announce mailing list",
         help_text='This low-volume mailing list is the primary way for us to '
                   'reach the attendees during the conference. Please consider '
-                  'leaving this box ticked.',
-        initial=True,
+                  'not ticking this box.',
         required=False,
     )
     register_discuss = forms.BooleanField(
