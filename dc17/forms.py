@@ -375,7 +375,7 @@ class AccomFoodForm(RegistrationFormStep):
     venue_accom = forms.ChoiceField(
         label='I want to stay on premises',
         choices=(
-            ('no', 'No, I will find accommodation by myself'),
+            ('no', 'No, I will find my own accommodation'),
             ('yes', 'Yes, I want to stay at the venue in classroom dorms'
                     '(30 CAD$/night)'),
         ),
@@ -399,6 +399,7 @@ class AccomFoodForm(RegistrationFormStep):
             ('hotel', 'Hotel Universel (reserved for families and people with '
                       'disabilities only'),
         ),
+        required=False,
     )
     special_needs = forms.CharField(
         label='My special needs',
