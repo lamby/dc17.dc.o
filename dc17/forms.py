@@ -405,7 +405,7 @@ class AccommForm(RegistrationFormStep):
         required=False,
     )
     childcare = forms.ChoiceField(
-        label='Would you like childcare?',
+        label='Do you need childcare?',
         choices=(
             ('no', 'No, I do not need childcare'),
             ('yes', 'Yes, I would like childcare for my kid(s)'),
@@ -426,7 +426,8 @@ class AccommForm(RegistrationFormStep):
     )
     special_needs = forms.CharField(
         label='My special needs',
-        help_text='Wheelchair access, etc.',
+        help_text='Wheelchair access or other any other needs we should be '
+                  'aware of',
         required=False,
     )
     family_usernames = forms.CharField(
