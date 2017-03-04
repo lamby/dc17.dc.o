@@ -11,14 +11,21 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Fieldset, Layout
 
 
+FOOD_LINK = (
+    '<a href="https://wiki.debconf.org/wiki/DebConf17/Catering" '
+    'target="blank">More information</a>')
+ACCOM_LINK = (
+    '<a href="https://wiki.debconf.org/wiki/DebConf17/Accomodation" '
+    'target="blank">More information</a>')
+BURSARIES_LINK = (
+    '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
+    'DebConf bursary instructions</a>')
+
+
 class OptionalCountries(Countries):
     first = ('--',)
     override = {'--': 'Decline to state'}
 
-
-FOOD_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Catering" target="blank">More information</a>'
-ACCOM_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Accomodation" target="blank">More information</a>'
-BURSARIES_LINK = '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">DebConf bursary instructions</a>'
 
 # TODO: remove options for 2017-08-13 lunch and dinner
 def meals(orga=False):
@@ -31,6 +38,7 @@ def meals(orga=False):
         yield 'lunch_%s' % date, 'Lunch %s' % date
         yield 'dinner_%s' % date, 'Dinner %s' % date
         day += datetime.timedelta(days=1)
+
 
 # TODO: fix the table
 def nights(orga=False):
@@ -96,8 +104,8 @@ class RegistrationForm0(RegistrationFormStep):
     # Purposefully left unchecked by default to make this opt-in.
     announce_me = forms.BooleanField(
         label='Announce my arrival',
-        help_text='If checked your name will be announced in the IRC channel when '
-                  'you check in during conference',
+        help_text='If checked your name will be announced in the IRC channel '
+                  'when you check in during conference',
         required=False,
     )
 
@@ -260,7 +268,6 @@ class RegistrationForm3(RegistrationFormStep):
         label='I want to apply for a bursary',
         required=False,
     )
-
     bursary_type = forms.ChoiceField(
         label='What type of bursary do you need?',
         choices=(
@@ -269,7 +276,6 @@ class RegistrationForm3(RegistrationFormStep):
         ),
         required=False,
     )
-
     bursary_reason = forms.CharField(
         label='Details of my bursary request',
         help_text='This is where you explain your needs, and involvement in '
@@ -291,7 +297,6 @@ class RegistrationForm3(RegistrationFormStep):
         ),
         required=False,
     )
-
     travel_bursary = forms.IntegerField(
         label='My travel expense claim',
         help_text='Estimated amount required. ' + BURSARIES_LINK,
@@ -300,9 +305,9 @@ class RegistrationForm3(RegistrationFormStep):
         required=False,
     )
     travel_bursary_from = forms.CharField(
-        label='I\'m traveling from',
-        help_text='Knowing where you travel from helps us estimate your travel '
-                  'needs',
+        label="I'm traveling from",
+        help_text='Knowing where you travel from helps us estimate your '
+                  'travel needs',
         widget=forms.Textarea(attrs={'rows': 1}),
         required=False,
     )
@@ -359,16 +364,14 @@ class RegistrationForm4(RegistrationFormStep):
         label='I want to buy meal tickets for onsite catering',
         required=False,
     )
-
     food_selection = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
-        help_text='If you don\'t have a food bursaries, meal prices are: '
-                  'Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$',
+        help_text="If you don't have a food bursaries, meal prices are: "
+                  "Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$",
     )
-
     diet = forms.ChoiceField(
         label='My diet',
         choices=(
@@ -390,7 +393,6 @@ class RegistrationForm4(RegistrationFormStep):
         ),
         required=False,
     )
-
     night_selection = forms.MultipleChoiceField(
         label='I want to stay in classroom dorms these nights:',
         choices=nights(),
@@ -404,19 +406,17 @@ class RegistrationForm4(RegistrationFormStep):
     alt_accom_choice = forms.ChoiceField(
         label='Select the accommodation you prefer during DebConf',
         choices=(
-            ('rvc', 'McGill residences accommodation'
+            ('rvc', 'McGill residences accommodation '
                     '(30min by public transit)'),
-            ('hotel','Hotel Universel (reserved for families and people with',
-                     'disabilities only'),
+            ('hotel', 'Hotel Universel (reserved for families and people with '
+                      'disabilities only'),
         ),
     )
-
     special_needs = forms.CharField(
         label='My special needs',
         help_text='Wheelchair access, food allergies, other diets, etc.',
         required=False,
     )
-
     family_usernames = forms.CharField(
         label='Usernames of my family members, '
               'who have registered separately',
@@ -442,7 +442,6 @@ class RegistrationForm5(RegistrationFormStep):
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
-
     notes = forms.CharField(
         label='Notes for the registration team',
         help_text='Anything else you need to describe. '
