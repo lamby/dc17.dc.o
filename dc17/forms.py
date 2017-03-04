@@ -20,6 +20,24 @@ ACCOM_LINK = (
 BURSARIES_LINK = (
     '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
     'DebConf bursary instructions</a>')
+PREAMBLE = (
+    '<h2>Preamble</h2>'
+    '<p>Thank you for your interest in attending DebConf17!</p>'
+    '<p>Please read the following instructions carefully:</p>'
+    "<ol><li>This registration form requires Javascript. Without it, you won't "
+    'be able to register.</li>'
+    '<li>All registration, accommodation or catering fees must be paid either '
+    'trough the Stripe platform or in person at the front desk upon '
+    'arrival.</li>'
+    '<li>You may update your registration information at any time before the '
+    'confirmation deadline, July 1st.</li>'
+    '<li>All registrations will need to be confirmed before July 1st. '
+    'Unconfirmed registrations past the deadline will be considered null and '
+    'void.</li>'
+    '<li>Badges will be available for pick-up at the front desk.</li>'
+    '<li>Bursary application deadline is May 1st. After this date, your '
+    "bursary application won't be considered.</li>"
+    '<p>&nbsp;</p>')
 
 
 class OptionalCountries(Countries):
@@ -58,11 +76,11 @@ class RegistrationFormStep(forms.Form):
         self.helper.form_tag = False
 
 
-class PreambuleForm(RegistrationFormStep):
+class PreambleForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
-        super(PreambuleForm, self).__init__(*args, **kwargs)
+        super(PreambleForm, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            HTML('<h2>My super preamble</h2><p>Foo bar this is some text</p>'),
+            HTML(PREAMBLE),
         )
 
 
@@ -516,7 +534,7 @@ class BillingForm(RegistrationFormStep):
 
 
 REGISTRATION_FORMS = [
-    PreambuleForm,
+    PreambleForm,
     ContactInformationForm,
     ConferenceRegistrationForm,
     PersonalInformationForm,
