@@ -40,7 +40,6 @@ def meals(orga=False):
         day += datetime.timedelta(days=1)
 
 
-# TODO: fix the table
 def nights(orga=False):
     day = datetime.date(2016, 7, 31)
     if orga:
