@@ -385,7 +385,7 @@ class AccommForm(RegistrationFormStep):
         required=False,
     )
     night_selection = forms.MultipleChoiceField(
-        label='I want to stay in classroom dorms these nights:',
+        label='I\'m requesting accommodation for these nights:',
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
@@ -404,6 +404,19 @@ class AccommForm(RegistrationFormStep):
         ),
         required=False,
     )
+    childcare = forms.ChoiceField(
+        label='Would you like childcare?',
+        choices=(
+            ('no', 'No, I do not need childcare'),
+            ('yes', 'Yes, I would like childcare for my kid(s)'),
+        ),
+    )
+    childcare_details = forms.CharField(
+        label='Please specify all important informations about you kid(s)',
+        help_text='Number, age, language spoken, special needs, etc.',
+        widget=forms.Textarea(attrs={'rows': 5}),
+        required=False,
+    )
     special_needs = forms.CharField(
         label='My special needs',
         help_text='Wheelchair access, etc.',
@@ -416,6 +429,43 @@ class AccommForm(RegistrationFormStep):
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
+
+    def __init__(self, *args, **kwargs):
+        super(AccommForm, self).__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field('venue_accom'),
+            Fieldset(
+                '',
+                'night_selection',
+                'alt_accom',
+                css_id='night-details',
+                # We do the collapsing in JS, so we can be sure that it'll
+                # expand, when necessary
+                css_class='collapse in',
+            ),
+            Fieldset(
+                '',
+                'alt_accom_choice',
+                css_id='accom-details',
+                # We do the collapsing in JS, so we can be sure that it'll
+                # expand, when necessary
+                css_class='collapse in',
+            ),
+            Field('childcare'),
+            Fieldset(
+                '',
+                'childcare_details',
+                css_id='childcare-details',
+                # We do the collapsing in JS, so we can be sure that it'll
+                # expand, when necessary
+                css_class='collapse in',
+            ),
+            Field('special_needs'),
+            Field('family_usernames'),
+        )
+
+
+#           TODO: add cleaned form
 
 
 class BillingForm(RegistrationFormStep):

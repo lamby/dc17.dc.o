@@ -122,6 +122,33 @@ $(function() {
       }
     });
 
+    $('#div_id_5-venue_accom').change(function() {
+      if (this.value == 'no') {
+        $('#night-details').hide();
+      } else {
+        $('#night-details').show();
+      }
+    });
+
+    $('#div_id_5-alt_accom input').each(function() {
+      $(this).on('click', function(e) {
+        var state = this.checked ? 'show' : 'hide';
+          $('#accom-details').collapse(state);
+      });
+      if (! this.checked) {
+        // Immediately hide, without any animation
+        $('#accom-details').removeClass('in');
+      }
+    });
+
+    $('#div_id_5-childcare').change(function() {
+      if (this.value == 'no') {
+        $('#childcare-details').hide();
+      } else {
+        $('#childcare-details').show();
+      }
+    });
+
     function updateButton(toggle, checkboxes) {
         if (checkboxes.filter(':checked').length == 0) {
             toggle.addClass('fa-square-o')
