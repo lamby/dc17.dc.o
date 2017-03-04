@@ -411,6 +411,13 @@ class AccommForm(RegistrationFormStep):
             ('yes', 'Yes, I would like childcare for my kid(s)'),
         ),
     )
+    childcare_needs = forms.CharField(
+        label='Please specify what type of childcare services you need',
+        help_text='How many hours a day? All the conference or only part of '
+                  'it? etc.',
+        widget=forms.Textarea(attrs={'rows': 3}),
+        required=False,
+    )
     childcare_details = forms.CharField(
         label='Please specify all important informations about you kid(s)',
         help_text='Number, age, language spoken, special needs, etc.',
@@ -454,6 +461,7 @@ class AccommForm(RegistrationFormStep):
             Field('childcare'),
             Fieldset(
                 '',
+                'childcare_needs',
                 'childcare_details',
                 css_id='childcare-details',
                 # We do the collapsing in JS, so we can be sure that it'll
