@@ -412,23 +412,20 @@ class AccommForm(RegistrationFormStep):
         ),
         required=False,
     )
-    childcare = forms.ChoiceField(
-        label='Do you need childcare?',
-        choices=(
-            ('no', 'No, I do not need childcare'),
-            ('yes', 'Yes, I would like childcare for my kid(s)'),
-        ),
+    childcare = forms.BooleanField(
+        label='I need childcare for my kid(s)',
+        required=False,
     )
     childcare_needs = forms.CharField(
-        label='Please specify what type of childcare services you need',
+        label='The childcare services I need are',
         help_text='How many hours a day? All the conference or only part of '
                   'it? etc.',
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
     childcare_details = forms.CharField(
-        label='Please specify all important informations about you kid(s)',
-        help_text='Number, age, language spoken, special needs, etc.',
+        label='Important informations about my kid(s)',
+        help_text='Number, ages, languages spoken, special needs, etc.',
         widget=forms.Textarea(attrs={'rows': 5}),
         required=False,
     )
