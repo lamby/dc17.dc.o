@@ -362,7 +362,7 @@ class FoodForm(RegistrationFormStep):
             ('', 'I will be happy to eat whatever is provided'),
             ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
                            "meat/fish for me"),
-            ('vegan', "I am strict vegatarian (vegan), don't provide any "
+            ('vegan', "I am strict vegetarian (vegan), don't provide any "
                       "animal products for me"),
             ('other', 'Other, described below'),
         ),
@@ -393,7 +393,7 @@ class AccommForm(RegistrationFormStep):
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
-        help_text='By defautl, the accommodation provided is in shared '
+        help_text='By default, the accommodation provided is in shared '
                   'classroom dorms on premises. The cost is 30 CAD$/night for '
                   ' self-paying attendees',
         required=False,
