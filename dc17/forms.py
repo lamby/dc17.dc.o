@@ -222,6 +222,23 @@ class RegistrationForm2(RegistrationFormStep):
         required=False,
     )
 
+#    def __init__(self, *args, **kwargs):
+#        super(RegistrationForm2, self).__init__(*args, **kwargs)
+#        self.helper.layout = Layout(
+#            Field('t_shirt_cut'),
+#            Fieldset(
+#                '',
+#                't_shirt_size',
+#                css_id='tshirt-details',
+#                # We do the collapsing in JS, so we can be sure that it'll
+#                # expand, when necessary
+#                css_class='collapse in',
+#            ),
+#            Field('gender'),
+#            Field('country'),
+#            Field('languages'),
+#        )
+
 
 class RegistrationForm3(RegistrationFormStep):
     #
