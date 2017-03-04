@@ -20,8 +20,8 @@ FOOD_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Catering" target="
 ACCOM_LINK = '<a href="https://wiki.debconf.org/wiki/DebConf17/Accomodation" target="blank">More information</a>'
 BURSARIES_LINK = '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">DebConf bursary instructions</a>'
 
-
-def nights_meals(orga=False):
+# TODO: remove options for 2017-08-13 lunch and dinner
+def meals(orga=False):
     day = datetime.date(2016, 7, 31)
     if orga:
         day = datetime.date(2016, 7, 28)
@@ -30,7 +30,16 @@ def nights_meals(orga=False):
         yield 'breakfast_%s' % date, 'Breakfast %s' % date
         yield 'lunch_%s' % date, 'Lunch %s' % date
         yield 'dinner_%s' % date, 'Dinner %s' % date
-        yield 'night_%s' % date, 'Accommodation night of %s' % date
+        day += datetime.timedelta(days=1)
+
+# TODO: fix the table
+def nights(orga=False):
+    day = datetime.date(2016, 7, 31)
+    if orga:
+        day = datetime.date(2016, 7, 28)
+    while day <= datetime.date(2016, 8, 13):
+        date = day.isoformat()
+        yield 'night_%s' % date, 'Night %s' % date
         day += datetime.timedelta(days=1)
 
 
@@ -345,11 +354,19 @@ class RegistrationForm4(RegistrationFormStep):
     #
     # Accommodation & Food
     #
-    accomm_food = forms.MultipleChoiceField(
-        label='I request Accommodation and Food for',
-        choices=nights_meals(),
+
+    buy_food = forms.BooleanField(
+        label='I want to buy meal tickets for onsite catering',
+        required=False,
+    )
+
+    food_selection = forms.MultipleChoiceField(
+        label='I want to eat catered food for these meals:',
+        choices=meals(),
         required=False,
         widget=forms.CheckboxSelectMultiple,
+        help_text='If you don\'t have a food bursaries, meal prices are: '
+                  'Breakfast X CAD$, Lunch Y CAD$, Dinner Z CAD$',
     )
 
     diet = forms.ChoiceField(
@@ -364,6 +381,36 @@ class RegistrationForm4(RegistrationFormStep):
         ),
         required=False,
     )
+    venue_accom = forms.ChoiceField(
+        label='I want to stay on premise',
+        choices=(
+            ('no', 'No, I will find accommodation by myself'),
+            ('yes', 'Yes, I want to stay at the venue in classroom dorms'
+                    '(30 CAD$/night)'),
+        ),
+        required=False,
+    )
+
+    night_selection = forms.MultipleChoiceField(
+        label='I want to stay in classroom dorms these nights:',
+        choices=nights(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+    alt_accom = forms.BooleanField(
+        label='I would like to request alternative accomodation',
+        required=False,
+    )
+    alt_accom_choice = forms.ChoiceField(
+        label='Select the accommodation you prefer during DebConf',
+        choices=(
+            ('rvc', 'McGill residences accommodation'
+                    '(30min by public transit)'),
+            ('hotel','Hotel Universel (reserved for families and people with',
+                     'disabilities only'),
+        ),
+    )
+
     special_needs = forms.CharField(
         label='My special needs',
         help_text='Wheelchair access, food allergies, other diets, etc.',
