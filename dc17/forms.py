@@ -435,29 +435,48 @@ class BursaryForm(RegistrationFormStep):
             )
         )
 
+    def clean_travel_bursary(self):
+        travel_bursary = self.cleaned_data.get('travel_bursary')
+        if travel_bursary == 0:
+            return None
+        return travel_bursary
+
     def clean(self):
         cleaned_data = super().clean()
 
-        if cleaned_data.get('travel_bursary') == 0:
-            cleaned_data['travel_bursary'] = None
+        bursary = cleaned_data.get('bursary')
+        if not bursary:
+            return
 
-        if not cleaned_data.get('bursary'):
-            for field in ('bursary_reason', 'travel_bursary', 'bursary_need'):
-                if cleaned_data.get(field):
+        if not cleaned_data.get('bursary_reason_plans'):
+            self.add_error(
+                'bursary_reason_plans',
+                'Please share your plans for the conference, when appyling '
+                'for a bursary.')
+
+        if (not cleaned_data.get('bursary_reason_contribution')
+                and not cleaned_data.get('bursary_reason_diversity')):
+            for field in ('bursary_reason_contribution',
+                          'bursary_reason_diversity'):
+                self.add_error(
+                    field,
+                    'Please describe your contributions and/or the diversity '
+                    'of your background, when applying for a bursary.')
+
+        if not cleaned_data.get('bursary_need'):
+            self.add_error(
+                'bursary_need',
+                'Please share your level of need, when appyling for a bursary.'
+            )
+
+        if 'travel' in bursary:
+            for field in ('travel_bursary', 'travel_from'):
+                if not cleaned_data.get(field):
                     self.add_error(
                         field,
-                        'You have not applied for a bursary')
-        else:
-            if not cleaned_data.get('bursary_reason'):
-                self.add_error(
-                    'bursary_reason',
-                    'A bursary has been requested, '
-                    'please explain why it is needed')
-            if not cleaned_data.get('bursary_need'):
-                self.add_error(
-                    'bursary_need',
-                    'A bursary has been requested, '
-                    'please explain the level of need')
+                        'Please share your travel details, when appyling for '
+                        'a travel bursary.'
+                    )
 
 
 class FoodForm(RegistrationFormStep):
