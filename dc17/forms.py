@@ -146,7 +146,7 @@ class ContactInformationForm(RegistrationFormStep):
         label="Subscribe me to the DebConf-announce mailing list",
         help_text='This low-volume mailing list is the primary way for us to '
                   'reach attendees about important conference news and '
-                  'information.'
+                  'information.',
         required=False,
         initial=True,
     )
