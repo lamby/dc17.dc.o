@@ -118,7 +118,7 @@ $(function() {
   });
 
   $('#id_4-bursary').change(function() {
-    if (this.value == 't') {
+    if (this.value.includes('travel')) {
       $('#travel-details').show();
     } else {
       $('#travel-details').hide();
