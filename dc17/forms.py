@@ -240,7 +240,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         paid = bool(cleaned_data.get('fee'))
 
         if paid and not (cleaned_data.get('debcamp') or
-                         cleaned_data.get('debian_day') or
+                         cleaned_data.get('open_day') or
                          cleaned_data.get('debconf')):
             self.add_error(
                 'fee',
