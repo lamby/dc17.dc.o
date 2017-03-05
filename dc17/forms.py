@@ -151,8 +151,8 @@ class ContactInformationForm(RegistrationFormStep):
     )
     register_discuss = forms.BooleanField(
         label='Subscribe me to the DebConf-discuss mailing list',
-        help_text='This mailing list is used by attendees and interested people'
-                  ' for general discussions about the conference.',
+        help_text='This mailing list is used by attendees and interested '
+                  'people for general discussions about the conference.',
         required=False,
     )
 
