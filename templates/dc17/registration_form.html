@@ -13,25 +13,25 @@
 {% block content %}
 <h1>Registration</h1>
 <form action="" method="post">{% csrf_token %}
-    {{ wizard.management_form }}
-    <h2 class='form-title'>{{ form.title }}</h2>
-    {% crispy wizard.form %}
-    <div class="progress mb-3">
-      <div class="progress-bar" role="progressbar"
-           aria-valuenow="{{ wizard.steps.step1 }}" aria-valuemin="0"
-           aria-valuemax="{{ wizard.steps.count }}"
-           style="width: {% widthratio wizard.steps.step1 wizard.steps.count 100 %}%;">
-        Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
-      </div>
+  {{ wizard.management_form }}
+  <h2 class='form-title'>{{ form.title }}</h2>
+  {% crispy wizard.form %}
+  <div class="progress mb-3">
+    <div class="progress-bar" role="progressbar"
+         aria-valuenow="{{ wizard.steps.step1 }}" aria-valuemin="0"
+         aria-valuemax="{{ wizard.steps.count }}"
+         style="width: {% widthratio wizard.steps.step1 wizard.steps.count 100 %}%;">
+      Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
     </div>
-    {% if wizard.steps.prev %}
-      <input type="submit" id="hidden-next" value="Next page">
-      <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
-              value="{{ wizard.steps.first }}">First Page</button>
-      <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
-              value="{{ wizard.steps.prev }}">Previous Page</button>
-    {% endif %}
-    <input type="submit" class="btn btn-primary" value="Next page">
+  </div>
+  {% if wizard.steps.prev %}
+    <input type="submit" id="hidden-next" value="Next page">
+    <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+            value="{{ wizard.steps.first }}">First Page</button>
+    <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+            value="{{ wizard.steps.prev }}">Previous Page</button>
+  {% endif %}
+  <input type="submit" class="btn btn-primary" value="Next page">
 </form>
 {% endblock %}
 
@@ -40,152 +40,151 @@
 <script type="text/javascript">
 'use strict';
 $(function() {
-    var minDate = moment('2017-07-31 00:00');
-    var maxDate = moment('2017-08-13 10:00');
-    var defaultDate = moment('2017-08-01 00:00');
+  var minDate = moment('2017-07-31 00:00');
+  var maxDate = moment('2017-08-13 10:00');
+  var defaultDate = moment('2017-08-01 00:00');
 
-    function validatedDate() {
-        var current_value = moment(this.value);
-        if (!current_value.isValid() ||
-                current_value.diff(minDate) < 0 ||
-                current_value.diff(maxDate) > 0) {
-            return null;
-        }
-        return current_value;
+  function validatedDate() {
+    var current_value = moment(this.value);
+    if (!current_value.isValid() ||
+          current_value.diff(minDate) < 0 ||
+          current_value.diff(maxDate) > 0) {
+      return null;
     }
+    return current_value;
+  }
 
-    function onShow(e) {
-        var validated = validatedDate.call(this);
-        // Hack: viewDate is busted
-        // https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1959
-        var setDate = $(this).data('DateTimePicker').date;
-        setDate(validated || defaultDate);
-        if (!validated) {
-            setDate(null);
-        }
+  function onShow(e) {
+    var validated = validatedDate.call(this);
+    // Hack: viewDate is busted
+    // https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1959
+    var setDate = $(this).data('DateTimePicker').date;
+    setDate(validated || defaultDate);
+    if (!validated) {
+      setDate(null);
     }
+  }
 
-    $('.datetimeinput').each(function() {
-        var current_value = validatedDate.call(this);
-        $(this).datetimepicker({
-            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
-            format: 'YYYY-MM-DD HH:mm',
-            inline: true,
-            locale: 'en-gb',
-            maxDate: maxDate,
-            minDate: minDate,
-            sideBySide: true,
-            useCurrent: false,
-            icons: {
-                clear: 'fa fa-trash',
-                close: 'fa fa-times',
-                date: 'fa fa-calendar',
-                down: 'fa fa-chevron-down',
-                next: 'fa fa-chevron-right',
-                previous: 'fa fa-chevron-left',
-                time: 'fa fa-clock-o',
-                today: 'fa fa-dot-circle-o',
-                up: 'fa fa-chevron-up',
-            },
-        });
-        $(this).on('dp.show', onShow);
-        // Ensure onShow is initially called. And that we don't render the page
-        // with just the departure widget shown, because that's just weird.
-        $(this).data('DateTimePicker').hide();
+  $('.datetimeinput').each(function() {
+    var current_value = validatedDate.call(this);
+    $(this).datetimepicker({
+      extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+      format: 'YYYY-MM-DD HH:mm',
+      inline: true,
+      locale: 'en-gb',
+      maxDate: maxDate,
+      minDate: minDate,
+      sideBySide: true,
+      useCurrent: false,
+      icons: {
+        clear: 'fa fa-trash',
+        close: 'fa fa-times',
+        date: 'fa fa-calendar',
+        down: 'fa fa-chevron-down',
+        next: 'fa fa-chevron-right',
+        previous: 'fa fa-chevron-left',
+        time: 'fa fa-clock-o',
+        today: 'fa fa-dot-circle-o',
+        up: 'fa fa-chevron-up',
+      },
     });
+    $(this).on('dp.show', onShow);
+    // Ensure onShow is initially called. And that we don't render the page
+    // with just the departure widget shown, because that's just weird.
+    $(this).data('DateTimePicker').hide();
+  });
 
-    $('#id_2-arrival').on('dp.change', function(e) {
-        $('#id_2-departure').data('DateTimePicker').minDate(e.date || minDate);
-    });
-    $('#id_2-departure').on('dp.change', function(e) {
-        $('#id_2-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
-    });
+  $('#id_2-arrival').on('dp.change', function(e) {
+    $('#id_2-departure').data('DateTimePicker').minDate(e.date || minDate);
+  });
+  $('#id_2-departure').on('dp.change', function(e) {
+    $('#id_2-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
+  });
 
-    $('#id_3-t_shirt_cut').change(function () {
-      if (this.value == 'n') {
-        $('#tshirt-details').hide();
-      } else {
-        $('#tshirt-details').show();
-      }
-    });
+  $('#id_3-t_shirt_cut').change(function () {
+    if (this.value == 'n') {
+      $('#tshirt-details').hide();
+    } else {
+      $('#tshirt-details').show();
+    }
+  });
 
-    $('#id_4-bursary').change(function() {
-      if (this.value == '') {
-        $('#bursary-details').hide();
-      } else {
-        $('#bursary-details').show();
-      }
-    });
+  $('#id_4-bursary').change(function() {
+    if (this.value == '') {
+      $('#bursary-details').hide();
+    } else {
+      $('#bursary-details').show();
+    }
+  });
 
-    $('#id_4-bursary').change(function() {
-      if (this.value == 't') {
-        $('#travel-details').show();
-      } else {
-        $('#travel-details').hide();
-      }
-    });
+  $('#id_4-bursary').change(function() {
+    if (this.value == 't') {
+      $('#travel-details').show();
+    } else {
+      $('#travel-details').hide();
+    }
+  });
 
-    $('#id_6-venue_accom').change(function() {
-      if (this.value == 'no') {
-        $('#night-details').hide();
-      } else {
-        $('#night-details').show();
-      }
-    });
+  $('#id_6-venue_accom').change(function() {
+    if (this.value == 'no') {
+      $('#night-details').hide();
+    } else {
+      $('#night-details').show();
+    }
+  });
 
-    $('#div_id_6-alt_accom input').each(function() {
-      $(this).on('click', function(e) {
-        var state = this.checked ? 'show' : 'hide';
-          $('#accom-details').collapse(state);
+  $('#div_id_6-alt_accom input').each(function() {
+    $(this).on('click', function(e) {
+      var state = this.checked ? 'show' : 'hide';
+        $('#accom-details').collapse(state);
+    });
+    if (! this.checked) {
+      // Immediately hide, without any animation
+      $('#accom-details').removeClass('in');
+    }
+  });
+
+  $('#div_id_6-childcare input').each(function() {
+    $(this).on('click', function(e) {
+      var state = this.checked ? 'show' : 'hide';
+        $('#childcare-details').collapse(state);
+    });
+    if (! this.checked) {
+      // Immediately hide, without any animation
+      $('#childcare-details').removeClass('in');
+    }
+  });
+
+  function updateButton(toggle, checkboxes) {
+    if (checkboxes.filter(':checked').length == 0) {
+      toggle.addClass('fa-square-o')
+        .removeClass('fa-minus-square-o fa-check-square-o');
+    } else if (checkboxes.filter(':not(:checked)').length == 0) {
+      toggle.addClass('fa-check-square-o')
+        .removeClass('fa-square-o fa-minus-square-o');
+    } else {
+      toggle.addClass('fa-minus-square-o')
+        .removeClass('fa-square-o fa-check-square-o');
+    }
+  }
+
+  $('#div_id_5-food_selection i.fa-square-o').each(function() {
+    var toggle = $(this);
+    var checkboxes = $(this).closest('tr').find('input');
+    updateButton(toggle, checkboxes);
+    $(this).parent().on('click', function(e) {
+      var select = checkboxes.filter(':checked').length == 0;
+      checkboxes.each(function() {
+        this.checked = select;
       });
-      if (! this.checked) {
-        // Immediately hide, without any animation
-        $('#accom-details').removeClass('in');
-      }
+      updateButton(toggle, checkboxes);
     });
-
-    $('#div_id_6-childcare input').each(function() {
-      $(this).on('click', function(e) {
-        var state = this.checked ? 'show' : 'hide';
-          $('#childcare-details').collapse(state);
-      });
-      if (! this.checked) {
-        // Immediately hide, without any animation
-        $('#childcare-details').removeClass('in');
-      }
-    });
-
-    function updateButton(toggle, checkboxes) {
-        if (checkboxes.filter(':checked').length == 0) {
-            toggle.addClass('fa-square-o')
-                .removeClass('fa-minus-square-o fa-check-square-o');
-        } else if (checkboxes.filter(':not(:checked)').length == 0) {
-            toggle.addClass('fa-check-square-o')
-                .removeClass('fa-square-o fa-minus-square-o');
-        } else {
-            toggle.addClass('fa-minus-square-o')
-                .removeClass('fa-square-o fa-check-square-o');
-        }
-    }
-
-    $('#div_id_5-food_selection i.fa-square-o').each(function() {
-        var toggle = $(this);
-        var checkboxes = $(this).closest('tr').find('input');
+    checkboxes.each(function() {
+      $(this).on('click', function() {
         updateButton(toggle, checkboxes);
-        $(this).parent().on('click', function(e) {
-            var select = checkboxes.filter(':checked').length == 0;
-            checkboxes.each(function() {
-                this.checked = select;
-            });
-            updateButton(toggle, checkboxes);
-        });
-        checkboxes.each(function() {
-            $(this).on('click', function() {
-                updateButton(toggle, checkboxes);
-            });
-        });
+      });
     });
-
+  });
 });
 </script>
 {% endblock %}
