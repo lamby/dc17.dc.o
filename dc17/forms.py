@@ -325,8 +325,17 @@ class PersonalInformationForm(RegistrationFormStep):
             Field('languages'),
         )
 
+    def clean_t_shirt_size(self):
+        if not self.cleaned_data.get('t_shirt_cut'):
+            return ''
+        return self.cleaned_data.get('t_shirt_size')
 
-#           TODO: add cleaned form
+    def clean(self):
+        cleaned_data = super().clean()
+        t_shirt_cut = cleaned_data.get('t_shirt_cut')
+        t_shirt_size = cleaned_data.get('t_shirt_size')
+        if t_shirt_cut and not t_shirt_size:
+            self.add_error('t_shirt_size', "Select a size, please")
 
 
 class BursaryForm(RegistrationFormStep):
