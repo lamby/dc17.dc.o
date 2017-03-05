@@ -19,7 +19,10 @@ ACCOM_LINK = (
     'target="blank">More information</a>')
 BURSARIES_LINK = (
     '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
-    'DebConf bursary instructions</a>')
+    'DebConf bursary instructions.</a>')
+DIVERSITY_LINK = (
+    '<a href="https://debconf17.debconf.org/about/bursaries#diversity-bursaries"'
+    'target="blank">diversity bursary instructions.</a>')
 TSHIRT_CHART_LINK = (
     '<a href="https://wiki.debconf.org/wiki/DebConf17/TshirtSizes" '
     'target="blank">t-shirt sizes chart</a>')
@@ -333,7 +336,9 @@ class BursaryForm(RegistrationFormStep):
     bursary_reason = forms.CharField(
         label='Details of my bursary request',
         help_text='This is where you explain your needs, and involvement in '
-                  'Debian, that justify a bursary. See the ' + BURSARIES_LINK,
+                  'Debian, that justify a bursary. See the ' + BURSARIES_LINK +
+                  ' If you are applying for a diversity bursary, be sure to '
+                  'consult the ' + DIVERSITY_LINK,
         widget=forms.Textarea(attrs={'rows': 5}),
         required=False,
     )
