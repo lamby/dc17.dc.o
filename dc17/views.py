@@ -15,8 +15,7 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
         initial = super(RegistrationWizard, self).get_form_initial(step)
         user = self.request.user
         form = self.form_list[step]
-        if hasattr(form, 'get_initial'):
-            initial.update(form.get_initial(user))
+        initial.update(form.get_initial(user))
         return initial
 
     def get_form_kwargs(self, step):

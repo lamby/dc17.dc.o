@@ -79,6 +79,10 @@ class RegistrationFormStep(forms.Form):
         self.helper = FormHelper()
         self.helper.form_tag = False
 
+    @classmethod
+    def get_initial(cls, user):
+        return {}
+
 
 class PreambleForm(RegistrationFormStep):
     title = 'Preamble'
