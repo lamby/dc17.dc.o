@@ -20,7 +20,7 @@ ACCOM_LINK = (
 BURSARIES_LINK = (
     '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
     'DebConf bursary instructions</a>')
-TSHIRTCHART_LINK = (
+TSHIRT_CHART_LINK = (
     '<a href="https://wiki.debconf.org/wiki/DebConf17/TshirtSizes" '
     'target="blank">t-shirt sizes chart</a>')
 PREAMBLE = (
@@ -264,7 +264,7 @@ class PersonalInformationForm(RegistrationFormStep):
             ('4xl', '4X Large'),
             ('5xl', '5X Large'),
         ),
-        help_text='Refer to the ' + TSHIRTCHART_LINK,
+        help_text='Refer to the ' + TSHIRT_CHART_LINK,
         required=False,
     )
     gender = forms.ChoiceField(
