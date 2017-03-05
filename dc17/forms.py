@@ -476,8 +476,10 @@ class AccommForm(RegistrationFormStep):
     alt_accom_choice = forms.ChoiceField(
         label='Select the accommodation you prefer during DebConf',
         choices=(
-            ('rvc', 'McGill residences accommodation '
-                    '(30min by public transit)'),
+            ('rvc_single', 'Single room at McGill residences accommodation '
+                           '(30min by public transit)'),
+            ('rvc_double', 'Double room at McGill residences accommodation '
+                           '- for couples only - (30min by public transit)'),
             ('hotel', 'Hotel Universel (reserved for families and people with '
                       'disabilities only'),
         ),
