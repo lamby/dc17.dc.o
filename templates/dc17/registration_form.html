@@ -144,11 +144,14 @@ $(function() {
       }
     });
 
-    $('#id_6-childcare').change(function() {
-      if (this.value == 'no') {
-        $('#childcare-details').hide();
-      } else {
-        $('#childcare-details').show();
+    $('#div_id_6-childcare input').each(function() {
+      $(this).on('click', function(e) {
+        var state = this.checked ? 'show' : 'hide';
+          $('#childcare-details').collapse(state);
+      });
+      if (! this.checked) {
+        // Immediately hide, without any animation
+        $('#childcare-details').removeClass('in');
       }
     });
 
