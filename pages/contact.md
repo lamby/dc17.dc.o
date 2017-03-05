@@ -4,32 +4,27 @@ name: Contact us
 Contact us
 ==========
 
-Local and global team
----------------------
-
-DebConf Team mailing list: [debconf-team@lists.debconf.org][]. Use this for any non-specific-team questions. It has open subscription and [public archives][].
-
-DebConf IRC channel (chat): [#debconf on OFTC.net](irc://irc.debian.org/debconf) or use [webchat](https://webchat.oftc.net/?nick=&channels=#debconf).
-
-Accommodation
--------------
-
-All questions and inquiries regarding accommodation, food preferences and special needs should be directed to the Room Assignments Team: [registration@debconf.org][]
-
-Registration
+Debconf Team
 ------------
 
-All questions and inquiries regarding registration should be directed to the Registration Team: [registration@debconf.org][]
+If you want to volunteer for DebConf, you can contact the DebConf Team mailing list: [debconf-team@lists.debconf.org][]. This list is used for general organization. It has open subscription and [public archives][].
+
+For live discussions, you can connect to the DebConf IRC channel (chat) with the client of your choice: [#debconf on OFTC.net](irc://irc.debian.org/debconf) or use your browser with a [webchat](https://webchat.oftc.net/?nick=&channels=#debconf).
+
+Accommodation and Registration
+------------------------------
+
+All questions and inquiries regarding either accomodation or registration should be directed to the Registration Team: [registration@debconf.org][]
 
 Talks
 -----
 
-Questions and inquiries for talks and paper submissions: [talks@debconf.org][]
+Questions and inquiries about talks and paper submissions: [talks@debconf.org][]
 
 Sponsorship (fundraising)
 -------------------------
 
-Questions and inquiries about sponsorship and becoming a sponsor: [sponsors@debconf.org][].
+Send your questions and inquiries about sponsorship and becoming a sponsor: [sponsors@debconf.org][].
 
 Visa
 ----
