@@ -14,7 +14,7 @@
 <h1>Registration</h1>
 <form action="" method="post">{% csrf_token %}
     {{ wizard.management_form }}
-    <h2>{{ form.title }}</h2>
+    <h2 class='form-title'>{{ form.title }}</h2>
     {% crispy wizard.form %}
     <div class="progress mb-3">
       <div class="progress-bar" role="progressbar"
