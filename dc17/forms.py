@@ -75,7 +75,7 @@ def nights(orga=False):
 
 class RegistrationFormStep(forms.Form):
     def __init__(self, *args, wizard=None, **kwargs):
-        super(RegistrationFormStep, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.wizard = wizard
         self.helper = FormHelper()
         self.helper.form_tag = False
@@ -89,7 +89,7 @@ class PreambleForm(RegistrationFormStep):
     title = 'Preamble'
 
     def __init__(self, *args, **kwargs):
-        super(PreambleForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
             HTML(PREAMBLE),
         )
@@ -165,7 +165,7 @@ class ContactInformationForm(RegistrationFormStep):
         }
 
     def clean(self):
-        cleaned_data = super(ContactInformationForm, self).clean()
+        cleaned_data = super().clean()
         emergency_contact = cleaned_data.get('emergency_contact')
         if emergency_contact:
             m = re.search(r'(?<![0-9+ ]) *\(?\d{2,4}[).-]? ?\d{2,4}',
@@ -236,7 +236,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         )
 
     def clean(self):
-        cleaned_data = super(ConferenceRegistrationForm, self).clean()
+        cleaned_data = super().clean()
         paid = bool(cleaned_data.get('fee'))
 
         if paid and not (cleaned_data.get('debcamp') or
@@ -309,7 +309,7 @@ class PersonalInformationForm(RegistrationFormStep):
     )
 
     def __init__(self, *args, **kwargs):
-        super(PersonalInformationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
             Field('t_shirt_cut'),
             Fieldset(
@@ -390,7 +390,7 @@ class BursaryForm(RegistrationFormStep):
     )
 
     def __init__(self, *args, **kwargs):
-        super(BursaryForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
             HTML('<p>This is where you explain your needs, and involvement in '
                   'Debian, that justify a bursary. See the ' + BURSARIES_LINK +
@@ -419,7 +419,7 @@ class BursaryForm(RegistrationFormStep):
         )
 
     def clean(self):
-        cleaned_data = super(BursaryForm, self).clean()
+        cleaned_data = super().clean()
 
         if cleaned_data.get('travel_bursary') == 0:
             cleaned_data['travel_bursary'] = None
@@ -472,7 +472,7 @@ class FoodForm(RegistrationFormStep):
     )
 
     def clean(self):
-        cleaned_data = super(FoodForm, self).clean()
+        cleaned_data = super().clean()
 
         if (cleaned_data.get('diet') == 'other' and
                 not cleaned_data.get('special_diet')):
@@ -543,7 +543,7 @@ class AccommForm(RegistrationFormStep):
     )
 
     def __init__(self, *args, **kwargs):
-        super(AccommForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
             HTML('<p>By default, the accommodation provided is in shared '
                  'classroom dorms on premises. The cost is 30 CAD$/night '
@@ -602,7 +602,7 @@ class BillingForm(RegistrationFormStep):
     )
 
     def clean(self):
-        cleaned_data = super(BillingForm, self).clean()
+        cleaned_data = super().clean()
         step1_cleaned = self.wizard.get_cleaned_data_for_step(1) or {}
         paid = bool(step1_cleaned.get('fee'))
 

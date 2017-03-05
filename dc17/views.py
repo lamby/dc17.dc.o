@@ -12,14 +12,14 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
     form_list = REGISTRATION_FORMS
 
     def get_form_initial(self, step):
-        initial = super(RegistrationWizard, self).get_form_initial(step)
+        initial = super().get_form_initial(step)
         user = self.request.user
         form = self.form_list[step]
         initial.update(form.get_initial(user))
         return initial
 
     def get_form_kwargs(self, step):
-        kwargs = super(RegistrationWizard, self).get_form_kwargs(step)
+        kwargs = super().get_form_kwargs(step)
         kwargs['wizard'] = self
         return kwargs
 
