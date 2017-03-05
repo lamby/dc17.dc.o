@@ -329,7 +329,7 @@ class BursaryForm(RegistrationFormStep):
         choices=(
             ('', "No, I'm not requesting a bursary"),
             ('f', 'Food and accommodation only'),
-            ('t', 'Food, accommodation *and travel*'),
+            ('t', 'Travel, food and accommodation'),
         ),
         required=False,
     )
