@@ -138,21 +138,22 @@ class ContactInformationForm(RegistrationFormStep):
     # Purposefully left unchecked by default to make this opt-in.
     announce_me = forms.BooleanField(
         label='Announce my arrival',
-        help_text='If checked your name will be announced in the IRC channel '
-                  'when you check in during conference',
+        help_text='If checked, your name will be announced in the IRC channel '
+                  'when you check in to the conference',
         required=False,
     )
     register_ml = forms.BooleanField(
-        label="Don't suscribe me to the DebConf-Announce mailing list",
+        label="Subscribe me to the DebConf-announce mailing list",
         help_text='This low-volume mailing list is the primary way for us to '
-                  'reach the attendees during the conference. Please consider '
-                  'not ticking this box.',
+                  'reach attendees about important conference news and '
+                  'information.'
         required=False,
+        initial=True,
     )
     register_discuss = forms.BooleanField(
-        label='Suscribe me to the DebConf-Discuss mailing list',
-        help_text='This mailing list is used by the attendees to plan and '
-                  'organise unofficial events during the conference',
+        label='Subscribe me to the DebConf-discuss mailing list',
+        help_text='This mailing list is used by attendees and interested people'
+                  ' for general discussions about the conference.',
         required=False,
     )
 
