@@ -118,25 +118,16 @@ $(function() {
   };
 
   hookDependentVisibilty(
-    $('#tshirt-cut'),
-    $('#tshirt-size').parents('.form-group')
-  );
+    $('#tshirt-cut'), $('#tshirt-size').parents('.form-group'));
 
   hookDependentVisibilty(
-    $('#bursary'),
-    $('#bursary-details')
-  );
+    $('#bursary'), $('#bursary-details'));
+  hookDependentVisibilty(
+    $('#bursary'), $('#travel-details'),
+    function(x) { return x.includes('travel') });
 
   hookDependentVisibilty(
-    $('#bursary'),
-    $('#travel-details'),
-    function(x) { return x.includes('travel') }
-  );
-
-  hookDependentVisibilty(
-    $('#diet'),
-    $('#special_diet').parents('.form-group')
-  );
+    $('#diet'), $('#special_diet').parents('.form-group'));
 
   $('#id_6-venue_accom').change(function() {
     if (this.value == 'no') {
