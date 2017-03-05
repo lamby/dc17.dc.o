@@ -152,6 +152,14 @@ class ContactInformationForm(RegistrationFormStep):
         required=False,
     )
 
+    @classmethod
+    def get_initial(cls, user):
+        return {
+            'name': user.get_full_name(),
+            'nametag_3': user.username,
+            'email': user.email,
+        }
+
 
 class ConferenceRegistrationForm(RegistrationFormStep):
     title = 'Conference Registration'
