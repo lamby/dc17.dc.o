@@ -507,6 +507,14 @@ class FoodForm(RegistrationFormStep):
         required=False,
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            Field('food_selection'),
+            Field('diet', id='diet'),
+            Field('special_diet', id='special_diet'),
+        )
+
     def clean(self):
         cleaned_data = super().clean()
 

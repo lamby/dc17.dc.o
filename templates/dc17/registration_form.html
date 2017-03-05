@@ -133,6 +133,11 @@ $(function() {
     function(x) { return x.includes('travel') }
   );
 
+  hookDependentVisibilty(
+    $('#diet'),
+    $('#special_diet').parents('.form-group')
+  );
+
   $('#id_6-venue_accom').change(function() {
     if (this.value == 'no') {
       $('#night-details').hide();
