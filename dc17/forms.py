@@ -464,9 +464,6 @@ class AccommForm(RegistrationFormStep):
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
-        help_text='By default, the accommodation provided is in shared '
-                  'classroom dorms on premises. The cost is 30 CAD$/night for '
-                  ' self-paying attendees',
         required=False,
     )
     alt_accom = forms.BooleanField(
@@ -519,6 +516,9 @@ class AccommForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super(AccommForm, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(
+            HTML('<p>By default, the accommodation provided is in shared '
+                 'classroom dorms on premises. The cost is 30 CAD$/night '
+                 'for attendees who do not receive a bursary.</p>'),
             Field('venue_accom'),
             Fieldset(
                 '',
