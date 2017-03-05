@@ -526,24 +526,24 @@ class FoodForm(RegistrationFormStep):
 class AccommForm(RegistrationFormStep):
     title = 'Accommodation'
 
-    venue_accom = forms.ChoiceField(
+    accomm = forms.ChoiceField(
         label='I need conference-organised accommodation',
         choices=(
             ('no', 'No, I will find my own accommodation'),
             ('yes', 'Yes, I need accommodation'),
         ),
     )
-    night_selection = forms.MultipleChoiceField(
+    accomm_nights = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
-    alt_accom = forms.BooleanField(
+    alt_accomm = forms.BooleanField(
         label='I would like to request alternative accommodation',
         required=False,
     )
-    alt_accom_choice = forms.ChoiceField(
+    alt_accomm_choice = forms.ChoiceField(
         label='Select the accommodation you prefer during DebConf',
         choices=(
             ('rvc_single', 'Single room at McGill residences accommodation '
@@ -592,33 +592,20 @@ class AccommForm(RegistrationFormStep):
             HTML('<p>By default, the accommodation provided is in shared '
                  'classroom dorms on premises. The cost is 30 CAD$/night '
                  'for attendees who do not receive a bursary.</p>'),
-            Field('venue_accom'),
+            Field('accomm', id='accomm'),
             Fieldset(
-                '',
-                'night_selection',
-                'alt_accom',
-                css_id='night-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
+                'Accommodation Details',
+                'accomm_nights',
+                Field('alt_accomm', id='alt_accomm'),
+                Field('alt_accomm_choice', id='alt_accomm_choice'),
+                css_id='accomm-details',
             ),
+            Field('childcare', id='childcare'),
             Fieldset(
-                '',
-                'alt_accom_choice',
-                css_id='accom-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
-            ),
-            Field('childcare'),
-            Fieldset(
-                '',
+                'Childcare Details',
                 'childcare_needs',
                 'childcare_details',
                 css_id='childcare-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
             ),
             Field('special_needs'),
             Field('family_usernames'),

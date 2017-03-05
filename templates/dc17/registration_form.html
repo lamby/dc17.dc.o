@@ -102,62 +102,42 @@ $(function() {
   });
 
   function dependentVisibility(dependent, showDependents) {
-    var showDependents = showDependents || function(x) { return x };
+    var showDependents = showDependents || function() { return this.value };
     return function() {
-      if (showDependents(this.value)) {
+      if (showDependents.call(this)) {
         dependent.show();
       } else {
         dependent.hide();
       }
     };
   }
-  function hookDependentVisibilty(controller, dependent, showDependents) {
+  function hookDependentVisibility(controller, dependent, showDependents) {
     var updateVisibility = dependentVisibility(dependent, showDependents);
     controller.change(updateVisibility);
     controller.each(updateVisibility);
   };
 
-  hookDependentVisibilty(
+  hookDependentVisibility(
     $('#tshirt-cut'), $('#tshirt-size').parents('.form-group'));
 
-  hookDependentVisibilty(
+  hookDependentVisibility(
     $('#bursary'), $('#bursary-details'));
-  hookDependentVisibilty(
+  hookDependentVisibility(
     $('#bursary'), $('#travel-details'),
-    function(x) { return x.includes('travel') });
+    function() { return this.value.includes('travel') });
 
-  hookDependentVisibilty(
+  hookDependentVisibility(
     $('#diet'), $('#special_diet').parents('.form-group'));
 
-  $('#id_6-venue_accom').change(function() {
-    if (this.value == 'no') {
-      $('#night-details').hide();
-    } else {
-      $('#night-details').show();
-    }
-  });
-
-  $('#div_id_6-alt_accom input').each(function() {
-    $(this).on('click', function(e) {
-      var state = this.checked ? 'show' : 'hide';
-        $('#accom-details').collapse(state);
-    });
-    if (! this.checked) {
-      // Immediately hide, without any animation
-      $('#accom-details').removeClass('in');
-    }
-  });
-
-  $('#div_id_6-childcare input').each(function() {
-    $(this).on('click', function(e) {
-      var state = this.checked ? 'show' : 'hide';
-        $('#childcare-details').collapse(state);
-    });
-    if (! this.checked) {
-      // Immediately hide, without any animation
-      $('#childcare-details').removeClass('in');
-    }
-  });
+  hookDependentVisibility(
+    $('#accomm'), $('#accomm-details'),
+    function() { return this.value != 'no' });
+  hookDependentVisibility(
+    $('#alt_accomm'), $('#alt_accomm_choice').parents('.form-group'),
+    function() { return this.checked });
+  hookDependentVisibility(
+    $('#childcare'), $('#childcare-details'),
+    function() { return this.checked });
 
   function updateButton(toggle, checkboxes) {
     if (checkboxes.filter(':checked').length == 0) {
