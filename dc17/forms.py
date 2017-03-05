@@ -20,6 +20,9 @@ ACCOM_LINK = (
 BURSARIES_LINK = (
     '<a href="https://debconf17.debconf.org/about/bursaries" target="blank">'
     'DebConf bursary instructions</a>')
+TSHIRTCHART_LINK = (
+    '<a href="https://wiki.debconf.org/wiki/DebConf17/TshirtSizes" '
+    'target="blank">t-shirt sizes chart</a>')
 PREAMBLE = (
     '<p>Thank you for your interest in attending DebConf17!</p>'
     '<p>Please read the following instructions carefully:</p>'
@@ -88,6 +91,8 @@ class PreambleForm(RegistrationFormStep):
 
 
 class ContactInformationForm(RegistrationFormStep):
+    title = 'Contact Information'
+
     name = forms.CharField(
         label='My name is',
         help_text='This will appear on your name tag, and in public areas of '
@@ -149,6 +154,8 @@ class ContactInformationForm(RegistrationFormStep):
 
 
 class ConferenceRegistrationForm(RegistrationFormStep):
+    title = 'Conference Registration'
+
     debcamp = forms.BooleanField(
         label='I plan to attend DebCamp (31 July to 4 August)',
         required=False,
@@ -224,6 +231,8 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
 
 class PersonalInformationForm(RegistrationFormStep):
+    title = 'Personal Information'
+
     t_shirt_cut = forms.ChoiceField(
         label='My t-shirt cut',
         choices=(
@@ -247,6 +256,7 @@ class PersonalInformationForm(RegistrationFormStep):
             ('4xl', '4X Large'),
             ('5xl', '5X Large'),
         ),
+        help_text='Refer to the ' + TSHIRTCHART_LINK,
         required=False,
     )
     gender = forms.ChoiceField(
@@ -296,6 +306,8 @@ class PersonalInformationForm(RegistrationFormStep):
 
 
 class BursaryForm(RegistrationFormStep):
+    title = 'Bursary'
+
     bursary = forms.ChoiceField(
         label='I want to apply for a bursary',
         choices=(
@@ -390,6 +402,8 @@ class BursaryForm(RegistrationFormStep):
 
 
 class FoodForm(RegistrationFormStep):
+    title = 'Food'
+
     food_selection = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
@@ -424,6 +438,8 @@ class FoodForm(RegistrationFormStep):
 
 
 class AccommForm(RegistrationFormStep):
+    title = 'Accommodation'
+
     venue_accom = forms.ChoiceField(
         label='Do you need accommodation?',
         choices=(
@@ -525,6 +541,8 @@ class AccommForm(RegistrationFormStep):
 
 
 class BillingForm(RegistrationFormStep):
+    title = 'Billing'
+
     billing_address = forms.CharField(
         label='My billing address',
         widget=forms.Textarea(attrs={'rows': 3}),

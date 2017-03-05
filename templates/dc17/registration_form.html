@@ -14,15 +14,8 @@
 <h1>Registration</h1>
 <form action="" method="post">{% csrf_token %}
     {{ wizard.management_form }}
-    {% if wizard.form.forms %}
-        {{ wizard.form.management_form }}
-        {% for form in wizard.form.forms %}
-            {% crispy form %}
-        {% endfor %}
-    {% else %}
-        <h2>{{ form.title }}</h2>
-        {% crispy wizard.form %}
-    {% endif %}
+    <h2>{{ form.title }}</h2>
+    {% crispy wizard.form %}
     <div class="progress mb-3">
       <div class="progress-bar" role="progressbar"
            aria-valuenow="{{ wizard.steps.step1 }}" aria-valuemin="0"
