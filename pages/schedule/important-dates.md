@@ -5,8 +5,12 @@ name: Important Dates
 Important Dates
 ===============
 
-| **July**              |                                                 |
+| **May**               |                                                 |
 |-----------------------|-------------------------------------------------|
+| Monday, 1st May       | Last day for requesting bursaries               |
+| **June**              |                                                 |
+| Sunday, 3rd June      | Last day for submitting a talk                  |
+| **July**              |                                                 |
 | Monday, 31 July       | First day of DebCamp                            |
 | **August**            |                                                 |
 | Tuesday, 1st August   | Second day of DebCamp                           |
