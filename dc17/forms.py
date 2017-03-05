@@ -611,8 +611,50 @@ class AccommForm(RegistrationFormStep):
             Field('family_usernames'),
         )
 
+    def clean_alt_accomm_choice(self):
+        if not self.cleaned_data.get('alt_accomm'):
+            return None
+        return self.cleaned_data.get('alt_accomm_choice')
 
-#           TODO: add cleaned form
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if cleaned_data.get('childcare'):
+            if not cleaned_data.get('childcare_needs'):
+                self.add_error('childcare_needs',
+                               'Please provide us with your needs.')
+            if not cleaned_data.get('childcare_details'):
+                self.add_error(
+                    'childcare_details',
+                    "Please provide us with your children's details.")
+
+        if cleaned_data.get('accomm') == 'no':
+            return
+
+        if not cleaned_data.get('accomm_nights'):
+            self.add_error(
+                'accomm_nights',
+                'Please select the nights you require accommodation for.')
+
+        alt_accomm = None
+        if cleaned_data.get('alt_accomm'):
+            alt_accomm = cleaned_data.get('alt_accomm_choice')
+
+        if alt_accomm == 'rvc_double' and not cleaned_data.get(
+                'family_usernames'):
+            for field in ('alt_accomm_choice', 'family_usernames'):
+                self.add_error(
+                    field,
+                    "Please provide the username of the person you want to "
+                    "share a room with.")
+
+        if alt_accomm == 'hotel' and not cleaned_data.get(
+                'special_needs'):
+            for field in ('alt_accomm_choice', 'special_needs'):
+                self.add_error(
+                    field,
+                    "Please provide the special needs that lead you to "
+                    "request a hotel room.")
 
 
 class BillingForm(RegistrationFormStep):
