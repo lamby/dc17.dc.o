@@ -49,7 +49,6 @@ class OptionalCountries(Countries):
     override = {'__': 'Decline to state'}
 
 
-# TODO: remove options for 2017-08-13 lunch and dinner
 def meals(orga=False):
     day = datetime.date(2016, 7, 31)
     if orga:
@@ -57,8 +56,9 @@ def meals(orga=False):
     while day <= datetime.date(2016, 8, 13):
         date = day.isoformat()
         yield 'breakfast_%s' % date, 'Breakfast %s' % date
-        yield 'lunch_%s' % date, 'Lunch %s' % date
-        yield 'dinner_%s' % date, 'Dinner %s' % date
+        if day < datetime.date(2016, 8, 13):
+            yield 'lunch_%s' % date, 'Lunch %s' % date
+            yield 'dinner_%s' % date, 'Dinner %s' % date
         day += datetime.timedelta(days=1)
 
 
