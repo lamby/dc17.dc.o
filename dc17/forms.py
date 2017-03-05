@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from django import forms
 from django.conf import settings
@@ -126,12 +127,10 @@ class ContactInformationForm(RegistrationFormStep):
                   "please. This won't be listed publicly.",
         required=False,
     )
-    # TODO: Find a way to make it easier to hint towards international numbers
-    # e.g. drop-down list.
     emergency_contact = forms.CharField(
         label='My emergency contact',
-        help_text='Please include the name, phone number, and language spoken '
-                  '(if not English).',
+        help_text='Please include the name, full international phone number, '
+                  'and language spoken (if not English).',
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
@@ -164,6 +163,18 @@ class ContactInformationForm(RegistrationFormStep):
             'nametag_3': user.username,
             'email': user.email,
         }
+
+    def clean(self):
+        cleaned_data = super(ContactInformationForm, self).clean()
+        emergency_contact = cleaned_data.get('emergency_contact')
+        if emergency_contact:
+            m = re.search(r'(?<![0-9+ ]) *\(?\d{2,4}[).-]? ?\d{2,4}',
+                          emergency_contact)
+            if m:
+                self.add_error(
+                    'emergency_contact',
+                    "If you include a phone number, please make sure it's in "
+                    "intarnational dialing format. e.g. +1 234 5678")
 
 
 class ConferenceRegistrationForm(RegistrationFormStep):
