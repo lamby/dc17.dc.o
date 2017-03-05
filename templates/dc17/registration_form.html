@@ -96,7 +96,6 @@ $(function() {
     $('#id_2-arrival').on('dp.change', function(e) {
         $('#id_2-departure').data('DateTimePicker').minDate(e.date || minDate);
     });
-
     $('#id_2-departure').on('dp.change', function(e) {
         $('#id_2-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
     });
@@ -186,12 +185,6 @@ $(function() {
         });
     });
 
-    // Prevent submission on Enter
-    $("form").on('keydown', function(event) {
-      if (event.key == "Enter") {
-        $('input[type="submit"]').focus();
-      }
-    });
 });
 </script>
 {% endblock %}
