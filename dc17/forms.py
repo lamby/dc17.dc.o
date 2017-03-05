@@ -141,7 +141,7 @@ class ContactInformationForm(RegistrationFormStep):
                   'when you check in to the conference',
         required=False,
     )
-    register_ml = forms.BooleanField(
+    register_announce = forms.BooleanField(
         label="Subscribe me to the DebConf-announce mailing list",
         help_text='This low-volume mailing list is the primary way for us to '
                   'reach attendees about important conference news and '
