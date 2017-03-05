@@ -399,7 +399,7 @@ class BursaryForm(RegistrationFormStep):
         required=False,
     )
     travel_bursary = forms.IntegerField(
-        label='My travel expense claim',
+        label='My travel expense claim (in CAD$)',
         help_text='Estimated amount required. ' + BURSARIES_LINK,
         min_value=0,
         max_value=10000,
