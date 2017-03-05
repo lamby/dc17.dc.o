@@ -527,7 +527,7 @@ class AccommForm(RegistrationFormStep):
     title = 'Accommodation'
 
     venue_accom = forms.ChoiceField(
-        label='Do you need accommodation?',
+        label='I need conference-organised accommodation',
         choices=(
             ('no', 'No, I will find my own accommodation'),
             ('yes', 'Yes, I need accommodation'),
