@@ -138,7 +138,7 @@ class ContactInformationForm(RegistrationFormStep):
     announce_me = forms.BooleanField(
         label='Announce my arrival',
         help_text='If checked, your name will be announced in the IRC channel '
-                  'when you check in to the conference',
+                  'when you check in to the conference.',
         required=False,
     )
     register_announce = forms.BooleanField(
@@ -230,7 +230,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     reconfirm = forms.BooleanField(
         label='I reconfirm my attendance',
         help_text="If you do not select this by July, we'll assume you "
-                  "aren't coming",
+                  "aren't coming.",
         required=False,
     )
 
@@ -309,19 +309,19 @@ class PersonalInformationForm(RegistrationFormStep):
             ('f', 'Female'),
             ('o', 'Other'),
         ),
-        help_text='For diversity statistics',
+        help_text='For diversity statistics.',
         required=False,
     )
     country = LazyTypedChoiceField(
         label='The country I call home',
-        help_text='For diversity statistics',
+        help_text='For diversity statistics.',
         choices=OptionalCountries(),
         required=False,
         widget=CountrySelectWidget(),
     )
     languages = forms.CharField(
         label='The languages I speak',
-        help_text='We will list these on your nametag',
+        help_text='We will list these on your nametag.',
         initial='en',
         required=False,
     )
@@ -487,7 +487,7 @@ class FoodForm(RegistrationFormStep):
         choices=meals(),
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursary, meal prices are: "
-                  "Breakfast 3 CAD$, Lunch 7.50 CAD$, Dinner 7.50 CAD$",
+                  "Breakfast 3 CAD$, Lunch 7.50 CAD$, Dinner 7.50 CAD$.",
         required=False,
     )
     diet = forms.ChoiceField(
@@ -558,7 +558,7 @@ class AccommForm(RegistrationFormStep):
     special_needs = forms.CharField(
         label='My special needs',
         help_text='Wheelchair access or other any other needs we should be '
-                  'aware of',
+                  'aware of.',
         required=False,
     )
     childcare = forms.BooleanField(
@@ -581,7 +581,7 @@ class AccommForm(RegistrationFormStep):
     family_usernames = forms.CharField(
         label='Usernames of my family members, '
               'who have registered separately',
-        help_text="One per line. This isn't validated",
+        help_text="One per line. This isn't validated.",
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
