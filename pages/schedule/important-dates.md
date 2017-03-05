@@ -5,8 +5,10 @@ name: Important Dates
 Important Dates
 ===============
 
-| **March**             |                                                 |
+| **February**          |                                                 |
 |-----------------------|-------------------------------------------------|
+| Tuesday, 2nd February | Call For Proposals                              |
+| **March**             |                                                 |
 | TBA                   | Opening of attendee registration                |
 | **May**               |                                                 |
 | Monday, 1st May       | Last day for requesting bursaries               |
