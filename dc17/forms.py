@@ -260,7 +260,7 @@ class PersonalInformationForm(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
         label='My t-shirt cut',
         choices=(
-            ('n', "I don't want a t-shirt"),
+            ('', "I don't want a t-shirt"),
             ('s', 'Straight cut'),
             ('w', "Women's fitted cut"),
         ),

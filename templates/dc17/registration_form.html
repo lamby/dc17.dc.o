@@ -102,18 +102,18 @@ $(function() {
   });
 
   $('#id_3-t_shirt_cut').change(function () {
-    if (this.value == 'n') {
-      $('#tshirt-details').hide();
-    } else {
+    if (this.value) {
       $('#tshirt-details').show();
+    } else {
+      $('#tshirt-details').hide();
     }
   });
 
   $('#id_4-bursary').change(function() {
-    if (this.value == '') {
-      $('#bursary-details').hide();
-    } else {
+    if (this.value) {
       $('#bursary-details').show();
+    } else {
+      $('#bursary-details').hide();
     }
   });
 
