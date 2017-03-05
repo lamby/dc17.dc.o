@@ -94,36 +94,44 @@ $(function() {
     $(this).data('DateTimePicker').hide();
   });
 
-  $('#id_2-arrival').on('dp.change', function(e) {
-    $('#id_2-departure').data('DateTimePicker').minDate(e.date || minDate);
+  $('#arrival').on('dp.change', function(e) {
+    $('#departure').data('DateTimePicker').minDate(e.date || minDate);
   });
-  $('#id_2-departure').on('dp.change', function(e) {
-    $('#id_2-arrival').data('DateTimePicker').maxDate(e.date || maxDate);
-  });
-
-  $('#id_3-t_shirt_cut').change(function () {
-    if (this.value) {
-      $('#tshirt-details').show();
-    } else {
-      $('#tshirt-details').hide();
-    }
+  $('#departure').on('dp.change', function(e) {
+    $('#arrival').data('DateTimePicker').maxDate(e.date || maxDate);
   });
 
-  $('#id_4-bursary').change(function() {
-    if (this.value) {
-      $('#bursary-details').show();
-    } else {
-      $('#bursary-details').hide();
-    }
-  });
+  function dependentVisibility(dependent, showDependents) {
+    var showDependents = showDependents || function(x) { return x };
+    return function() {
+      if (showDependents(this.value)) {
+        dependent.show();
+      } else {
+        dependent.hide();
+      }
+    };
+  }
+  function hookDependentVisibilty(controller, dependent, showDependents) {
+    var updateVisibility = dependentVisibility(dependent, showDependents);
+    controller.change(updateVisibility);
+    controller.each(updateVisibility);
+  };
 
-  $('#id_4-bursary').change(function() {
-    if (this.value.includes('travel')) {
-      $('#travel-details').show();
-    } else {
-      $('#travel-details').hide();
-    }
-  });
+  hookDependentVisibilty(
+    $('#tshirt-cut'),
+    $('#tshirt-size').parents('.form-group')
+  );
+
+  hookDependentVisibilty(
+    $('#bursary'),
+    $('#bursary-details')
+  );
+
+  hookDependentVisibilty(
+    $('#bursary'),
+    $('#travel-details'),
+    function(x) { return x.includes('travel') }
+  );
 
   $('#id_6-venue_accom').change(function() {
     if (this.value == 'no') {

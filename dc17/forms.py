@@ -227,13 +227,26 @@ class ConferenceRegistrationForm(RegistrationFormStep):
                   'sure about the details yet. It helps us to plan.',
         required=False,
     )
-    if settings.RECONFIRMATION:
-        reconfirm = forms.BooleanField(
-            label='I reconfirm my attendance',
-            help_text="If you do not select this by July, we'll assume you "
-                      "aren't coming",
-            required=False,
+    reconfirm = forms.BooleanField(
+        label='I reconfirm my attendance',
+        help_text="If you do not select this by July, we'll assume you "
+                  "aren't coming",
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper.layout = Layout(
+            'debcamp',
+            'open_day',
+            'debconf',
+            'fee',
+            Field('arrival', id='arrival'),
+            Field('departure', id='departure'),
+            'final_dates',
         )
+        if settings.RECONFIRMATION:
+            self.helper.layout.append('reconfirm')
 
     def clean(self):
         cleaned_data = super().clean()
@@ -252,6 +265,11 @@ class ConferenceRegistrationForm(RegistrationFormStep):
                 if not cleaned_data.get(field):
                     self.add_error(
                         field, 'If your dates are final, pleas provide them')
+
+        else:
+            if cleaned_data.get('reconfirm'):
+                self.add_error(
+                    'final_dates', 'Dates need to be final, to reconfirm')
 
 
 class PersonalInformationForm(RegistrationFormStep):
@@ -311,14 +329,10 @@ class PersonalInformationForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field('t_shirt_cut'),
             Fieldset(
-                '',
-                't_shirt_size',
-                css_id='tshirt-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
+                'T-shirt',
+                Field('t_shirt_cut', id='tshirt-cut'),
+                Field('t_shirt_size', id='tshirt-size'),
             ),
             Field('gender'),
             Field('country'),
@@ -401,29 +415,23 @@ class BursaryForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            HTML('<p>This is where you explain your needs, and involvement in '
-                  'Debian, that justify a bursary. See the ' + BURSARIES_LINK +
-                  '.</p>'),
-            Field('bursary'),
+            Field('bursary', id='bursary'),
             Fieldset(
-                '',
+                'Bursary Details',
+                HTML('<p>This is where you explain your needs, and '
+                     'involvement in Debian, that justify a bursary. See the '
+                     + BURSARIES_LINK + '.</p>'),
                 'bursary_reason_contribution',
                 'bursary_reason_plans',
                 'bursary_reason_diversity',
                 'bursary_need',
                 css_id='bursary-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
             ),
             Fieldset(
-                '',
+                'Travel Bursary Details',
                 'travel_bursary',
                 'travel_from',
                 css_id='travel-details',
-                # We do the collapsing in JS, so we can be sure that it'll
-                # expand, when necessary
-                css_class='collapse in',
             )
         )
 
