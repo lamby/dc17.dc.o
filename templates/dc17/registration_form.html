@@ -139,7 +139,8 @@ $(function() {
     $('#childcare'), $('#childcare-details'),
     function() { return this.checked });
 
-  function updateButton(toggle, checkboxes) {
+  // Select all buttons on food selection table
+  function updateSelectAllButton(toggle, checkboxes) {
     if (checkboxes.filter(':checked').length == 0) {
       toggle.addClass('fa-square-o')
         .removeClass('fa-minus-square-o fa-check-square-o');
@@ -152,20 +153,20 @@ $(function() {
     }
   }
 
-  $('#div_id_5-food_selection i.fa-square-o').each(function() {
+  $('#food_selection i.fa-square-o').each(function() {
     var toggle = $(this);
     var checkboxes = $(this).closest('tr').find('input');
-    updateButton(toggle, checkboxes);
+    updateSelectAllButton(toggle, checkboxes);
     $(this).parent().on('click', function(e) {
       var select = checkboxes.filter(':checked').length == 0;
       checkboxes.each(function() {
         this.checked = select;
       });
-      updateButton(toggle, checkboxes);
+      updateSelectAllButton(toggle, checkboxes);
     });
     checkboxes.each(function() {
       $(this).on('click', function() {
-        updateButton(toggle, checkboxes);
+        updateSelectAllButton(toggle, checkboxes);
       });
     });
   });
