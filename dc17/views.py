@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from formtools.wizard.views import SessionWizardView
 from wafer.utils import LoginRequiredMixin
 
-from dc17.forms import REGISTRATION_FORMS
+from dc17.forms import REGISTRATION_FORMS, ContactInformationForm
 
 
 class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
@@ -14,7 +14,7 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
     def get_form_initial(self, step):
         initial = super(RegistrationWizard, self).get_form_initial(step)
         user = self.request.user
-        if step == '0':
+        if self.form_list[step] == ContactInformationForm:
             initial.update({
                 'name': user.get_full_name(),
                 'nametag_3': user.username,
