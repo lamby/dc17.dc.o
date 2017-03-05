@@ -7,6 +7,9 @@
   #div_id_1-arrival, #div_id_1-departure {
       position: relative;
   }
+  #hidden-next {
+    display: none;
+  }
 </style>
 {% endblock %}
 
@@ -25,10 +28,11 @@
       </div>
     </div>
     {% if wizard.steps.prev %}
-        <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
-                value="{{ wizard.steps.first }}">First Page</button>
-        <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
-                value="{{ wizard.steps.prev }}">Previous Page</button>
+      <input type="submit" id="hidden-next" value="Next page">
+      <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+              value="{{ wizard.steps.first }}">First Page</button>
+      <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+              value="{{ wizard.steps.prev }}">Previous Page</button>
     {% endif %}
     <input type="submit" class="btn btn-primary" value="Next page">
 </form>
