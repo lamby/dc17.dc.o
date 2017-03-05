@@ -272,7 +272,7 @@ class PersonalInformationForm(RegistrationFormStep):
             ('4xl', '4X Large'),
             ('5xl', '5X Large'),
         ),
-        help_text='Refer to the ' + TSHIRT_CHART_LINK,
+        help_text='Refer to the ' + TSHIRT_CHART_LINK + '.',
         required=False,
     )
     gender = forms.ChoiceField(
