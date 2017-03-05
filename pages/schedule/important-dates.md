@@ -7,7 +7,7 @@ Important Dates
 
 | **February**          |                                                 |
 |-----------------------|-------------------------------------------------|
-| Tuesday, 2nd February | Call For Proposals                              |
+| Tuesday, 7 February   | Call For Proposals                              |
 | **March**             |                                                 |
 | TBA                   | Opening of attendee registration                |
 | **May**               |                                                 |
