@@ -333,13 +333,22 @@ class BursaryForm(RegistrationFormStep):
         ),
         required=False,
     )
-    bursary_reason = forms.CharField(
-        label='Details of my bursary request',
-        help_text='This is where you explain your needs, and involvement in '
-                  'Debian, that justify a bursary. See the ' + BURSARIES_LINK +
-                  ' If you are applying for a diversity bursary, be sure to '
-                  'consult the ' + DIVERSITY_LINK,
+    bursary_reason_contribution = forms.CharField(
+        label='What are your contributions to Debian?',
         widget=forms.Textarea(attrs={'rows': 5}),
+        required=False,
+    )
+    bursary_reason_plans = forms.CharField(
+        label='Do you have any plans for DebCamp or DebConf that would benefit '
+              'from being sponsored?',
+        widget=forms.Textarea(attrs={'rows': 5}),
+        required=False,
+    )
+    bursary_reason_diversity = forms.CharField(
+        label='Would you qualify for a diversity bursary, and if yes, how so?',
+        widget=forms.Textarea(attrs={'rows': 5}),
+        help_text='If you are applying for a diversity bursary, be sure to '
+                  'consult the ' + DIVERSITY_LINK,
         required=False,
     )
     bursary_need = forms.ChoiceField(
@@ -373,10 +382,15 @@ class BursaryForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super(BursaryForm, self).__init__(*args, **kwargs)
         self.helper.layout = Layout(
+            HTML('<p>This is where you explain your needs, and involvement in '
+                  'Debian, that justify a bursary. See the ' + BURSARIES_LINK +
+                  '.</p>'),
             Field('bursary'),
             Fieldset(
                 '',
-                'bursary_reason',
+                'bursary_reason_contribution',
+                'bursary_reason_plans',
+                'bursary_reason_diversity',
                 'bursary_need',
                 css_id='bursary-details',
                 # We do the collapsing in JS, so we can be sure that it'll
