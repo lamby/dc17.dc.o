@@ -548,6 +548,13 @@ class AccommForm(RegistrationFormStep):
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
+    accomm_special_requirements = forms.CharField(
+        label='Do you have any particular accommodation requirements?',
+        help_text='Anything that you want us to consider for room attribution '
+                  'should be listed here (ex. "I want to be with Joe Hill", "I '
+                  'snore", "I go to bed early")',
+        required=False,
+    )
     alt_accomm = forms.BooleanField(
         label='I would like to request alternative accommodation',
         required=False,
@@ -605,6 +612,7 @@ class AccommForm(RegistrationFormStep):
             Fieldset(
                 'Accommodation Details',
                 'accomm_nights',
+                'accomm_special_requirements',
                 Field('alt_accomm', id='alt_accomm'),
                 Field('alt_accomm_choice', id='alt_accomm_choice'),
                 css_id='accomm-details',
