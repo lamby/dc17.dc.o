@@ -102,8 +102,18 @@ $(function() {
   });
 
   function dependentVisibility(dependent, showDependents) {
-    var showDependents = showDependents || function() { return this.value };
+    var showDependents = showDependents;
     return function() {
+      if (!showDependents) {
+        if (this.type == 'checkbox') {
+          showDependents = function() { return this.checked };
+        } else {
+          showDependents = function() { return this.value };
+        }
+      }
+      if (dependent.get(0).tagName != 'FIELDSET') {
+        dependent = dependent.parents('.form-group');
+      }
       if (showDependents.call(this)) {
         dependent.show();
       } else {
@@ -117,8 +127,7 @@ $(function() {
     controller.each(updateVisibility);
   };
 
-  hookDependentVisibility(
-    $('#tshirt-cut'), $('#tshirt-size').parents('.form-group'));
+  hookDependentVisibility($('#tshirt-cut'), $('#tshirt-size'));
 
   hookDependentVisibility(
     $('#bursary'), $('#bursary-details'));
@@ -126,18 +135,13 @@ $(function() {
     $('#bursary'), $('#travel-details'),
     function() { return this.value.includes('travel') });
 
-  hookDependentVisibility(
-    $('#diet'), $('#special_diet').parents('.form-group'));
+  hookDependentVisibility($('#diet'), $('#special_diet'));
 
   hookDependentVisibility(
     $('#accomm'), $('#accomm-details'),
     function() { return this.value != 'no' });
-  hookDependentVisibility(
-    $('#alt_accomm'), $('#alt_accomm_choice').parents('.form-group'),
-    function() { return this.checked });
-  hookDependentVisibility(
-    $('#childcare'), $('#childcare-details'),
-    function() { return this.checked });
+  hookDependentVisibility($('#alt_accomm'), $('#alt_accomm_choice'));
+  hookDependentVisibility($('#childcare'), $('#childcare-details'));
 
   // Select all buttons on food selection table
   function updateSelectAllButton(toggle, checkboxes) {
