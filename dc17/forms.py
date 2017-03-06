@@ -84,6 +84,12 @@ class RegistrationFormStep(forms.Form):
     def get_initial(cls, user):
         return {}
 
+    def get_cleaned_data_for_form(self, form):
+        for step, found_form in self.wizard.form_list.items():
+            if form == found_form:
+                return self.wizard.get_cleaned_data_for_step(step)
+        return {}
+
 
 class PreambleForm(RegistrationFormStep):
     title = 'Preamble'
@@ -676,8 +682,9 @@ class BillingForm(RegistrationFormStep):
 
     def clean(self):
         cleaned_data = super().clean()
-        step1_cleaned = self.wizard.get_cleaned_data_for_step(1) or {}
-        paid = bool(step1_cleaned.get('fee'))
+        conf_reg_cleaned = self.get_cleaned_data_for_form(
+            ConferenceRegistrationForm)
+        paid = bool(conf_reg_cleaned.get('fee'))
 
         if paid and not cleaned_data.get('billing_address'):
             self.add_error('billing_address',
