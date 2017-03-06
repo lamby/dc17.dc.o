@@ -28,9 +28,11 @@ PREAMBLE = (
     '<p>Thank you for your interest in attending DebConf17!</p>'
     '<p>Please read the following instructions carefully:</p>'
     '<ol>'
+    '<noscript>'
     "<li>This registration form uses JavaScript. Without it, you'll have to "
     "navigate the validation dragons without any help. And you won't be able "
-    "to make payments.</li>"
+    "to make payments through Stripe.</li>"
+    '</noscript>'
     '<li>All registration, accommodation or catering fees must be paid either '
     'trough the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
