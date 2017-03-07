@@ -556,11 +556,13 @@ class AccommForm(RegistrationFormStep):
         required=False,
     )
     alt_accomm = forms.BooleanField(
-        label='I would like to request alternative accommodation',
+        label='I would like to request alternative accommodation (only '
+              'available if you receive a bursary)',
         required=False,
     )
     alt_accomm_choice = forms.ChoiceField(
-        label='Select the accommodation you prefer during DebConf',
+        label='Select the accommodation you prefer during DebConf (only '
+              'available if you receive a bursary)',
         choices=(
             ('rvc_single', 'Single room at McGill residences accommodation '
                            '(30min by public transit)'),
