@@ -606,19 +606,27 @@ class AccommForm(RegistrationFormStep):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        bursary_cleaned = self.get_cleaned_data_for_form(
+            BursaryForm)
+        accomm_details = Fieldset(
+            'Accommodation Details',
+            'accomm_nights',
+            'accomm_special_requirements',
+            css_id='accomm-details',
+        )
+        if bursary_cleaned.get('bursary'):
+            accomm_details.fields += [
+                Field('alt_accomm', id='alt_accomm'),
+                Field('alt_accomm_choice', id='alt_accomm_choice'),
+            ]
+
         self.helper.layout = Layout(
             HTML('<p>By default, the accommodation provided is in shared '
                  'classroom dorms on premises. The cost is 30 CAD$/night '
                  'for attendees who do not receive a bursary.</p>'),
             Field('accomm', id='accomm'),
-            Fieldset(
-                'Accommodation Details',
-                'accomm_nights',
-                'accomm_special_requirements',
-                Field('alt_accomm', id='alt_accomm'),
-                Field('alt_accomm_choice', id='alt_accomm_choice'),
-                css_id='accomm-details',
-            ),
+            accomm_details,
             Field('childcare', id='childcare'),
             Fieldset(
                 'Childcare Details',
