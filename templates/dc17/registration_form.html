@@ -111,13 +111,14 @@ $(function() {
           showDependents = function() { return this.value };
         }
       }
-      if (dependent.get(0).tagName != 'FIELDSET') {
-        dependent = dependent.parents('.form-group');
+      var target = dependent;
+      if (target.get(0).tagName != 'FIELDSET') {
+        target = target.parents('.form-group');
       }
       if (showDependents.call(this)) {
-        dependent.show();
+        target.show();
       } else {
-        dependent.hide();
+        target.hide();
       }
     };
   }
