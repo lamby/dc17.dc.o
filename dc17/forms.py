@@ -616,10 +616,7 @@ class AccommForm(RegistrationFormStep):
                 'accomm_nights',
                 'accomm_special_requirements',
                 Field('alt_accomm', id='alt_accomm'),
-                Fieldset(
-                    '',
-                    'alt_accomm_choice',
-                    css_id='alt_accomm_choice'),
+                Field('alt_accomm_choice', id='alt_accomm_choice'),
                 css_id='accomm-details',
             ),
             Field('childcare', id='childcare'),
