@@ -116,7 +116,7 @@ class ContactInformationForm(RegistrationFormStep):
     # public name
     nametag_2 = forms.CharField(
         label='Nametag line 2',
-        help_text="This could be your company, project, prefered pronoun or "
+        help_text="This could be your company, project, preferred pronoun or "
                   "anything you'd like to say.",
         required=False,
     )
