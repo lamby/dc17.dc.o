@@ -577,6 +577,7 @@ class AccommForm(RegistrationFormStep):
         label='My special needs',
         help_text='Wheelchair access or other any other needs we should be '
                   'aware of.',
+        widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
     )
     childcare = forms.BooleanField(
