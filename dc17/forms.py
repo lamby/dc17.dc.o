@@ -33,7 +33,7 @@ PREAMBLE = (
     "navigate the validation dragons without any help. And you won't be able "
     "to make payments through Stripe.</li>"
     '</noscript>'
-    '<li>All registration, accommodation or catering fees must be paid either '
+    '<li>All registration, accommodation and catering fees must be paid either '
     'trough the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
     '<li>Please keep your registration information up to date. You can make '
