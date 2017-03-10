@@ -622,9 +622,10 @@ class AccommForm(RegistrationFormStep):
             ]
 
         self.helper.layout = Layout(
-            HTML('<p>By default, the accommodation provided is in shared '
-                 'classroom dorms on premises. The cost is 30 CAD$/night '
-                 'for attendees who do not receive a bursary.</p>'),
+            HTML('<p>By default, the accommodation provided is in <a href="'
+                 'https://wiki.debconf.org/wiki/DebConf17/Accommodation#On-site'
+                 '">shared classroom dorms on premises</a>. The cost is 30 '
+                 'CAD$/night for attendees who do not receive a bursary.</p>'),
             Field('accomm', id='accomm'),
             accomm_details,
             Field('childcare', id='childcare'),
