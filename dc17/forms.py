@@ -47,6 +47,9 @@ PREAMBLE = (
     '</ol>'
 )
 
+PLAN_DEBCAMP_LABEL = 'I plan to attend DebCamp (31 July to 4 August)'
+PLAN_OPENDAY_LABEL = 'I plan to attend Open Day (5 August)'
+PLAN_DEBCONF_LABEL = 'I plan to attend DebConf (6 August to 12 August)'
 
 class OptionalCountries(Countries):
     first = ('__',)
@@ -190,15 +193,15 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     title = 'Conference Registration'
 
     debcamp = forms.BooleanField(
-        label='I plan to attend DebCamp (31 July to 4 August)',
+        label=PLAN_DEBCAMP_LABEL,
         required=False,
     )
     open_day = forms.BooleanField(
-        label='I plan to attend Open Day (5 August)',
+        label=PLAN_OPENDAY_LABEL,
         required=False,
     )
     debconf = forms.BooleanField(
-        label='I plan to attend DebConf (6 August to 12 August)',
+        label=PLAN_DEBCONF_LABEL,
         initial=True,
         required=False,
     )
