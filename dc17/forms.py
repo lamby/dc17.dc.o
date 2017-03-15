@@ -51,6 +51,24 @@ PLAN_DEBCAMP_LABEL = 'I plan to attend DebCamp (31 July to 4 August)'
 PLAN_OPENDAY_LABEL = 'I plan to attend Open Day (5 August)'
 PLAN_DEBCONF_LABEL = 'I plan to attend DebConf (6 August to 12 August)'
 
+FEES = {
+    'regular': {
+        'label': 'Regular - Free',
+        'value': 0
+    },
+    'pro': {
+        'label': 'Professional - 200 CAD$',
+        'value': 200
+    },
+    'corp': {
+        'label': 'Corporate - 500 CAD$',
+        'value': 500
+    },
+}
+
+FINAL_DATES_ESTIMATE_LABEL = "Estimated, I haven't booked travel yet."
+FINAL_DATES_FINAL_LABEL = 'Final, I have booked my travel.'
+
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
@@ -208,9 +226,9 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     fee = forms.ChoiceField(
         label='My registration fee',
         choices=(
-            ('', 'Regular - Free'),
-            ('pro', 'Professional - 200 CAD$'),
-            ('corp', 'Corporate - 500 CAD$'),
+            ('', FEES['regular']['label']),
+            ('pro', FEES['pro']['label']),
+            ('corp', FEES['corp']['label']),
         ),
         help_text='We encourage attendees to pay for their attendance if they '
                   'can afford to do so.',
@@ -231,8 +249,8 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     final_dates = forms.ChoiceField(
         label='My dates are',
         choices=(
-            ('estimate', "Estimated, I haven't booked travel yet."),
-            ('final', 'Final, I have booked my travel.'),
+            ('estimate', FINAL_DATES_ESTIMATE_LABEL),
+            ('final', FINAL_DATES_FINAL_LABEL),
         ),
         initial='estimate',
         help_text="We'd like a rough indication of dates, even if you aren't "
