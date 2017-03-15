@@ -32,6 +32,14 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'announce_me': all_cleaned_data.get('announce_me'),
                 'register_announce': all_cleaned_data.get('register_announce'),
                 'register_discuss': all_cleaned_data.get('register_discuss'),
+
+                'debcamp': all_cleaned_data.get('debcamp'),
+                'open_day': all_cleaned_data.get('open_day'),
+                'debconf': all_cleaned_data.get('debconf'),
+                'fee': all_cleaned_data.get('fee'),
+                'arrival': all_cleaned_data.get('arrival'),
+                'departure': all_cleaned_data.get('departure'),
+                'final_dates': all_cleaned_data.get('final_dates'),
             })
         return context
 

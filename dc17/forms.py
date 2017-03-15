@@ -771,8 +771,42 @@ class ConfirmationForm(RegistrationFormStep):
                     '{% endif %}'),
             )
 
+        conference_registration_fieldset = Fieldset(
+            'Conference Registration',
+            HTML('{% if debcamp %}'
+                '<p class="check">' + PLAN_DEBCAMP_LABEL + '</p>'
+                '{% endif %}'),
+            HTML('{% if open_day %}'
+                '<p class="check">' + PLAN_OPENDAY_LABEL + '</p>'
+                '{% endif %}'),
+            HTML('{% if debconf %}'
+                '<p class="check">' + PLAN_DEBCONF_LABEL + '</p>'
+                '{% endif %}'),
+            HTML('<p>'
+                '<strong>Fee:</strong> '
+                '{% if fee == "pro" %}' + FEES['pro']['label'] + '{% endif %}'
+                '{% if fee == "corp" %}' + FEES['corp']['label'] + '{% endif %}'
+                '{% if fee == "" %}' + FEES['regular']['label'] + '{% endif %}'
+                '</p>'),
+            HTML('{% if arrival %}'
+                '<p><strong>Arrival date:</strong> {{ arrival }}</p>'
+                '{% endif %}'),
+            HTML('{% if departure %}'
+                '<p><strong>Departure date:</strong> {{ departure }}</p>'
+                '{% endif %}'),
+            HTML('{% if arrival or departure %}'
+                '<p><strong>Dates are:</strong> '
+                '{% if final_dates == "estimate" %}'
+                '' + FINAL_DATES_ESTIMATE_LABEL + ''
+                '{% else %}'
+                '' + FINAL_DATES_FINAL_LABEL + ''
+                '{% endif %}</p>'
+                '{% endif %}'),
+        )
+
         self.helper.layout = Layout(
             contact_information_fieldset,
+            conference_registration_fieldset,
         )
 
 
