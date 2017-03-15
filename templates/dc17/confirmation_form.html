@@ -1,0 +1,47 @@
+{% extends "wafer/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block extra_head %}
+{{ wizard.form.media.css }}
+<style>
+  #hidden-next {
+    display: none;
+  }
+  pre {
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+  }
+  p.check:before {
+    content: '✔ ';
+    color: green;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Registration</h1>
+<form action="" method="post">{% csrf_token %}
+  {{ wizard.management_form }}
+  <h2 class='form-title'>{{ form.title }}</h2>
+  {% crispy wizard.form %}
+  <div class="progress mb-3">
+    <div class="progress-bar" role="progressbar"
+         aria-valuenow="{{ wizard.steps.step1 }}" aria-valuemin="0"
+         aria-valuemax="{{ wizard.steps.count }}"
+         style="width: {% widthratio wizard.steps.step1 wizard.steps.count 100 %}%;">
+      Page {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
+    </div>
+  </div>
+  {% if wizard.steps.prev %}
+    <input type="submit" id="hidden-next" value="Next page">
+    <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+            value="{{ wizard.steps.first }}">First Page</button>
+    <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
+            value="{{ wizard.steps.prev }}">Previous Page</button>
+  {% endif %}
+  <input type="submit" class="btn btn-primary" value="Confirm registration">
+</form>
+{% endblock %}

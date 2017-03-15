@@ -8,8 +8,13 @@ from dc17.forms import REGISTRATION_FORMS
 
 
 class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
-    template_name = 'dc17/registration_form.html'
     form_list = REGISTRATION_FORMS
+
+    def get_template_names(self):
+        if self.steps.step1 == self.steps.count:
+            return 'dc17/confirmation_form.html'
+        else:
+            return 'dc17/registration_form.html'
 
     def get_form_initial(self, step):
         initial = super().get_form_initial(step)
