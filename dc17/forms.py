@@ -88,6 +88,16 @@ T_SHIRT_SIZES = {
 FOOD_ACCOMM_BURSARY_LABEL = 'Food and accommodation only'
 TRAVEL_FOOD_ACCOMM_BURSARY_LABEL = 'Travel, food and accommodation'
 
+BURSARY_NEED_LABELS = {
+    'unable': 'Without this funding, I will be absolutely '
+              'unable to attend',
+    'sacrifice': 'Without the requested funding, I will have to '
+                 'make financial sacrifices to attend',
+    'inconvenient': 'Without the requested funding, attending will '
+                    'be inconvenient for me',
+    'non-financial': 'I am not applying based on financial need',
+}
+
 
 class OptionalCountries(Countries):
     first = ('__',)
@@ -438,13 +448,10 @@ class BursaryForm(RegistrationFormStep):
         label='My level of need',
         choices=(
             ('', 'N/A (not requesting a bursary)'),
-            ('unable', 'Without this funding, I will be absolutely '
-                       'unable to attend'),
-            ('sacrifice', 'Without the requested funding, I will have to '
-                          'make financial sacrifices to attend'),
-            ('inconvenient', 'Without the requested funding, attending will '
-                             'be inconvenient for me'),
-            ('non-financial', 'I am not applying based on financial need'),
+            ('unable', BURSARY_NEED_LABELS['unable']),
+            ('sacrifice', BURSARY_NEED_LABELS['sacrifice']),
+            ('inconvenient', BURSARY_NEED_LABELS['inconvenient']),
+            ('non-financial', BURSARY_NEED_LABELS['non-financial']),
         ),
         required=False,
     )
