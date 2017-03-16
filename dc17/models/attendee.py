@@ -3,11 +3,11 @@ from django.db import models
 class Attendee(models.Model):
 
     # Contact informations
-    name = models.CharField(max_length=50)
+    name = models.CharField() #fix_me
     nametag_2 = models.CharField(max_length=50)
-    nametag_3 = models.CharField(max_length=50)
-    email = models.EmailField()
-    phone = models.CharField(max_length=50)
+    nametag_3 = models.ForeignKey(User, related_name='username')
+    email = models.ForeignKey(User)
+    phone = models.ForeignKey(UserProfile, related_name='contact_number')
     emergency_contact = models.CharField()
     announce_me = models.BooleanField()
     register_announce = models.BooleanField()
@@ -18,7 +18,7 @@ class Attendee(models.Model):
     open_day = models.BooleanField()
     debconf = models.BooleanField()
     fee = models.CharField(max_length=50)
-    arrive = models.DateTimeField()
+    arrival= models.DateTimeField()
     departure = models.DateTimeField()
     final_dates = models.CharField(max_length=50)
     reconfirm = models.BooleanField()
