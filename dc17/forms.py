@@ -828,9 +828,60 @@ class ConfirmationForm(RegistrationFormStep):
                 '{% endif %}'),
         )
 
+        personal_information_fieldset = Fieldset(
+            'Personal Information',
+            HTML('{% if t_shirt_cut %}'
+                '<p><strong>My t-shirt:</strong> '
+                '{% if t_shirt_cut == "s" %}'
+                '' + STRAIGHT_CUT_LABEL + ''
+                '{% elif t_shirt_cut == "w" %}'
+                '' + WOMENS_FITTED_CUT_LABEL + ''
+                '{% endif %} , '
+                '{% if t_shirt_size == "xs" %}'
+                '' + T_SHIRT_SIZES['xs'] + ''
+                '{% elif t_shirt_size == "s" %}'
+                '' + T_SHIRT_SIZES['s'] + ''
+                '{% elif t_shirt_size == "m" %}'
+                '' + T_SHIRT_SIZES['m'] + ''
+                '{% elif t_shirt_size == "l" %}'
+                '' + T_SHIRT_SIZES['l'] + ''
+                '{% elif t_shirt_size == "xl" %}'
+                '' + T_SHIRT_SIZES['xl'] + ''
+                '{% elif t_shirt_size == "2xl" %}'
+                '' + T_SHIRT_SIZES['2xl'] + ''
+                '{% elif t_shirt_size == "3xl" %}'
+                '' + T_SHIRT_SIZES['3xl'] + ''
+                '{% elif t_shirt_size == "4xl" %}'
+                '' + T_SHIRT_SIZES['4xl'] + ''
+                '{% elif t_shirt_size == "5xl" %}'
+                '' + T_SHIRT_SIZES['5xl'] + ''
+                '{% endif %}'
+                '{% endif %}'),
+            HTML('{% if gender %}'
+                '<p><strong>Gender:</strong> '
+                '{% if gender == "f" %}'
+                'Female'
+                '{% elif gender == "m" %}'
+                'Male'
+                '{% elif gender == "o" %}'
+                'Other'
+                '{% endif %}'
+                '</p>'
+                '{% endif %}'),
+            HTML('{% if country != "__" %}'
+                '<p><strong>Country:</strong> '
+                '{{ country_name }}'
+                '</p>'
+                '{% endif %}'),
+            HTML('<p><strong>Languages:</strong> '
+                '{{ languages }}'
+                '</p>'),
+        )
+
         self.helper.layout = Layout(
             contact_information_fieldset,
             conference_registration_fieldset,
+            personal_information_fieldset,
         )
 
 

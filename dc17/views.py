@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
+from django_countries import countries
+
 from formtools.wizard.views import SessionWizardView
 from wafer.utils import LoginRequiredMixin
 
@@ -40,6 +42,17 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'arrival': all_cleaned_data.get('arrival'),
                 'departure': all_cleaned_data.get('departure'),
                 'final_dates': all_cleaned_data.get('final_dates'),
+
+                't_shirt_cut': all_cleaned_data.get('t_shirt_cut'),
+                't_shirt_size': all_cleaned_data.get('t_shirt_size'),
+                'genders': {
+                    'm': 'Male',
+                    'f': 'Female',
+                },
+                'gender': all_cleaned_data.get('gender'),
+                'country': all_cleaned_data.get('country'),
+                'country_name': dict(countries)[all_cleaned_data.get('country')],
+                'languages': all_cleaned_data.get('languages'),
             })
         return context
 
