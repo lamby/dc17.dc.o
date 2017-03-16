@@ -85,6 +85,9 @@ T_SHIRT_SIZES = {
     '5xl': '2X Large',
 }
 
+FOOD_ACCOMM_BURSARY_LABEL = 'Food and accommodation only'
+TRAVEL_FOOD_ACCOMM_BURSARY_LABEL = 'Travel, food and accommodation'
+
 
 class OptionalCountries(Countries):
     first = ('__',)
@@ -406,8 +409,8 @@ class BursaryForm(RegistrationFormStep):
         label='I want to apply for a bursary',
         choices=(
             ('', "No, I'm not requesting a bursary"),
-            ('food+accomm', 'Food and accommodation only'),
-            ('travel+food+accomm', 'Travel, food and accommodation'),
+            ('food+accomm', FOOD_ACCOMM_BURSARY_LABEL),
+            ('travel+food+accomm', TRAVEL_FOOD_ACCOMM_BURSARY_LABEL),
         ),
         required=False,
     )
