@@ -73,6 +73,18 @@ NO_T_SHIRT_LABEL = "I don't want a t-shirt"
 STRAIGHT_CUT_LABEL = 'Straight cut'
 WOMENS_FITTED_CUT_LABEL = "Women's fitted cut"
 
+T_SHIRT_SIZES = {
+    'xs': 'Extra Small',
+    's': 'Small',
+    'm': 'Medium',
+    'l': 'Large',
+    'xl': 'Extra Large',
+    '2xl': '2X Large',
+    '3xl': '2X Large',
+    '4xl': '2X Large',
+    '5xl': '2X Large',
+}
+
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
@@ -322,15 +334,15 @@ class PersonalInformationForm(RegistrationFormStep):
         label='My t-shirt size',
         choices=(
             ('', 'N/A'),
-            ('xs', 'Extra small'),
-            ('s', 'Small'),
-            ('m', 'Medium'),
-            ('l', 'Large'),
-            ('xl', 'Extra large'),
-            ('2xl', '2X Large'),
-            ('3xl', '3X Large'),
-            ('4xl', '4X Large'),
-            ('5xl', '5X Large'),
+            ('xs', T_SHIRT_SIZES['xs']),
+            ('s', T_SHIRT_SIZES['s']),
+            ('m', T_SHIRT_SIZES['m']),
+            ('l', T_SHIRT_SIZES['l']),
+            ('xl', T_SHIRT_SIZES['xl']),
+            ('2xl', T_SHIRT_SIZES['2xl']),
+            ('3xl', T_SHIRT_SIZES['3xl']),
+            ('4xl', T_SHIRT_SIZES['4xl']),
+            ('5xl', T_SHIRT_SIZES['5xl']),
         ),
         help_text='Refer to the ' + TSHIRT_CHART_LINK + '.',
         required=False,
