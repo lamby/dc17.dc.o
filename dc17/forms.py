@@ -69,6 +69,10 @@ FEES = {
 FINAL_DATES_ESTIMATE_LABEL = "Estimated, I haven't booked travel yet."
 FINAL_DATES_FINAL_LABEL = 'Final, I have booked my travel.'
 
+NO_T_SHIRT_LABEL = "I don't want a t-shirt"
+STRAIGHT_CUT_LABEL = 'Straight cut'
+WOMENS_FITTED_CUT_LABEL = "Women's fitted cut"
+
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
@@ -308,9 +312,9 @@ class PersonalInformationForm(RegistrationFormStep):
     t_shirt_cut = forms.ChoiceField(
         label='My t-shirt cut',
         choices=(
-            ('', "I don't want a t-shirt"),
-            ('s', 'Straight cut'),
-            ('w', "Women's fitted cut"),
+            ('', NO_T_SHIRT_LABEL),
+            ('s', STRAIGHT_CUT_LABEL),
+            ('w', WOMENS_FITTED_CUT_LABEL),
         ),
         required=False,
     )
