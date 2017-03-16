@@ -769,6 +769,8 @@ class ConfirmationForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        fieldsets = []
+
         contact_information_fieldset = Fieldset(
             'Contact Information',
             HTML('<div>'
@@ -798,6 +800,7 @@ class ConfirmationForm(RegistrationFormStep):
                  '<em>DebConf-discuss</em> mailing list</p>'
                  '{% endif %}'),
         )
+        fieldsets += [contact_information_fieldset]
 
         conference_registration_fieldset = Fieldset(
             'Conference Registration',
@@ -841,6 +844,7 @@ class ConfirmationForm(RegistrationFormStep):
                  '{% endif %}</p>'
                  '{% endif %}'),
         )
+        fieldsets += [conference_registration_fieldset]
 
         personal_information_fieldset = Fieldset(
             'Personal Information',
@@ -891,16 +895,14 @@ class ConfirmationForm(RegistrationFormStep):
                  '{{ languages }}'
                  '</p>'),
         )
+        fieldsets += [personal_information_fieldset]
 
         bursary_fieldset = Fieldset(
             'Bursary',
         )
 
         self.helper.layout = Layout(
-            contact_information_fieldset,
-            conference_registration_fieldset,
-            personal_information_fieldset,
-            bursary_fieldset,
+            *fieldsets
         )
 
 
