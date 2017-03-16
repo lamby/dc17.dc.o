@@ -20,8 +20,8 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
 
     def get_context_data(self, form, **kwargs):
         context = super(RegistrationWizard, self).get_context_data(
-                form=form,
-                **kwargs)
+            form=form,
+            **kwargs)
         if self.steps.step1 == self.steps.count:
             all_cleaned_data = self.get_all_cleaned_data()
             context.update({
@@ -54,7 +54,7 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'gender': all_cleaned_data.get('gender'),
                 'country': all_cleaned_data.get('country'),
                 'country_name': dict(countries)[
-                   all_cleaned_data.get('country')],
+                    all_cleaned_data.get('country')],
                 'languages': all_cleaned_data.get('languages'),
             })
         return context

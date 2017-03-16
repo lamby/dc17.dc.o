@@ -770,34 +770,34 @@ class ConfirmationForm(RegistrationFormStep):
         super().__init__(*args, **kwargs)
 
         contact_information_fieldset = Fieldset(
-                'Contact Information',
-                HTML('<div>'
-                     '<strong>Nametag:</strong>'
-                     '<pre>{{ nametag }}</pre>'
-                     '</div>'),
-                HTML('<p><strong>Email:</strong> {{ email }}</p>'),
-                HTML('{% if phone %}'
-                     '<p><strong>Phone:</strong> {{ phone }}</p>'
-                     '{% endif %}'),
-                HTML('{% if emergency_contact %}'
-                     '<div>'
-                     '<strong>Emergency contact:</strong>'
-                     '<pre>{{ emergency_contact }}</pre>'
-                     '</div>'
-                     '{% endif %}'),
-                HTML('{% if announce_me %}'
-                     '<p class="check">Announce my arrival in the IRC channel '
-                     'when I check-in at the conference</p>'
-                     '{% endif %}'),
-                HTML('{% if register_announce %}'
-                     '<p class="check">Subscribe me to the '
-                     '<em>DebConf-announce</em> mailing list</p>'
-                     '{% endif %}'),
-                HTML('{% if register_discuss %}'
-                     '<p class="check">Subscribe me to the '
-                     '<em>DebConf-discuss</em> mailing list</p>'
-                     '{% endif %}'),
-            )
+            'Contact Information',
+            HTML('<div>'
+                 '<strong>Nametag:</strong>'
+                 '<pre>{{ nametag }}</pre>'
+                 '</div>'),
+            HTML('<p><strong>Email:</strong> {{ email }}</p>'),
+            HTML('{% if phone %}'
+                 '<p><strong>Phone:</strong> {{ phone }}</p>'
+                 '{% endif %}'),
+            HTML('{% if emergency_contact %}'
+                 '<div>'
+                 '<strong>Emergency contact:</strong>'
+                 '<pre>{{ emergency_contact }}</pre>'
+                 '</div>'
+                 '{% endif %}'),
+            HTML('{% if announce_me %}'
+                 '<p class="check">Announce my arrival in the IRC channel '
+                 'when I check-in at the conference</p>'
+                 '{% endif %}'),
+            HTML('{% if register_announce %}'
+                 '<p class="check">Subscribe me to the '
+                 '<em>DebConf-announce</em> mailing list</p>'
+                 '{% endif %}'),
+            HTML('{% if register_discuss %}'
+                 '<p class="check">Subscribe me to the '
+                 '<em>DebConf-discuss</em> mailing list</p>'
+                 '{% endif %}'),
+        )
 
         conference_registration_fieldset = Fieldset(
             'Conference Registration',
