@@ -897,9 +897,57 @@ class ConfirmationForm(RegistrationFormStep):
         )
         fieldsets += [personal_information_fieldset]
 
-        bursary_fieldset = Fieldset(
-            'Bursary',
-        )
+        bursary_type = self.get_cleaned_data_for_form(BursaryForm).get('bursary')
+        if bursary_type:
+            bursary_fields = [
+                HTML('<p><strong>Covering:</strong> '
+                     '{% if bursary == "food+accomm" %}'
+                     '' + FOOD_ACCOMM_BURSARY_LABEL + ''
+                     '{% elif bursary == "travel+food+accomm" %}'
+                     '' + TRAVEL_FOOD_ACCOMM_BURSARY_LABEL + ''
+                     '{% endif %}'
+                     '</p>'),
+                HTML('<p><strong>My level of need:</strong> '
+                     '{% if bursary_need == "unable" %}'
+                     '' + BURSARY_NEED_LABELS['unable'] + ''
+                     '{% elif bursary_need == "sacrifice" %}'
+                     '' + BURSARY_NEED_LABELS['sacrifice'] + ''
+                     '{% elif bursary_need == "inconvenient" %}'
+                     '' + BURSARY_NEED_LABELS['inconvenient'] + ''
+                     '{% elif bursary_need == "non-financial" %}'
+                     '' + BURSARY_NEED_LABELS['non-financial'] + ''
+                     '{% endif %}'
+                     '</p>'),
+                HTML('<div>'
+                     '<strong>My contributions to Debian:</strong>'
+                     '<pre>{{ bursary_reason_contribution }}</pre>'
+                     '</div>'),
+                HTML('<div>'
+                     '<strong>My plans for DebCamp or DebConf:</strong>'
+                     '<pre>{{ bursary_reason_plans }}</pre>'
+                     '</div>'),
+                HTML('<div>'
+                     '<strong>My eligibility for a diversity bursary:</strong>'
+                     '<pre>{{ bursary_reason_diversity }}</pre>'
+                     '</div>'),
+            ]
+
+            if bursary_type == 'travel+food+accomm':
+                bursary_fields += [
+                    HTML('<div>'
+                         '<strong>My travel expense claim (in CAD$):</strong>'
+                         '<pre>{{ travel_bursary }}</pre>'
+                         '</div>'),
+                    HTML('<p><strong>Traveling from:</strong> '
+                         '{{ travel_from }}'
+                         '</p'),
+                ]
+
+            bursary_fieldset = Fieldset(
+                'Bursary',
+                *bursary_fields,
+            )
+            fieldsets += [bursary_fieldset]
 
         self.helper.layout = Layout(
             *fieldsets

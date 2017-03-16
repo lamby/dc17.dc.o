@@ -56,6 +56,20 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'country_name': dict(countries)[
                     all_cleaned_data.get('country')],
                 'languages': all_cleaned_data.get('languages'),
+
+                'bursary': all_cleaned_data.get('bursary'),
+                'bursary_reason_contribution': all_cleaned_data.get(
+                    'bursary_reason_contribution'),
+                'bursary_reason_plans': all_cleaned_data.get(
+                    'bursary_reason_plans'),
+                'bursary_reason_diversity': all_cleaned_data.get(
+                    'bursary_reason_diversity'),
+                'bursary_need': all_cleaned_data.get(
+                    'bursary_need'),
+                'travel_bursary': all_cleaned_data.get(
+                    'travel_bursary'),
+                'travel_from': all_cleaned_data.get(
+                    'travel_from'),
             })
         return context
 
