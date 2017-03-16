@@ -85,6 +85,7 @@ T_SHIRT_SIZES = {
     '5xl': '2X Large',
 }
 
+
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
@@ -751,6 +752,7 @@ class BillingForm(RegistrationFormStep):
             self.add_error('billing_address',
                            'Paid attendees need to provide a billing address')
 
+
 class ConfirmationForm(RegistrationFormStep):
     title = 'Review your registration'
 
@@ -760,128 +762,135 @@ class ConfirmationForm(RegistrationFormStep):
         contact_information_fieldset = Fieldset(
                 'Contact Information',
                 HTML('<div>'
-                    '<strong>Nametag:</strong>'
-					'<pre>{{ nametag }}</pre>'
-                    '</div>'),
+                     '<strong>Nametag:</strong>'
+                     '<pre>{{ nametag }}</pre>'
+                     '</div>'),
                 HTML('<p><strong>Email:</strong> {{ email }}</p>'),
                 HTML('{% if phone %}'
-                    '<p><strong>Phone:</strong> {{ phone }}</p>'
-                    '{% endif %}'),
+                     '<p><strong>Phone:</strong> {{ phone }}</p>'
+                     '{% endif %}'),
                 HTML('{% if emergency_contact %}'
-                    '<div>'
-                    '<strong>Emergency contact:</strong>'
-                    '<pre>{{ emergency_contact }}</pre>'
-                    '</div>'
-                    '{% endif %}'),
+                     '<div>'
+                     '<strong>Emergency contact:</strong>'
+                     '<pre>{{ emergency_contact }}</pre>'
+                     '</div>'
+                     '{% endif %}'),
                 HTML('{% if announce_me %}'
-                    '<p class="check">Announce my arrival in the IRC channel '
-                    'when I check-in at the conference</p>'
-                    '{% endif %}'),
+                     '<p class="check">Announce my arrival in the IRC channel '
+                     'when I check-in at the conference</p>'
+                     '{% endif %}'),
                 HTML('{% if register_announce %}'
-                    '<p class="check">Subscribe me to the '
-                    '<em>DebConf-announce</em> mailing list</p>'
-                    '{% endif %}'),
+                     '<p class="check">Subscribe me to the '
+                     '<em>DebConf-announce</em> mailing list</p>'
+                     '{% endif %}'),
                 HTML('{% if register_discuss %}'
-                    '<p class="check">Subscribe me to the '
-                    '<em>DebConf-discuss</em> mailing list</p>'
-                    '{% endif %}'),
+                     '<p class="check">Subscribe me to the '
+                     '<em>DebConf-discuss</em> mailing list</p>'
+                     '{% endif %}'),
             )
 
         conference_registration_fieldset = Fieldset(
             'Conference Registration',
             HTML('{% if debcamp %}'
-                '<p class="check">' + PLAN_DEBCAMP_LABEL + '</p>'
-                '{% endif %}'),
+                 '<p class="check">' + PLAN_DEBCAMP_LABEL + '</p>'
+                 '{% endif %}'),
             HTML('{% if open_day %}'
-                '<p class="check">' + PLAN_OPENDAY_LABEL + '</p>'
-                '{% endif %}'),
+                 '<p class="check">' + PLAN_OPENDAY_LABEL + '</p>'
+                 '{% endif %}'),
             HTML('{% if debconf %}'
-                '<p class="check">' + PLAN_DEBCONF_LABEL + '</p>'
-                '{% endif %}'),
+                 '<p class="check">' + PLAN_DEBCONF_LABEL + '</p>'
+                 '{% endif %}'),
             HTML('<p>'
-                '<strong>Fee:</strong> '
-                '{% if fee == "pro" %}' + FEES['pro']['label'] + '{% endif %}'
-                '{% if fee == "corp" %}' + FEES['corp']['label'] + '{% endif %}'
-                '{% if fee == "" %}' + FEES['regular']['label'] + '{% endif %}'
-                '</p>'),
+                 '<strong>Fee:</strong> '
+                 '{% if fee == "pro" %}' + FEES['pro']['label'] + '{% endif %}'
+                 '{% if fee == "corp" %}'
+                 '' + FEES['corp']['label'] + '{% endif %}'
+                 '{% if fee == "" %}'
+                 '' + FEES['regular']['label'] + '{% endif %}'
+                 '</p>'),
             HTML('{% if arrival or departure %}'
-                '<p><strong>Will attend from</strong> '
-                '{% if arrival %}'
-                '{{ arrival }}'
-                '{% else %}'
-                '<em>Unspecified</em>'
-                '{% endif %}'
-                ' <strong>to</strong> '
-                '{% if departure %}'
-                '{{ departure }}'
-                '{% else %}'
-                '<em>Unspecified</em>'
-                '{% endif %}'
-                '{% endif %}'),
+                 '<p><strong>Will attend from</strong> '
+                 '{% if arrival %}'
+                 '{{ arrival }}'
+                 '{% else %}'
+                 '<em>Unspecified</em>'
+                 '{% endif %}'
+                 ' <strong>to</strong> '
+                 '{% if departure %}'
+                 '{{ departure }}'
+                 '{% else %}'
+                 '<em>Unspecified</em>'
+                 '{% endif %}'
+                 '{% endif %}'),
             HTML('{% if arrival or departure %}'
-                '<p><strong>Dates are:</strong> '
-                '{% if final_dates == "estimate" %}'
-                '' + FINAL_DATES_ESTIMATE_LABEL + ''
-                '{% else %}'
-                '' + FINAL_DATES_FINAL_LABEL + ''
-                '{% endif %}</p>'
-                '{% endif %}'),
+                 '<p><strong>Dates are:</strong> '
+                 '{% if final_dates == "estimate" %}'
+                 '' + FINAL_DATES_ESTIMATE_LABEL + ''
+                 '{% else %}'
+                 '' + FINAL_DATES_FINAL_LABEL + ''
+                 '{% endif %}</p>'
+                 '{% endif %}'),
         )
 
         personal_information_fieldset = Fieldset(
             'Personal Information',
             HTML('{% if t_shirt_cut %}'
-                '<p><strong>My t-shirt:</strong> '
-                '{% if t_shirt_cut == "s" %}'
-                '' + STRAIGHT_CUT_LABEL + ''
-                '{% elif t_shirt_cut == "w" %}'
-                '' + WOMENS_FITTED_CUT_LABEL + ''
-                '{% endif %} , '
-                '{% if t_shirt_size == "xs" %}'
-                '' + T_SHIRT_SIZES['xs'] + ''
-                '{% elif t_shirt_size == "s" %}'
-                '' + T_SHIRT_SIZES['s'] + ''
-                '{% elif t_shirt_size == "m" %}'
-                '' + T_SHIRT_SIZES['m'] + ''
-                '{% elif t_shirt_size == "l" %}'
-                '' + T_SHIRT_SIZES['l'] + ''
-                '{% elif t_shirt_size == "xl" %}'
-                '' + T_SHIRT_SIZES['xl'] + ''
-                '{% elif t_shirt_size == "2xl" %}'
-                '' + T_SHIRT_SIZES['2xl'] + ''
-                '{% elif t_shirt_size == "3xl" %}'
-                '' + T_SHIRT_SIZES['3xl'] + ''
-                '{% elif t_shirt_size == "4xl" %}'
-                '' + T_SHIRT_SIZES['4xl'] + ''
-                '{% elif t_shirt_size == "5xl" %}'
-                '' + T_SHIRT_SIZES['5xl'] + ''
-                '{% endif %}'
-                '{% endif %}'),
+                 '<p><strong>My t-shirt:</strong> '
+                 '{% if t_shirt_cut == "s" %}'
+                 '' + STRAIGHT_CUT_LABEL + ''
+                 '{% elif t_shirt_cut == "w" %}'
+                 '' + WOMENS_FITTED_CUT_LABEL + ''
+                 '{% endif %} , '
+                 '{% if t_shirt_size == "xs" %}'
+                 '' + T_SHIRT_SIZES['xs'] + ''
+                 '{% elif t_shirt_size == "s" %}'
+                 '' + T_SHIRT_SIZES['s'] + ''
+                 '{% elif t_shirt_size == "m" %}'
+                 '' + T_SHIRT_SIZES['m'] + ''
+                 '{% elif t_shirt_size == "l" %}'
+                 '' + T_SHIRT_SIZES['l'] + ''
+                 '{% elif t_shirt_size == "xl" %}'
+                 '' + T_SHIRT_SIZES['xl'] + ''
+                 '{% elif t_shirt_size == "2xl" %}'
+                 '' + T_SHIRT_SIZES['2xl'] + ''
+                 '{% elif t_shirt_size == "3xl" %}'
+                 '' + T_SHIRT_SIZES['3xl'] + ''
+                 '{% elif t_shirt_size == "4xl" %}'
+                 '' + T_SHIRT_SIZES['4xl'] + ''
+                 '{% elif t_shirt_size == "5xl" %}'
+                 '' + T_SHIRT_SIZES['5xl'] + ''
+                 '{% endif %}'
+                 '{% endif %}'),
             HTML('{% if gender %}'
-                '<p><strong>Gender:</strong> '
-                '{% if gender == "f" %}'
-                'Female'
-                '{% elif gender == "m" %}'
-                'Male'
-                '{% elif gender == "o" %}'
-                'Other'
-                '{% endif %}'
-                '</p>'
-                '{% endif %}'),
+                 '<p><strong>Gender:</strong> '
+                 '{% if gender == "f" %}'
+                 'Female'
+                 '{% elif gender == "m" %}'
+                 'Male'
+                 '{% elif gender == "o" %}'
+                 'Other'
+                 '{% endif %}'
+                 '</p>'
+                 '{% endif %}'),
             HTML('{% if country != "__" %}'
-                '<p><strong>Country:</strong> '
-                '{{ country_name }}'
-                '</p>'
-                '{% endif %}'),
+                 '<p><strong>Country:</strong> '
+                 '{{ country_name }}'
+                 '</p>'
+                 '{% endif %}'),
             HTML('<p><strong>Languages:</strong> '
-                '{{ languages }}'
-                '</p>'),
+                 '{{ languages }}'
+                 '</p>'),
+        )
+
+        bursary_fieldset = Fieldset(
+            'Bursary',
         )
 
         self.helper.layout = Layout(
             contact_information_fieldset,
             conference_registration_fieldset,
             personal_information_fieldset,
+            bursary_fieldset,
         )
 
 
