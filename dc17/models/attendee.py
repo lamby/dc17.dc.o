@@ -1,0 +1,35 @@
+from django.db import models
+
+class Attendee(models.Model):
+
+    # Contact informations
+    name = models.CharField(max_length=50)
+    nametag_2 = models.CharField(max_length=50)
+    nametag_3 = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    emergency_contact = models.CharField()
+    announce_me = models.BooleanField()
+    register_announce = models.BooleanField()
+    register_discuss = models.BooleanField()
+
+    # Conference details
+    debcamp = models.BooleanField()
+    open_day = models.BooleanField()
+    debconf = models.BooleanField()
+    fee = models.CharField(max_length=50)
+    arrive = models.DateTimeField()
+    departure = models.DateTimeField()
+    final_dates = models.CharField(max_length=50)
+    reconfirm = models.BooleanField()
+
+    # Personnal informations
+    t_shirt_cut = models.CharField(max_length=50)
+    t_shirt_size = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    languages = models.CharField(max_length=50)
+
+
+    def __str__(self):
+        return self.title
