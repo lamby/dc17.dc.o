@@ -945,7 +945,7 @@ class ConfirmationForm(RegistrationFormStep):
 
             bursary_fieldset = Fieldset(
                 'Bursary',
-                *bursary_fields,
+                *bursary_fields
             )
             fieldsets += [bursary_fieldset]
 
