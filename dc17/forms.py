@@ -897,7 +897,8 @@ class ConfirmationForm(RegistrationFormStep):
         )
         fieldsets += [personal_information_fieldset]
 
-        bursary_type = self.get_cleaned_data_for_form(BursaryForm).get('bursary')
+        bursary_type = self.get_cleaned_data_for_form(BursaryForm).get(
+            'bursary')
         if bursary_type:
             bursary_fields = [
                 HTML('<p><strong>Covering:</strong> '
@@ -948,6 +949,26 @@ class ConfirmationForm(RegistrationFormStep):
                 *bursary_fields
             )
             fieldsets += [bursary_fieldset]
+
+        billing_fields = [
+            HTML('<div>'
+                 '<strong>My billing address</strong>'
+                 '<pre>{{ billing_address }}'
+                 '</div>'),
+        ]
+        if self.get_cleaned_data_for_form(BillingForm).get('notes'):
+            billing_fields += [
+                HTML('<div>'
+                     '<strong>Notes</strong>'
+                     '<pre>{{ notes }}</pre>'
+                     '</div>'),
+            ]
+
+        billing_fieldset = Fieldset(
+            'Billing',
+            *billing_fields
+        )
+        fieldsets += [billing_fieldset]
 
         self.helper.layout = Layout(
             *fieldsets

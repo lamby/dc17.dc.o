@@ -71,6 +71,9 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                     'travel_bursary'),
                 'travel_from': all_cleaned_data.get(
                     'travel_from'),
+
+                'billing_address': all_cleaned_data.get('billing_address'),
+                'notes': all_cleaned_data.get('notes'),
             })
 
         return context
