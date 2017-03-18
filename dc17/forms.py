@@ -962,6 +962,33 @@ class ConfirmationForm(RegistrationFormStep):
             )
             fieldsets += [bursary_fieldset]
 
+        food_fieldset = Fieldset(
+            'Food',
+            HTML('<div>'
+                 '<strong>I want to eat catered food for these meals:</strong>'
+                 '<ul>'
+                 '{% for day, meals in food_selection_summary.items %}'
+                 '<li>{{ day }}: {{ meals }}</li>'
+                 '{% endfor %}'
+                 '</ul>'
+                 '</div>'),
+            HTML('{% if diet %}'
+                 '<p><strong>My diet:</strong> '
+                 '{% if diet == "vegetarian" %}'
+                 '' + DIET_LABELS['vegetarian'] + ''
+                 '{% elif diet == "vegan" %}'
+                 '' + DIET_LABELS['vegan'] + ''
+                 '{% elif diet == "other" %}'
+                 '' + DIET_LABELS['other'] + ''
+                 '{% endif %}'
+                 '{% endif %}'),
+            HTML('{% if diet %}'
+                 '<p><strong>Details of my special dietary needs:</strong> '
+                 '{{ special_diet }}</p>'
+                 '{% endif %}'),
+        )
+        fieldsets += [food_fieldset]
+
         accomm_fields = []
 
         if self.get_cleaned_data_for_form(AccommForm).get('accomm') == 'yes':
