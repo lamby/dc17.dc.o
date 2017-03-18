@@ -98,6 +98,15 @@ BURSARY_NEED_LABELS = {
     'non-financial': 'I am not applying based on financial need',
 }
 
+ACCOMM_CHOICE_LABELS = {
+    'rvc_single': 'Single room at McGill residences accommodation '
+                  '(30min by public transit)',
+    'rvc_double': 'Double room at McGill residences accommodation '
+                  '- for couples only - (30min by public transit)',
+    'hotel': 'Hotel Universel (reserved for families and people with '
+             'disabilities only',
+}
+
 
 class OptionalCountries(Countries):
     first = ('__',)
@@ -612,12 +621,9 @@ class AccommForm(RegistrationFormStep):
         label='Select the accommodation you prefer during DebConf (only '
               'available if you receive a bursary)',
         choices=(
-            ('rvc_single', 'Single room at McGill residences accommodation '
-                           '(30min by public transit)'),
-            ('rvc_double', 'Double room at McGill residences accommodation '
-                           '- for couples only - (30min by public transit)'),
-            ('hotel', 'Hotel Universel (reserved for families and people with '
-                      'disabilities only'),
+            ('rvc_single', ACCOMM_CHOICE_LABELS['rvc_single']),
+            ('rvc_double', ACCOMM_CHOICE_LABELS['rvc_double']),
+            ('hotel', ACCOMM_CHOICE_LABELS['hotel']),
         ),
         required=False,
     )
