@@ -107,6 +107,15 @@ ACCOMM_CHOICE_LABELS = {
              'disabilities only',
 }
 
+DIET_LABELS = {
+    '': 'I will be happy to eat whatever is provided',
+    'vegetarian': "I am lacto-ovo vegetarian, don't provide "
+                  "meat/fish for me",
+    'vegan': "I am strict vegetarian (vegan), don't provide any "
+             "animal products for me",
+    'other': 'Other, described below',
+}
+
 
 class OptionalCountries(Countries):
     first = ('__',)
@@ -559,12 +568,10 @@ class FoodForm(RegistrationFormStep):
     diet = forms.ChoiceField(
         label='My diet',
         choices=(
-            ('', 'I will be happy to eat whatever is provided'),
-            ('vegetarian', "I am lacto-ovo vegetarian, don't provide "
-                           "meat/fish for me"),
-            ('vegan', "I am strict vegetarian (vegan), don't provide any "
-                      "animal products for me"),
-            ('other', 'Other, described below'),
+            ('', DIET_LABELS['']),
+            ('vegetarian', DIET_LABELS['vegetarian']),
+            ('vegan', DIET_LABELS['vegan']),
+            ('other', DIET_LABELS['other']),
         ),
         required=False,
     )
