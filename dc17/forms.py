@@ -968,7 +968,7 @@ class ConfirmationForm(RegistrationFormStep):
             accomm_fields += [
                 HTML('<p class="check">I need accomodation.</p>'),
                 HTML('<p><strong>For the following nights:</strong> '
-                     '{{ accomm_nights }}</p>'),
+                     '{{ accomm_nights_summary }}</p>'),
                 HTML('{% if accomm_special_requirements %}'
                      '<p><strong>Special accomodation requirements:</strong> '
                      '{{ accomm_special_requirements }}</p>'
