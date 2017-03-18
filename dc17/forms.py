@@ -941,10 +941,9 @@ class ConfirmationForm(RegistrationFormStep):
 
             if bursary_type == 'travel+food+accomm':
                 bursary_fields += [
-                    HTML('<div>'
-                         '<strong>My travel expense claim (in CAD$):</strong>'
-                         '<pre>{{ travel_bursary }}</pre>'
-                         '</div>'),
+                    HTML('<p><strong>My travel expense claim '
+                         '(in CAD$):</strong> '
+                         '{{ travel_bursary }}</p>'),
                     HTML('<p><strong>Traveling from:</strong> '
                          '{{ travel_from }}'
                          '</p>'),
@@ -955,6 +954,63 @@ class ConfirmationForm(RegistrationFormStep):
                 *bursary_fields
             )
             fieldsets += [bursary_fieldset]
+
+        accomm_fields = []
+
+        if self.get_cleaned_data_for_form(AccommForm).get('accomm') == 'yes':
+            accomm_fields += [
+                HTML('<p class="check">I need accomodation.</p>'),
+                HTML('<p><strong>For the following nights:</strong> '
+                     '{{ accomm_nights }}</p>'),
+                HTML('{% if accomm_special_requirements %}'
+                     '<p><strong>Special accomodation requirements:</strong> '
+                     '{{ accomm_special_requirements }}</p>'
+                     '{% endif %}'),
+                HTML('{% if alt_accomm %}'
+                     '<p><strong>Preferred accommodation:</strong> '
+                     '{% if alt_accomm_choice == "rvc_single" %}'
+                     '' + ACCOMM_CHOICE_LABELS['rvc_single'] + ''
+                     '{% elif alt_accomm_choice == "rvc_double" %}'
+                     '' + ACCOMM_CHOICE_LABELS['rvc_double'] + ''
+                     '{% elif alt_accomm_choice == "rvc_double" %}'
+                     '' + ACCOMM_CHOICE_LABELS['hotel'] + ''
+                     '{% endif %}'
+                     '</p>'
+                     '{% endif %}'),
+            ]
+
+        if self.get_cleaned_data_for_form(AccommForm).get('childcare'):
+            accomm_fields += [
+                HTML('<p class="check">I need childcare</p>'),
+                HTML('<div>'
+                     '<strong>Childcare services I need</strong>'
+                     '<pre>{{ childcare_needs }}'
+                     '</div>'),
+                HTML('<div>'
+                     '<strong>Information about my kid(s)</strong>'
+                     '<pre>{{ childcare_details }}'
+                     '</div>'),
+            ]
+        accomm_fields += [
+            HTML('{% if special_needs %}'
+                 '<div>'
+                 '<strong>My special needs</strong>'
+                 '<pre>{{ special_needs }}</pre>'
+                 '</div>'
+                 '{% endif %}'),
+            HTML('{% if family_usernames %}'
+                 '<div>'
+                 '<strong>Usernames of family members</strong>'
+                 '<pre>{{ family_usernames }}</pre>'
+                 '</div>'
+                 '{% endif %}'),
+        ]
+
+        accomm_fieldset = Fieldset(
+            'Accommodotation',
+            *accomm_fields
+        )
+        fieldsets += [accomm_fieldset]
 
         billing_fields = [
             HTML('<div>'

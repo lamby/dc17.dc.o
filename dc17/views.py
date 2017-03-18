@@ -72,6 +72,21 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'travel_from': all_cleaned_data.get(
                     'travel_from'),
 
+                'accomm_nights': ', '.join(
+                    [n[6:] for n in all_cleaned_data.get('accomm_nights')]
+                ),
+                'accomm_special_requirements': all_cleaned_data.get(
+                    'accomm_special_requirements'),
+                'alt_accomm': all_cleaned_data.get('alt_accomm'),
+                'alt_accomm_choice': all_cleaned_data.get(
+                    'alt_accomm_choice'),
+                'childcare_needs': all_cleaned_data.get(
+                    'childcare_needs'),
+                'childcare_details': all_cleaned_data.get(
+                    'childcare_details'),
+                'special_needs': all_cleaned_data.get('special_needs'),
+                'family_usernames': all_cleaned_data.get('family_usernames'),
+
                 'billing_address': all_cleaned_data.get('billing_address'),
                 'notes': all_cleaned_data.get('notes'),
             })
