@@ -940,7 +940,7 @@ class ConfirmationForm(RegistrationFormStep):
                          '</div>'),
                     HTML('<p><strong>Traveling from:</strong> '
                          '{{ travel_from }}'
-                         '</p'),
+                         '</p>'),
                 ]
 
             bursary_fieldset = Fieldset(
