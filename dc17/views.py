@@ -24,6 +24,8 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
             **kwargs)
         if self.steps.step1 == self.steps.count:
             all_cleaned_data = self.get_all_cleaned_data()
+            country = all_cleaned_data.get('country')
+
             context.update({
                 'nametag': '{}\n{}\n{}'.format(
                     all_cleaned_data.get('name'),
@@ -52,9 +54,8 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                     'f': 'Female',
                 },
                 'gender': all_cleaned_data.get('gender'),
-                'country': all_cleaned_data.get('country'),
-                'country_name': dict(countries)[
-                    all_cleaned_data.get('country')],
+                'country': country,
+                'country_name': dict(countries).get(country, None),
                 'languages': all_cleaned_data.get('languages'),
 
                 'bursary': all_cleaned_data.get('bursary'),
@@ -71,6 +72,7 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'travel_from': all_cleaned_data.get(
                     'travel_from'),
             })
+
         return context
 
     def get_form_initial(self, step):
