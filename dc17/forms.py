@@ -123,13 +123,13 @@ class OptionalCountries(Countries):
 
 
 def meals(orga=False):
-    day = datetime.date(2016, 7, 31)
+    day = datetime.date(2017, 7, 31)
     if orga:
-        day = datetime.date(2016, 7, 28)
-    while day <= datetime.date(2016, 8, 13):
+        day = datetime.date(2017, 7, 28)
+    while day <= datetime.date(2017, 8, 13):
         date = day.isoformat()
         yield 'breakfast_%s' % date, 'Breakfast %s' % date
-        if day < datetime.date(2016, 8, 13):
+        if day < datetime.date(2017, 8, 13):
             yield 'lunch_%s' % date, 'Lunch %s' % date
             yield 'dinner_%s' % date, 'Dinner %s' % date
         day += datetime.timedelta(days=1)
