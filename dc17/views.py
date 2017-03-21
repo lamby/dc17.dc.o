@@ -35,16 +35,25 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
 
             context.update(context_update)
 
-            food_selection_summary = {}
+            food_selection_by_day = {}
+            food_selection_by_type = {
+                'breakfast': 0,
+                'dinner': 0,
+                'lunch': 0,
+            }
+
             for selection in context_update.get('food_selection'):
                 (meal, day) = tuple(selection.split('_', 2))
 
-                if food_selection_summary.get(day, None) is None:
-                    food_selection_summary[day] = []
-                food_selection_summary[day] = [meal]
+                if food_selection_by_day.get(day, None) is None:
+                    food_selection_by_day[day] = []
+                food_selection_by_day[day] += [meal]
+                food_selection_by_type[meal] += 1
 
-            for day, meals in food_selection_summary.items():
-                food_selection_summary[day] = ', '.join(meals)
+            food_selection_summary = sorted([
+                day + ': ' + (', '.join(meals))
+                for day, meals in food_selection_by_day.items()
+            ])
 
             context.update({
                 'nametag': '{}\n{}\n{}'.format(
@@ -62,6 +71,7 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 ),
 
                 'food_selection_summary': food_selection_summary,
+                'food_selection_by_type': food_selection_by_type,
 
                 'accomm_nights_summary': ', '.join(
                     [n[6:] for n in context_update.get('accomm_nights')]
