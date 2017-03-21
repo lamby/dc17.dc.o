@@ -72,10 +72,19 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
 
                 'food_selection_summary': food_selection_summary,
                 'food_selection_by_type': food_selection_by_type,
+                'food_price_by_type': {
+                    'breakfast': food_selection_by_type.get('breakfast') * 3,
+                    'lunch': food_selection_by_type.get('lunch') * 7.5,
+                    'dinner': food_selection_by_type.get('dinner') * 7.5,
+                },
 
                 'accomm_nights_summary': ', '.join(
                     [n[6:] for n in context_update.get('accomm_nights')]
                 ),
+                'accomm_total': "{} night(s) * 30 CAD$ = {:.2f}".format(
+                    len(context_update.get('accomm_nights')),
+                    len(context_update.get('accomm_nights')) * 30
+                )
             })
 
         return context
