@@ -962,32 +962,44 @@ class ConfirmationForm(RegistrationFormStep):
             )
             fieldsets += [bursary_fieldset]
 
-        food_fieldset = Fieldset(
-            'Food',
-            HTML('<div>'
-                 '<strong>I want to eat catered food for these meals:</strong>'
-                 '<ul>'
-                 '{% for day, meals in food_selection_summary.items %}'
-                 '<li>{{ day }}: {{ meals }}</li>'
-                 '{% endfor %}'
-                 '</ul>'
-                 '</div>'),
-            HTML('{% if diet %}'
-                 '<p><strong>My diet:</strong> '
-                 '{% if diet == "vegetarian" %}'
-                 '' + DIET_LABELS['vegetarian'] + ''
-                 '{% elif diet == "vegan" %}'
-                 '' + DIET_LABELS['vegan'] + ''
-                 '{% elif diet == "other" %}'
-                 '' + DIET_LABELS['other'] + ''
-                 '{% endif %}'
-                 '{% endif %}'),
-            HTML('{% if diet %}'
-                 '<p><strong>Details of my special dietary needs:</strong> '
-                 '{{ special_diet }}</p>'
-                 '{% endif %}'),
-        )
-        fieldsets += [food_fieldset]
+        food_fields = []
+        if len(self.get_cleaned_data_for_form(FoodForm).get(
+                'food_selection')) > 0:
+            food_fields += [
+                HTML('{% if food_selection_summary %}'
+                     '<div>'
+                     '<strong>I want to eat catered '
+                     'food for these meals:</strong>'
+                     '<ul>'
+                     '{% for day, meals in food_selection_summary.items %}'
+                     '<li>{{ day }}: {{ meals }}</li>'
+                     '{% endfor %}'
+                     '</ul>'
+                     '</div>'
+                     '{% endif %}'),
+            ]
+
+        if self.get_cleaned_data_for_form(FoodForm).get('diet'):
+            food_fields += [
+                HTML('<p><strong>My diet:</strong> '
+                     '{% if diet == "vegetarian" %}'
+                     '' + DIET_LABELS['vegetarian'] + ''
+                     '{% elif diet == "vegan" %}'
+                     '' + DIET_LABELS['vegan'] + ''
+                     '{% elif diet == "other" %}'
+                     '' + DIET_LABELS['other'] + ''
+                     '{% endif %}'),
+                HTML('<p><strong>Details of my special'
+                     ' dietary needs:</strong> '
+                     '{{ special_diet }}</p>'),
+            ]
+
+        if len(food_fields) > 0:
+            food_fieldset = Fieldset(
+                'Food',
+                *food_fields
+            )
+            fieldsets += [food_fieldset]
 
         accomm_fields = []
 
@@ -1025,26 +1037,29 @@ class ConfirmationForm(RegistrationFormStep):
                      '<pre>{{ childcare_details }}'
                      '</div>'),
             ]
-        accomm_fields += [
-            HTML('{% if special_needs %}'
-                 '<div>'
-                 '<strong>My special needs</strong>'
-                 '<pre>{{ special_needs }}</pre>'
-                 '</div>'
-                 '{% endif %}'),
-            HTML('{% if family_usernames %}'
-                 '<div>'
-                 '<strong>Usernames of family members</strong>'
-                 '<pre>{{ family_usernames }}</pre>'
-                 '</div>'
-                 '{% endif %}'),
-        ]
 
-        accomm_fieldset = Fieldset(
-            'Accommodotation',
-            *accomm_fields
-        )
-        fieldsets += [accomm_fieldset]
+        if self.get_cleaned_data_for_form(AccommForm).get('special_needs'):
+            accomm_fields += [
+                HTML('<div>'
+                     '<strong>My special needs</strong>'
+                     '<pre>{{ special_needs }}</pre>'
+                     '</div>'),
+            ]
+
+        if self.get_cleaned_data_for_form(AccommForm).get('family_usernames'):
+            accomm_fields += [
+                HTML('<div>'
+                     '<strong>Usernames of family members</strong>'
+                     '<pre>{{ family_usernames }}</pre>'
+                     '</div>'),
+            ]
+
+        if len(accomm_fields) > 0:
+            accomm_fieldset = Fieldset(
+                'Accommodotation',
+                *accomm_fields
+            )
+            fieldsets += [accomm_fieldset]
 
         billing_fields = [
             HTML('<div>'
