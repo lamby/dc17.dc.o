@@ -249,6 +249,10 @@ class ContactInformationForm(RegistrationFormStep):
 class ConferenceRegistrationForm(RegistrationFormStep):
     title = 'Conference Registration'
 
+    coc_ack = forms.BooleanField(
+        label='I have read and promise to abide by the DebConf code of conduct',
+        required=True,
+    )
     debcamp = forms.BooleanField(
         label=PLAN_DEBCAMP_LABEL,
         required=False,
@@ -306,6 +310,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
+            'coc_ack',
             'debcamp',
             'open_day',
             'debconf',
