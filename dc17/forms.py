@@ -71,9 +71,9 @@ T_SHIRT_SIZES = {
     'l': 'Large',
     'xl': 'Extra Large',
     '2xl': '2X Large',
-    '3xl': '2X Large',
-    '4xl': '2X Large',
-    '5xl': '2X Large',
+    '3xl': '3X Large',
+    '4xl': '4X Large',
+    '5xl': '5X Large',
 }
 
 FOOD_ACCOMM_BURSARY_LABEL = 'Food and accommodation only'
