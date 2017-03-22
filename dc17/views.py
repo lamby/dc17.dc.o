@@ -8,6 +8,12 @@ from wafer.utils import LoginRequiredMixin
 
 from dc17.forms import REGISTRATION_FORMS
 
+FEES = {
+    '': 0,
+    'pro':  200,
+    'corp': 500
+}
+
 
 class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
     form_list = REGISTRATION_FORMS
@@ -73,18 +79,37 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                 'food_selection_summary': food_selection_summary,
                 'food_selection_by_type': food_selection_by_type,
                 'food_price_by_type': {
-                    'breakfast': food_selection_by_type.get('breakfast') * 3,
-                    'lunch': food_selection_by_type.get('lunch') * 7.5,
-                    'dinner': food_selection_by_type.get('dinner') * 7.5,
+                    'breakfast': '{} breakfast(s) * 3 CAD$ = {:.2f}'
+                    ' CAD$'.format(
+                        food_selection_by_type.get('breakfast'),
+                        food_selection_by_type.get('breakfast') * 3
+                    ),
+                    'lunch': '{} lunch(es) * 7.50 CAD$ = {:.2f} CAD$'.format(
+                        food_selection_by_type.get('lunch'),
+                        food_selection_by_type.get('lunch') * 7.5
+                    ),
+                    'dinner': '{} dinner(s) * 7.50 CAD$ = {:.2f} CAD$'.format(
+                        food_selection_by_type.get('dinner'),
+                        food_selection_by_type.get('dinner') * 7.5
+                    )
                 },
 
                 'accomm_nights_summary': ', '.join(
                     [n[6:] for n in context_update.get('accomm_nights')]
                 ),
-                'accomm_total': "{} night(s) * 30 CAD$ = {:.2f}".format(
+                'accomm_total': "{} night(s) * 30 CAD$ = {:.2f} CAD$".format(
                     len(context_update.get('accomm_nights')),
                     len(context_update.get('accomm_nights')) * 30
-                )
+                ),
+
+                'fee_value': '{:.2f}'.format(FEES[context_update.get('fee')]),
+
+                'total_due': len(context_update.get('accomm_nights')) * 30 +
+                food_selection_by_type.get('breakfast') * 3 +
+                food_selection_by_type.get('lunch') * 7.5 +
+                food_selection_by_type.get('dinner') * 7.5 +
+                FEES[context_update.get('fee')]
+
             })
 
         return context

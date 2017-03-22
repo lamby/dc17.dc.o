@@ -1064,7 +1064,45 @@ class ConfirmationForm(RegistrationFormStep):
                      '<strong>Notes</strong>'
                      '<pre>{{ notes }}</pre>'
                      '</div>'),
-            ]
+            ],
+
+        billing_fields += [
+            HTML('<div id="cost-summary">'),
+            HTML('<strong>Total due</strong>'),
+            HTML('{% if food_selection_summary %}'
+                 '<div class="due">'
+                 '{% if food_selection_by_type.breakfast %}'
+                 '<em>Breakfast:</em> '
+                 '{{ food_price_by_type.breakfast }}<br>'
+                 '{% endif %}'
+                 '{% if food_selection_by_type.lunch %}'
+                 '<em>Lunch:</em> {{ food_price_by_type.lunch }}<br>'
+                 '{% endif %}'
+                 '{% if food_selection_by_type.dinner %}'
+                 '<em>Dinner:</em> '
+                 '{{ food_price_by_type.dinner }}'
+                 '{% endif %}'
+                 '</div>'
+                 '{% endif %}'),
+            HTML('{% if accomm_nights %}'
+                 '<div class="due">'
+                 '<em>Accommodation:</em> '
+                 '{{ accomm_total }}'
+                 '</div>'
+                 '{% endif %}'),
+            HTML('{% if fee != "" %}'
+                 '<div class="due">'
+                 '<em>Fee:</em> '
+                 '{{ fee_value }}'
+                 ' CAD$'
+                 '</div>'
+                 '{% endif %}'),
+            HTML('<div class="total due">'
+                 '<strong>Total:</strong> '
+                 '{{ total_due }} CAD$'
+                 '</div>'),
+            HTML('</div>')
+        ]
 
         billing_fieldset = Fieldset(
             'Billing',
