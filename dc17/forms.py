@@ -251,7 +251,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
     coc_ack = forms.BooleanField(
         label='I have read and promise to abide by the '
-              '<a href="http://debconf.org/codeofconduct.shtml">'
+              '<a href="http://debconf.org/codeofconduct.shtml" target="_blank">'
               'DebConf Code of Conduct</a>',
         required=True,
     )
