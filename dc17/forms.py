@@ -51,19 +51,10 @@ PLAN_DEBCAMP_LABEL = 'I plan to attend DebCamp (31 July to 4 August)'
 PLAN_OPENDAY_LABEL = 'I plan to attend Open Day (5 August)'
 PLAN_DEBCONF_LABEL = 'I plan to attend DebConf (6 August to 12 August)'
 
-FEES = {
-    'regular': {
-        'label': 'Regular - Free',
-        'value': 0
-    },
-    'pro': {
-        'label': 'Professional - 200 CAD$',
-        'value': 200
-    },
-    'corp': {
-        'label': 'Corporate - 500 CAD$',
-        'value': 500
-    },
+FEES_LABELS = {
+    'regular': 'Regular - Free',
+    'pro': 'Professional - 200 CAD$',
+    'corp': 'Corporate - 500 CAD$',
 }
 
 FINAL_DATES_ESTIMATE_LABEL = "Estimated, I haven't booked travel yet."
@@ -274,9 +265,9 @@ class ConferenceRegistrationForm(RegistrationFormStep):
     fee = forms.ChoiceField(
         label='My registration fee',
         choices=(
-            ('', FEES['regular']['label']),
-            ('pro', FEES['pro']['label']),
-            ('corp', FEES['corp']['label']),
+            ('', FEES_LABELS['regular']),
+            ('pro', FEES_LABELS['pro']),
+            ('corp', FEES_LABELS['corp']),
         ),
         help_text='We encourage attendees to pay for their attendance if they '
                   'can afford to do so.',
@@ -828,11 +819,11 @@ class ConfirmationForm(RegistrationFormStep):
                  '{% endif %}'),
             HTML('<p>'
                  '<strong>Fee:</strong> '
-                 '{% if fee == "pro" %}' + FEES['pro']['label'] + '{% endif %}'
+                 '{% if fee == "pro" %}' + FEES_LABELS['pro'] + '{% endif %}'
                  '{% if fee == "corp" %}'
-                 '' + FEES['corp']['label'] + '{% endif %}'
+                 '' + FEES_LABELS['corp'] + '{% endif %}'
                  '{% if fee == "" %}'
-                 '' + FEES['regular']['label'] + '{% endif %}'
+                 '' + FEES_LABELS['regular'] + '{% endif %}'
                  '</p>'),
             HTML('{% if arrival or departure %}'
                  '<p><strong>Will attend from</strong> '
