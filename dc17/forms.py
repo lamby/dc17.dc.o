@@ -171,6 +171,7 @@ class ContactInformationForm(RegistrationFormStep):
         label='My name is',
         help_text='This will appear on your name tag, and in public areas of '
                   'this site, e.g. if you submit a talk.',
+        max_length=50,
     )
     # TODO: Consider storing the "wallet name" here, and having a separate
     # public name
@@ -178,12 +179,14 @@ class ContactInformationForm(RegistrationFormStep):
         label='Nametag line 2',
         help_text="This could be your company, project, preferred pronoun or "
                   "anything you'd like to say.",
+        max_length=50,
         required=False,
     )
     nametag_3 = forms.CharField(
         label='Nametag line 3',
         help_text="This could be your nick, username, or something "
                   "suitably silly.",
+        max_length=50,
         required=False,
     )
     email = forms.EmailField(
@@ -372,6 +375,7 @@ class PersonalInformationForm(RegistrationFormStep):
             ('l', T_SHIRT_SIZES['l']),
             ('xl', T_SHIRT_SIZES['xl']),
             ('2xl', T_SHIRT_SIZES['2xl']),
+            # TODO: Are we actually providing these sizes?
             ('3xl', T_SHIRT_SIZES['3xl']),
             ('4xl', T_SHIRT_SIZES['4xl']),
             ('5xl', T_SHIRT_SIZES['5xl']),
@@ -401,6 +405,7 @@ class PersonalInformationForm(RegistrationFormStep):
         label='The languages I speak',
         help_text='We will list these on your nametag.',
         initial='en',
+        max_length=50,
         required=False,
     )
 

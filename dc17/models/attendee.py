@@ -1,14 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Attendee(models.Model):
+    user = models.OneToOneField(User, related_name='attendee')
+
     # Contact information
-    name = models.CharField()  # FIXME
     nametag_2 = models.CharField(max_length=50)
-    nametag_3 = models.ForeignKey(User, related_name='username')
-    email = models.ForeignKey(User)
-    phone = models.ForeignKey(UserProfile, related_name='contact_number')
-    emergency_contact = models.CharField()
+    nametag_3 = models.CharField(max_length=50)
+    emergency_contact = models.TextField()
     announce_me = models.BooleanField()
     register_announce = models.BooleanField()
     register_discuss = models.BooleanField()
@@ -17,18 +17,22 @@ class Attendee(models.Model):
     debcamp = models.BooleanField()
     open_day = models.BooleanField()
     debconf = models.BooleanField()
-    fee = models.CharField(max_length=50)
-    arrival = models.DateTimeField()
-    departure = models.DateTimeField()
-    final_dates = models.CharField(max_length=50)
+    fee = models.CharField(max_length=5)
+    arrival = models.DateTimeField(null=True)
+    departure = models.DateTimeField(null=True)
+    final_dates = models.BooleanField()
     reconfirm = models.BooleanField()
 
     # Personal information
-    t_shirt_cut = models.CharField(max_length=50)
-    t_shirt_size = models.CharField(max_length=50)
-    gender = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+    t_shirt_cut = models.CharField(max_length=1)
+    t_shirt_size = models.CharField(max_length=8)
+    gender = models.CharField(max_length=1)
+    country = models.CharField(max_length=2)
     languages = models.CharField(max_length=50)
 
+    # Misc
+    billing_address = models.TextField()
+    notes = models.TextField()
+
     def __str__(self):
-        return self.title
+        return 'Attendee <{}>'.format(self.user.username)
