@@ -292,13 +292,13 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         label='I depart from the venue at',
         required=False,
     )
-    final_dates = forms.ChoiceField(
+    final_dates = forms.BooleanField(
         label='My dates are',
-        choices=(
-            ('estimate', FINAL_DATES_ESTIMATE_LABEL),
-            ('final', FINAL_DATES_FINAL_LABEL),
-        ),
-        initial='estimate',
+        widget=forms.Select(choices=(
+                (False, FINAL_DATES_ESTIMATE_LABEL),
+                (True, FINAL_DATES_FINAL_LABEL),
+        )),
+        initial=False,
         help_text="We'd like a rough indication of dates, even if you aren't "
                   'sure about the details yet. It helps us to plan.',
         required=False,
@@ -338,7 +338,7 @@ class ConferenceRegistrationForm(RegistrationFormStep):
                     'You need to register for at least one section of the '
                     'conference.')
 
-        if cleaned_data.get('final_dates') == 'final':
+        if cleaned_data.get('final_dates'):
             for field in ('arrival', 'departure'):
                 if not cleaned_data.get(field):
                     self.add_error(
@@ -599,12 +599,13 @@ class FoodForm(RegistrationFormStep):
 class AccommForm(RegistrationFormStep):
     title = 'Accommodation'
 
-    accomm = forms.ChoiceField(
+    accomm = forms.BooleanField(
         label='I need conference-organised accommodation',
-        choices=(
-            ('no', 'No, I will find my own accommodation'),
-            ('yes', 'Yes, I need accommodation'),
-        ),
+        widget=forms.Select(choices=(
+            (False, 'No, I will find my own accommodation'),
+            (True, 'Yes, I need accommodation'),
+        )),
+        required=False,
     )
     accomm_nights = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
@@ -720,7 +721,7 @@ class AccommForm(RegistrationFormStep):
                     'childcare_details',
                     "Please provide us with your children's details.")
 
-        if cleaned_data.get('accomm') == 'no':
+        if not cleaned_data.get('accomm'):
             return
 
         if not cleaned_data.get('accomm_nights'):
@@ -851,7 +852,7 @@ class ConfirmationForm(RegistrationFormStep):
                  '{% endif %}'),
             HTML('{% if arrival or departure %}'
                  '<p><strong>Dates are:</strong> '
-                 '{% if final_dates == "estimate" %}'
+                 '{% if not final_dates %}'
                  '' + FINAL_DATES_ESTIMATE_LABEL + ''
                  '{% else %}'
                  '' + FINAL_DATES_FINAL_LABEL + ''
@@ -1004,7 +1005,7 @@ class ConfirmationForm(RegistrationFormStep):
 
         accomm_fields = []
 
-        if self.get_cleaned_data_for_form(AccommForm).get('accomm') == 'yes':
+        if self.get_cleaned_data_for_form(AccommForm).get('accomm'):
             accomm_fields += [
                 HTML('<p class="check">I need accomodation.</p>'),
                 HTML('<p><strong>For the following nights:</strong> '
