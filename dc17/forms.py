@@ -33,8 +33,8 @@ PREAMBLE = (
     "navigate the validation dragons without any help. And you won't be able "
     "to make payments through Stripe.</li>"
     '</noscript>'
-    '<li>All registration, accommodation and catering fees must be paid either '
-    'trough the Stripe platform or in person at the front desk upon '
+    '<li>All registration, accommodation and catering fees must be paid '
+    'either trough the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
     '<li>Please keep your registration information up to date. You can make '
     'changes at any time through this form.</li>'
@@ -251,7 +251,8 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
     coc_ack = forms.BooleanField(
         label='I have read and promise to abide by the '
-              '<a href="http://debconf.org/codeofconduct.shtml" target="_blank">'
+              '<a href="http://debconf.org/codeofconduct.shtml" '
+              'target="_blank">'
               'DebConf Code of Conduct</a>',
         required=True,
     )
@@ -614,8 +615,8 @@ class AccommForm(RegistrationFormStep):
     accomm_special_requirements = forms.CharField(
         label='Do you have any particular accommodation requirements?',
         help_text='Anything that you want us to consider for room attribution '
-                  'should be listed here (ex. "I want to be with Joe Hill", "I '
-                  'snore", "I go to bed early")',
+                  'should be listed here (ex. "I want to be with Joe Hill", '
+                  '"I snore", "I go to bed early")',
         required=False,
     )
     alt_accomm = forms.BooleanField(
@@ -683,11 +684,12 @@ class AccommForm(RegistrationFormStep):
             ]
 
         self.helper.layout = Layout(
-            HTML('<p>By default, the accommodation provided is in <a href="'
-                 'https://wiki.debconf.org/wiki/DebConf17/Accommodation#On-site'
-                 '" target="_blank">shared classroom dorms on premises</a>. '
-                 'The cost is 30 CAD$/night for attendees who do not receive a '
-                 'bursary.</p>'),
+            HTML(
+                '<p>By default, the accommodation provided is in <a href="'
+                'https://wiki.debconf.org/wiki/DebConf17/Accommodation#On-site'
+                '" target="_blank">shared classroom dorms on premises</a>. '
+                'The cost is 30 CAD$/night for attendees who do not receive a '
+                'bursary.</p>'),
             Field('accomm', id='accomm'),
             accomm_details,
             Field('childcare', id='childcare'),
