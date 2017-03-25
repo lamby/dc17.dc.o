@@ -1,4 +1,3 @@
-import datetime
 import re
 
 from django import forms
@@ -10,6 +9,8 @@ from django_countries.widgets import CountrySelectWidget
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Fieldset, Layout, HTML
+
+from dc17.dates import meal_choices, night_choices
 
 
 FOOD_LINK = (
@@ -111,29 +112,6 @@ DIET_LABELS = {
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
-
-
-def meals(orga=False):
-    day = datetime.date(2017, 7, 31)
-    if orga:
-        day = datetime.date(2017, 7, 28)
-    while day <= datetime.date(2017, 8, 13):
-        date = day.isoformat()
-        yield 'breakfast_%s' % date, 'Breakfast %s' % date
-        if day < datetime.date(2017, 8, 13):
-            yield 'lunch_%s' % date, 'Lunch %s' % date
-            yield 'dinner_%s' % date, 'Dinner %s' % date
-        day += datetime.timedelta(days=1)
-
-
-def nights(orga=False):
-    day = datetime.date(2016, 7, 31)
-    if orga:
-        day = datetime.date(2016, 7, 28)
-    while day <= datetime.date(2016, 8, 13):
-        date = day.isoformat()
-        yield 'night_%s' % date, 'Night %s' % date
-        day += datetime.timedelta(days=1)
 
 
 class RegistrationFormStep(forms.Form):
@@ -563,7 +541,7 @@ class FoodForm(RegistrationFormStep):
 
     meals = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
-        choices=meals(),
+        choices=meal_choices(),
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursary, meal prices are: "
                   "Breakfast 3 CAD$, Lunch 7.50 CAD$, Dinner 7.50 CAD$.",
@@ -613,7 +591,7 @@ class AccommForm(RegistrationFormStep):
     )
     nights = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
-        choices=nights(),
+        choices=night_choices(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
