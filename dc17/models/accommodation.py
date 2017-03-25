@@ -1,13 +1,13 @@
 from django.db import models
 
 
-class AccommNights(models.Model):
+class AccommNight(models.Model):
     description = models.CharField(max_length=300)
 
 
-class Bursaries(models.Model):
+class Accomm(models.Model):
     accomm = models.CharField(max_length=50)
-    accomm_nights = models.ManyToManyField(AccommNights)
+    accomm_nights = models.ManyToManyField(AccommNight)
     accomm_special_requirements = models.CharField(max_length=150)
     alt_accomm = models.BooleanField()
     alt_accomm_choice = models.CharField(max_length=50)

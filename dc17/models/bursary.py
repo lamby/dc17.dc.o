@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Bursaries(models.Model):
+class Bursary(models.Model):
     bursary = models.CharField(max_length=50)
     bursary_reason_contribution = models.TextField()
     bursary_reason_plans = models.TextField()
