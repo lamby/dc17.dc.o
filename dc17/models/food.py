@@ -1,14 +1,25 @@
 from django.db import models
 
+from dc17.models.attendee import Attendee
 
-class FoodSelection(models.Model):
-    description = models.CharField(max_length=300)
+
+class Meal(models.Model):
+    date = models.DateField(db_index=True)
+    meal = models.CharField(max_length=16)
+
+    def __str__(self):
+        return '{}: {}'.format(self.date.isoformat(), self.meal)
+
+    class Meta:
+        unique_together = ('date', 'meal')
 
 
 class Food(models.Model):
-    food_selection = models.ManyToManyField(FoodSelection)
-    diet = models.CharField(max_length=50)
-    special_diet = models.CharField(max_length=50)
+    attendee = models.OneToOneField(Attendee, related_name='food')
+
+    food_selection = models.ManyToManyField(Meal)
+    diet = models.CharField(max_length=16)
+    special_diet = models.TextField()
 
     def __str__(self):
-        return self.title
+        return 'Attendee <{}>'.format(self.attendee.user.username)
