@@ -1,9 +1,9 @@
 from django.db import models
 
-class Attendee(models.Model):
 
-    # Contact informations
-    name = models.CharField() #fix_me
+class Attendee(models.Model):
+    # Contact information
+    name = models.CharField()  # FIXME
     nametag_2 = models.CharField(max_length=50)
     nametag_3 = models.ForeignKey(User, related_name='username')
     email = models.ForeignKey(User)
@@ -18,18 +18,17 @@ class Attendee(models.Model):
     open_day = models.BooleanField()
     debconf = models.BooleanField()
     fee = models.CharField(max_length=50)
-    arrival= models.DateTimeField()
+    arrival = models.DateTimeField()
     departure = models.DateTimeField()
     final_dates = models.CharField(max_length=50)
     reconfirm = models.BooleanField()
 
-    # Personnal informations
+    # Personal information
     t_shirt_cut = models.CharField(max_length=50)
     t_shirt_size = models.CharField(max_length=50)
     gender = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     languages = models.CharField(max_length=50)
-
 
     def __str__(self):
         return self.title
