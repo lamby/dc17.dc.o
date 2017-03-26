@@ -8,7 +8,7 @@ class AccommNight(models.Model):
 
     @property
     def form_name(self):
-        return str(self)
+        return 'night_{}'.format(self)
 
     def __str__(self):
         return self.date.isoformat()

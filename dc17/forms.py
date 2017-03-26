@@ -1,3 +1,4 @@
+import datetime
 import re
 
 from django import forms
@@ -12,6 +13,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Field, Fieldset, Layout, HTML
 
 from dc17.dates import meal_choices, night_choices
+from dc17.models import Accomm, AccommNight, Bursary, Food, Meal
 
 
 FOOD_LINK = (
@@ -112,12 +114,18 @@ DIET_LABELS = {
 }
 
 
+def parse_date(date):
+    return datetime.date(*(int(part) for part in date.split('-')))
+
+
 class OptionalCountries(Countries):
     first = ('__',)
     override = {'__': 'Decline to state'}
 
 
 class RegistrationFormStep(forms.Form):
+    attendee_fields = ()
+
     def __init__(self, *args, wizard=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.wizard = wizard
@@ -126,7 +134,23 @@ class RegistrationFormStep(forms.Form):
 
     @classmethod
     def get_initial(cls, user):
-        return {}
+        return cls.get_initial_attendee_data(user)
+
+    @classmethod
+    def get_initial_attendee_data(cls, user):
+        # Hack to allow overriding get_initial while still being a classmethod
+        try:
+            return {field: getattr(user.attendee, field)
+                    for field in cls.attendee_fields}
+        except ObjectDoesNotExist:
+            return {}
+
+    def get_attendee_data(self):
+        return {field: self.cleaned_data[field]
+                for field in self.attendee_fields}
+
+    def save(self, user, attendee):
+        pass
 
     def get_cleaned_data_for_form(self, form):
         for step, found_form in self.wizard.form_list.items():
@@ -209,6 +233,15 @@ class ContactInformationForm(RegistrationFormStep):
         required=False,
     )
 
+    attendee_fields = (
+        'nametag_2',
+        'nametag_3',
+        'emergency_contact',
+        'announce_me',
+        'register_announce',
+        'register_discuss',
+    )
+
     @classmethod
     def get_initial(cls, user):
         initial = {
@@ -217,17 +250,7 @@ class ContactInformationForm(RegistrationFormStep):
             'email': user.email,
             'phone': user.userprofile.contact_number,
         }
-        try:
-            initial.update({field: getattr(user.attendee, field) for field in (
-                'nametag_2',
-                'nametag_3',
-                'emergency_contact',
-                'announce_me',
-                'register_announce',
-                'register_discuss',
-            )})
-        except ObjectDoesNotExist:
-            pass
+        initial.update(cls.get_initial_attendee_data(user))
         return initial
 
     def clean(self):
@@ -241,6 +264,15 @@ class ContactInformationForm(RegistrationFormStep):
                     'emergency_contact',
                     "If you include a phone number, please make sure it's in "
                     "intarnational dialing format. e.g. +1 234 5678")
+
+    def save(self, user, attendee):
+        data = self.cleaned_data
+        if user.get_full_name() != self.cleaned_data['name']:
+            user.first_name, user.last_name = data['name'].split(None, 1)
+        user.email = data['email']
+        user.save()
+        user.userprofile.contact_number = data['phone']
+        user.userprofile.save()
 
 
 class ConferenceRegistrationForm(RegistrationFormStep):
@@ -307,6 +339,17 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         required=False,
     )
 
+    attendee_fields = (
+        'debcamp',
+        'open_day',
+        'debconf',
+        'fee',
+        'arrival',
+        'departure',
+        'final_dates',
+        'reconfirm',
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
@@ -324,18 +367,13 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
     @classmethod
     def get_initial(cls, user):
+        initial = cls.get_initial_attendee_data(user)
         try:
-            return {field: getattr(user.attendee, field) for field in (
-                'debcamp',
-                'debian_day',
-                'debconf',
-                'fee',
-                'arrival',
-                'departure',
-                'final_dates',
-            )}
+            user.attendee
+            initial['coc_ack'] = True
         except ObjectDoesNotExist:
-            return {}
+            pass
+        return initial
 
     def clean(self):
         cleaned_data = super().clean()
@@ -418,6 +456,14 @@ class PersonalInformationForm(RegistrationFormStep):
         required=False,
     )
 
+    attendee_fields = (
+        't_shirt_cut',
+        't_shirt_size',
+        'gender',
+        'country',
+        'languages',
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
@@ -430,19 +476,6 @@ class PersonalInformationForm(RegistrationFormStep):
             Field('country'),
             Field('languages'),
         )
-
-    @classmethod
-    def get_initial(cls, user):
-        try:
-            return {field: getattr(user.attendee, field) for field in (
-                't_shirt_cut',
-                't_shirt_size',
-                'gender',
-                'country',
-                'languages',
-            )}
-        except ObjectDoesNotExist:
-            return {}
 
     def clean_t_shirt_size(self):
         if not self.cleaned_data.get('t_shirt_cut'):
@@ -544,7 +577,7 @@ class BursaryForm(RegistrationFormStep):
         except ObjectDoesNotExist:
             return {}
         return {field: getattr(bursary, field) for field in (
-            'reason',
+            'request',
             'reason_contribution',
             'reason_plans',
             'reason_diversity',
@@ -564,7 +597,8 @@ class BursaryForm(RegistrationFormStep):
 
         request = cleaned_data.get('request')
         if not request:
-            return
+            cleaned_data['request'] = None
+            return cleaned_data
 
         if not cleaned_data.get('reason_plans'):
             self.add_error(
@@ -594,6 +628,23 @@ class BursaryForm(RegistrationFormStep):
                         'Please share your travel details, when appyling for '
                         'a travel bursary.'
                     )
+
+    def save(self, user, attendee):
+        data = self.cleaned_data
+        bursary_data = {field: data[field] for field in (
+            'request',
+            'reason_contribution',
+            'reason_plans',
+            'reason_diversity',
+            'need',
+            'travel_bursary',
+            'travel_from',
+        )}
+
+        if data['request']:
+            Bursary.objects.update_or_create(user=user, defaults=bursary_data)
+        else:
+            Bursary.objects.filter(user=user).update(**bursary_data)
 
 
 class FoodForm(RegistrationFormStep):
@@ -637,7 +688,7 @@ class FoodForm(RegistrationFormStep):
         except ObjectDoesNotExist:
             return {}
         return {
-            'meals': [meal.form_name for meal in food.meals],
+            'meals': [meal.form_name for meal in food.meals.all()],
             'diet': food.diet,
             'special_diet': food.special_diet,
         }
@@ -648,6 +699,28 @@ class FoodForm(RegistrationFormStep):
         if (cleaned_data.get('diet') == 'other' and
                 not cleaned_data.get('special_diet')):
             self.add_error('special_diet', 'Required when diet is "other"')
+
+    def save(self, user, attendee):
+        data = self.cleaned_data
+
+        if not data['meals']:
+            Food.objects.filter(attendee=attendee).delete()
+            return
+
+        food, created = Food.objects.update_or_create(
+            attendee=attendee,
+            defaults={field: data[field]
+                      for field in ('diet', 'special_diet')})
+
+        stored_meals = set(food.meals.all())
+        requested_meals = set()
+        for meal in data['meals']:
+            meal, date = meal.split('_')
+            date = parse_date(date)
+            requested_meals.add(Meal.objects.get(meal=meal, date=date))
+
+        food.meals.remove(*(stored_meals - requested_meals))
+        food.meals.add(*(requested_meals - stored_meals))
 
 
 class AccommForm(RegistrationFormStep):
@@ -767,8 +840,7 @@ class AccommForm(RegistrationFormStep):
 
         initial = {
             'accomm': True,
-            'nights': [night.form_name
-                              for night in accomm.accomm_nights],
+            'nights': [night.form_name for night in accomm.nights.all()],
             'alt_accomm': bool(accomm.alt_accomm_choice),
         }
         initial.update({field: getattr(accomm, field) for field in (
@@ -810,6 +882,8 @@ class AccommForm(RegistrationFormStep):
         alt_accomm = None
         if cleaned_data.get('alt_accomm'):
             alt_accomm = cleaned_data.get('alt_accomm_choice')
+        else:
+            cleaned_data['alt_accomm_choice'] = None
 
         if alt_accomm == 'rvc_double' and not cleaned_data.get(
                 'family_usernames'):
@@ -825,6 +899,36 @@ class AccommForm(RegistrationFormStep):
                     field,
                     "Please provide the special needs that lead you to "
                     "request a hotel room.")
+
+        return cleaned_data
+
+    def save(self, user, attendee):
+        data = self.cleaned_data
+
+        if not data['accomm']:
+            Accomm.objects.filter(attendee=attendee).delete()
+            return
+
+        accomm, created = Accomm.objects.update_or_create(
+            attendee=attendee,
+            defaults={field: data[field] for field in (
+                'requirements',
+                'alt_accomm_choice',
+                'childcare',
+                'childcare_needs',
+                'childcare_details',
+                'special_needs',
+                'family_usernames',
+        )})
+
+        stored_nights = set(accomm.nights.all())
+        requested_nights = set()
+        for night in data['nights']:
+            date = parse_date(night.split('_')[1])
+            requested_nights.add(AccommNight.objects.get(date=date))
+
+        accomm.nights.remove(*(stored_nights - requested_nights))
+        accomm.nights.add(*(requested_nights - stored_nights))
 
 
 class BillingForm(RegistrationFormStep):
@@ -842,6 +946,11 @@ class BillingForm(RegistrationFormStep):
                   'The bursaries team will not.',
         widget=forms.Textarea(attrs={'rows': 3}),
         required=False,
+    )
+
+    attendee_fields = (
+        'billing_address',
+        'notes',
     )
 
     def clean(self):

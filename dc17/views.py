@@ -7,6 +7,7 @@ from formtools.wizard.views import SessionWizardView
 from wafer.utils import LoginRequiredMixin
 
 from dc17.forms import REGISTRATION_FORMS
+from dc17.models import Attendee
 
 FEES = {
     '': 0,
@@ -127,5 +128,15 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
         return kwargs
 
     def done(self, form_list, **kwargs):
+        user = self.request.user
+        attendee_data = {}
+        for form in form_list:
+            attendee_data.update(form.get_attendee_data())
+
+        attendee, created = Attendee.objects.update_or_create(
+            user=user, defaults=attendee_data)
+
+        for form in form_list:
+            form.save(user, attendee)
         return HttpResponseRedirect(
             reverse('wafer_user_profile', args=(self.request.user.username,)))
