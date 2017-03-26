@@ -184,6 +184,40 @@ form #div_id_twitter_handle, form #div_id_github_username {
   display: none;
 }
 
+// Registration form
+form#registration {
+  #hidden-next {
+    display: none;
+  }
+
+  // Confirmation page
+  pre {
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+  }
+  p.check:before {
+    content: '✔ ';
+    color: green;
+  }
+  fieldset {
+    margin-bottom: 20px;
+  }
+  #cost-summary {
+    width: 50%;
+    min-width: 300px;
+    margin: 0 auto;
+  }
+  div.due {
+    margin-left: 20px;
+  }
+  div.total.due {
+    text-align: right;
+  }
+}
+
 footer {
   background-color: transparentize($dc17-blue, 0.9);
   border-top: 2px solid $dc17-blue;

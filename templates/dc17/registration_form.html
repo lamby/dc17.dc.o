@@ -3,16 +3,11 @@
 
 {% block extra_head %}
 {{ wizard.form.media.css }}
-<style>
-  #hidden-next {
-    display: none;
-  }
-</style>
 {% endblock %}
 
 {% block content %}
 <h1>Registration</h1>
-<form action="" method="post">{% csrf_token %}
+<form action="" method="post" id="registration">{% csrf_token %}
   {{ wizard.management_form }}
   <h2 class='form-title'>{{ form.title }}</h2>
   {% crispy wizard.form %}
