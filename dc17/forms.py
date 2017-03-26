@@ -253,17 +253,24 @@ class ContactInformationForm(RegistrationFormStep):
         initial.update(cls.get_initial_attendee_data(user))
         return initial
 
-    def clean(self):
-        cleaned_data = super().clean()
-        emergency_contact = cleaned_data.get('emergency_contact')
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+        if phone and not re.match(r'^\+', phone):
+            raise forms.ValidationError(
+                "If provide a phone number, please make sure it's in "
+                "intarnational dialing format. e.g. +1 234 5678")
+        return phone
+
+    def clean_emergency_contact(self):
+        emergency_contact = self.cleaned_data.get('emergency_contact')
         if emergency_contact:
             m = re.search(r'(?<![0-9+ ]) *\(?\d{2,4}[).-]? ?\d{2,4}',
                           emergency_contact)
             if m:
-                self.add_error(
-                    'emergency_contact',
+                raise forms.ValidationError(
                     "If you include a phone number, please make sure it's in "
                     "intarnational dialing format. e.g. +1 234 5678")
+        return emergency_contact
 
     def save(self, user, attendee):
         data = self.cleaned_data
