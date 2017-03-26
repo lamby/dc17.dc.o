@@ -7,6 +7,10 @@ class Meal(models.Model):
     date = models.DateField(db_index=True)
     meal = models.CharField(max_length=16)
 
+    @property
+    def form_name(self):
+        return '{}_{}'.format(self.meal, self.date.isoformat())
+
     def __str__(self):
         return '{}: {}'.format(self.date.isoformat(), self.meal)
 

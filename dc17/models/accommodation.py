@@ -6,6 +6,10 @@ from dc17.models.attendee import Attendee
 class AccommNight(models.Model):
     date = models.DateField(unique=True)
 
+    @property
+    def form_name(self):
+        return str(self)
+
     def __str__(self):
         return self.date.isoformat()
 

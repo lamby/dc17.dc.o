@@ -2,6 +2,7 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 from django_countries import Countries
 from django_countries.fields import LazyTypedChoiceField
@@ -34,6 +35,8 @@ PREAMBLE = (
     "navigate the validation dragons without any help. And you won't be able "
     "to make payments through Stripe.</li>"
     '</noscript>'
+    '<li>Nothing will be saved until the last page of the form, so be sure to '
+    'work all the way through it.</li>'
     '<li>All registration, accommodation and catering fees must be paid '
     'either trough the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
@@ -208,11 +211,24 @@ class ContactInformationForm(RegistrationFormStep):
 
     @classmethod
     def get_initial(cls, user):
-        return {
+        initial = {
             'name': user.get_full_name(),
             'nametag_3': user.username,
             'email': user.email,
+            'phone': user.userprofile.contact_number,
         }
+        try:
+            initial.update({field: getattr(user.attendee, field) for field in (
+                'nametag_2',
+                'nametag_3',
+                'emergency_contact',
+                'announce_me',
+                'register_announce',
+                'register_discuss',
+            )})
+        except ObjectDoesNotExist:
+            pass
+        return initial
 
     def clean(self):
         cleaned_data = super().clean()
@@ -305,6 +321,21 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         )
         if settings.RECONFIRMATION:
             self.helper.layout.append('reconfirm')
+
+    @classmethod
+    def get_initial(cls, user):
+        try:
+            return {field: getattr(user.attendee, field) for field in (
+                'debcamp',
+                'debian_day',
+                'debconf',
+                'fee',
+                'arrival',
+                'departure',
+                'final_dates',
+            )}
+        except ObjectDoesNotExist:
+            return {}
 
     def clean(self):
         cleaned_data = super().clean()
@@ -400,6 +431,19 @@ class PersonalInformationForm(RegistrationFormStep):
             Field('languages'),
         )
 
+    @classmethod
+    def get_initial(cls, user):
+        try:
+            return {field: getattr(user.attendee, field) for field in (
+                't_shirt_cut',
+                't_shirt_size',
+                'gender',
+                'country',
+                'languages',
+            )}
+        except ObjectDoesNotExist:
+            return {}
+
     def clean_t_shirt_size(self):
         if not self.cleaned_data.get('t_shirt_cut'):
             return ''
@@ -493,6 +537,22 @@ class BursaryForm(RegistrationFormStep):
             )
         )
 
+    @classmethod
+    def get_initial(cls, user):
+        try:
+            bursary = user.bursary
+        except ObjectDoesNotExist:
+            return {}
+        return {field: getattr(bursary, field) for field in (
+            'reason',
+            'reason_contribution',
+            'reason_plans',
+            'reason_diversity',
+            'need',
+            'travel_bursary',
+            'travel_from',
+        )}
+
     def clean_travel_bursary(self):
         travel_bursary = self.cleaned_data.get('travel_bursary')
         if travel_bursary == 0:
@@ -569,6 +629,18 @@ class FoodForm(RegistrationFormStep):
             Field('diet', id='diet'),
             Field('special_diet', id='special_diet'),
         )
+
+    @classmethod
+    def get_initial(cls, user):
+        try:
+            food = user.attendee.food
+        except ObjectDoesNotExist:
+            return {}
+        return {
+            'meals': [meal.form_name for meal in food.meals],
+            'diet': food.diet,
+            'special_diet': food.special_diet,
+        }
 
     def clean(self):
         cleaned_data = super().clean()
@@ -685,6 +757,30 @@ class AccommForm(RegistrationFormStep):
             Field('special_needs'),
             Field('family_usernames'),
         )
+
+    @classmethod
+    def get_initial(cls, user):
+        try:
+            accomm = user.attendee.accomm
+        except ObjectDoesNotExist:
+            return {}
+
+        initial = {
+            'accomm': True,
+            'nights': [night.form_name
+                              for night in accomm.accomm_nights],
+            'alt_accomm': bool(accomm.alt_accomm_choice),
+        }
+        initial.update({field: getattr(accomm, field) for field in (
+            'requirements',
+            'alt_accomm_choice',
+            'childcare',
+            'childcare_needs',
+            'childcare_details',
+            'special_needs',
+            'family_usernames',
+        )})
+        return initial
 
     def clean_alt_accomm_choice(self):
         if not self.cleaned_data.get('alt_accomm'):
