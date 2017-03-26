@@ -3,7 +3,7 @@
 
 <div class="{{ field_class }}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
   {% include 'bootstrap4/layout/field_errors_block.html' %}
-  {% if field.name == 'food_selection' %}
+  {% if field.name == 'meals' %}
     <table class="table table-sm table-hover">
       <thead>
         <tr>
@@ -34,7 +34,7 @@
         {% endif %}
       {% endfor %}
     </table>
-  {% elif field.name == 'accomm_nights' %}
+  {% elif field.name == 'nights' %}
     <table class="table table-sm table-hover">
       <thead>
         <tr>

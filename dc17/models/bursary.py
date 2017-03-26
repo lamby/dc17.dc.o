@@ -9,11 +9,11 @@ class Bursary(models.Model):
     user = models.OneToOneField(User, related_name='bursary')
 
     # Request:
-    requesting_travel_bursary = models.BooleanField()
-    bursary_reason_contribution = models.TextField()
-    bursary_reason_plans = models.TextField()
-    bursary_reason_diversity = models.TextField()
-    bursary_need = models.CharField(max_length=16)
+    request = models.CharField(max_length=32, null=True)
+    reason_contribution = models.TextField()
+    reason_plans = models.TextField()
+    reason_diversity = models.TextField()
+    need = models.CharField(max_length=16)
     travel_bursary = models.IntegerField()
     travel_from = models.TextField()
 

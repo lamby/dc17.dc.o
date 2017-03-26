@@ -17,7 +17,7 @@ class Meal(models.Model):
 class Food(models.Model):
     attendee = models.OneToOneField(Attendee, related_name='food')
 
-    food_selection = models.ManyToManyField(Meal)
+    meals = models.ManyToManyField(Meal)
     diet = models.CharField(max_length=16)
     special_diet = models.TextField()
 

@@ -438,7 +438,7 @@ class PersonalInformationForm(RegistrationFormStep):
 class BursaryForm(RegistrationFormStep):
     title = 'Bursary'
 
-    bursary = forms.ChoiceField(
+    request = forms.ChoiceField(
         label='I want to apply for a bursary',
         choices=(
             ('', "No, I'm not requesting a bursary"),
@@ -447,19 +447,19 @@ class BursaryForm(RegistrationFormStep):
         ),
         required=False,
     )
-    bursary_reason_contribution = forms.CharField(
+    reason_contribution = forms.CharField(
         label='My contributions to Debian',
         widget=forms.Textarea(attrs={'rows': 5}),
         required=False,
         help_text='To help us evaluate your eligibility for a Debian bursary.',
     )
-    bursary_reason_plans = forms.CharField(
+    reason_plans = forms.CharField(
         label='My plans for DebCamp or DebConf',
         help_text='To help us evaluate your eligibility for a Debian bursary.',
         widget=forms.Textarea(attrs={'rows': 5}),
         required=False,
     )
-    bursary_reason_diversity = forms.CharField(
+    reason_diversity = forms.CharField(
         label='My eligibility for a diversity bursary',
         widget=forms.Textarea(attrs={'rows': 5}),
         help_text='Diversity bursary applications only. Please consult the '
@@ -467,7 +467,7 @@ class BursaryForm(RegistrationFormStep):
                   'target="blank">diversity bursary instructions</a>.',
         required=False,
     )
-    bursary_need = forms.ChoiceField(
+    need = forms.ChoiceField(
         label='My level of need',
         choices=(
             ('', 'N/A (not requesting a bursary)'),
@@ -495,16 +495,16 @@ class BursaryForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field('bursary', id='bursary'),
+            Field('request', id='bursary-request'),
             Fieldset(
                 'Bursary Details',
                 HTML('<p>This is where you explain your needs, and '
                      'involvement in Debian, that justify a bursary. See the '
                      + BURSARIES_LINK + '.</p>'),
-                'bursary_reason_contribution',
-                'bursary_reason_plans',
-                'bursary_reason_diversity',
-                'bursary_need',
+                'reason_contribution',
+                'reason_plans',
+                'reason_diversity',
+                'need',
                 css_id='bursary-details',
             ),
             Fieldset(
@@ -524,32 +524,31 @@ class BursaryForm(RegistrationFormStep):
     def clean(self):
         cleaned_data = super().clean()
 
-        bursary = cleaned_data.get('bursary')
-        if not bursary:
+        request = cleaned_data.get('request')
+        if not request:
             return
 
-        if not cleaned_data.get('bursary_reason_plans'):
+        if not cleaned_data.get('reason_plans'):
             self.add_error(
-                'bursary_reason_plans',
+                'reason_plans',
                 'Please share your plans for the conference, when appyling '
                 'for a bursary.')
 
-        if (not cleaned_data.get('bursary_reason_contribution')
-                and not cleaned_data.get('bursary_reason_diversity')):
-            for field in ('bursary_reason_contribution',
-                          'bursary_reason_diversity'):
+        if (not cleaned_data.get('reason_contribution')
+                and not cleaned_data.get('reason_diversity')):
+            for field in ('reason_contribution', 'reason_diversity'):
                 self.add_error(
                     field,
                     'Please describe your contributions and/or the diversity '
                     'of your background, when applying for a bursary.')
 
-        if not cleaned_data.get('bursary_need'):
+        if not cleaned_data.get('need'):
             self.add_error(
-                'bursary_need',
+                'need',
                 'Please share your level of need, when appyling for a bursary.'
             )
 
-        if 'travel' in bursary:
+        if 'travel' in request:
             for field in ('travel_bursary', 'travel_from'):
                 if not cleaned_data.get(field):
                     self.add_error(
@@ -562,7 +561,7 @@ class BursaryForm(RegistrationFormStep):
 class FoodForm(RegistrationFormStep):
     title = 'Food'
 
-    food_selection = forms.MultipleChoiceField(
+    meals = forms.MultipleChoiceField(
         label='I want to eat catered food for these meals:',
         choices=meals(),
         widget=forms.CheckboxSelectMultiple,
@@ -588,7 +587,7 @@ class FoodForm(RegistrationFormStep):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper.layout = Layout(
-            Field('food_selection', id='food_selection'),
+            Field('meals', id='meals'),
             Field('diet', id='diet'),
             Field('special_diet', id='special_diet'),
         )
@@ -612,13 +611,13 @@ class AccommForm(RegistrationFormStep):
         )),
         required=False,
     )
-    accomm_nights = forms.MultipleChoiceField(
+    nights = forms.MultipleChoiceField(
         label="I'm requesting accommodation for these nights:",
         choices=nights(),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
-    accomm_special_requirements = forms.CharField(
+    requirements = forms.CharField(
         label='Do you have any particular accommodation requirements?',
         help_text='Anything that you want us to consider for room attribution '
                   'should be listed here (ex. "I want to be with Joe Hill", '
@@ -679,11 +678,11 @@ class AccommForm(RegistrationFormStep):
             BursaryForm)
         accomm_details = Fieldset(
             'Accommodation Details',
-            'accomm_nights',
-            'accomm_special_requirements',
+            'nights',
+            'requirements',
             css_id='accomm-details',
         )
-        if bursary_cleaned.get('bursary'):
+        if bursary_cleaned.get('request'):
             accomm_details.fields += [
                 Field('alt_accomm', id='alt_accomm'),
                 Field('alt_accomm_choice', id='alt_accomm_choice'),
@@ -729,9 +728,9 @@ class AccommForm(RegistrationFormStep):
         if not cleaned_data.get('accomm'):
             return
 
-        if not cleaned_data.get('accomm_nights'):
+        if not cleaned_data.get('nights'):
             self.add_error(
-                'accomm_nights',
+                'nights',
                 'Please select the nights you require accommodation for.')
 
         alt_accomm = None
@@ -746,8 +745,7 @@ class AccommForm(RegistrationFormStep):
                     "Please provide the username of the person you want to "
                     "share a room with.")
 
-        if alt_accomm == 'hotel' and not cleaned_data.get(
-                'special_needs'):
+        if alt_accomm == 'hotel' and not cleaned_data.get('special_needs'):
             for field in ('alt_accomm_choice', 'special_needs'):
                 self.add_error(
                     field,
@@ -917,9 +915,9 @@ class ConfirmationForm(RegistrationFormStep):
         )
         fieldsets += [personal_information_fieldset]
 
-        bursary_type = self.get_cleaned_data_for_form(BursaryForm).get(
-            'bursary')
-        if bursary_type:
+        bursary_request = self.get_cleaned_data_for_form(BursaryForm).get(
+            'request')
+        if bursary_request:
             bursary_fields = [
                 HTML('<p><strong>Covering:</strong> '
                      '{% if bursary == "food+accomm" %}'
@@ -929,31 +927,31 @@ class ConfirmationForm(RegistrationFormStep):
                      '{% endif %}'
                      '</p>'),
                 HTML('<p><strong>My level of need:</strong> '
-                     '{% if bursary_need == "unable" %}'
+                     '{% if need == "unable" %}'
                      '' + BURSARY_NEED_LABELS['unable'] + ''
-                     '{% elif bursary_need == "sacrifice" %}'
+                     '{% elif need == "sacrifice" %}'
                      '' + BURSARY_NEED_LABELS['sacrifice'] + ''
-                     '{% elif bursary_need == "inconvenient" %}'
+                     '{% elif need == "inconvenient" %}'
                      '' + BURSARY_NEED_LABELS['inconvenient'] + ''
-                     '{% elif bursary_need == "non-financial" %}'
+                     '{% elif need == "non-financial" %}'
                      '' + BURSARY_NEED_LABELS['non-financial'] + ''
                      '{% endif %}'
                      '</p>'),
                 HTML('<div>'
                      '<strong>My contributions to Debian:</strong>'
-                     '<pre>{{ bursary_reason_contribution }}</pre>'
+                     '<pre>{{ reason_contribution }}</pre>'
                      '</div>'),
                 HTML('<div>'
                      '<strong>My plans for DebCamp or DebConf:</strong>'
-                     '<pre>{{ bursary_reason_plans }}</pre>'
+                     '<pre>{{ reason_plans }}</pre>'
                      '</div>'),
                 HTML('<div>'
                      '<strong>My eligibility for a diversity bursary:</strong>'
-                     '<pre>{{ bursary_reason_diversity }}</pre>'
+                     '<pre>{{ reason_diversity }}</pre>'
                      '</div>'),
             ]
 
-            if bursary_type == 'travel+food+accomm':
+            if bursary_request == 'travel+food+accomm':
                 bursary_fields += [
                     HTML('<p><strong>My travel expense claim '
                          '(in CAD$):</strong> '
@@ -970,15 +968,14 @@ class ConfirmationForm(RegistrationFormStep):
             fieldsets += [bursary_fieldset]
 
         food_fields = []
-        if len(self.get_cleaned_data_for_form(FoodForm).get(
-                'food_selection')) > 0:
+        if len(self.get_cleaned_data_for_form(FoodForm).get('meals')) > 0:
             food_fields += [
-                HTML('{% if food_selection_summary %}'
+                HTML('{% if meals_summary %}'
                      '<div>'
                      '<strong>I want to eat catered '
                      'food for these meals:</strong>'
                      '<ul>'
-                     '{% for day_summary in food_selection_summary %}'
+                     '{% for day_summary in meals_summary %}'
                      '<li>{{ day_summary }}</li>'
                      '{% endfor %}'
                      '</ul>'
@@ -1015,9 +1012,9 @@ class ConfirmationForm(RegistrationFormStep):
                 HTML('<p class="check">I need accomodation.</p>'),
                 HTML('<p><strong>For the following nights:</strong> '
                      '{{ accomm_nights_summary }}</p>'),
-                HTML('{% if accomm_special_requirements %}'
+                HTML('{% if requirements %}'
                      '<p><strong>Special accomodation requirements:</strong> '
-                     '{{ accomm_special_requirements }}</p>'
+                     '{{ requirements }}</p>'
                      '{% endif %}'),
                 HTML('{% if alt_accomm %}'
                      '<p><strong>Preferred accommodation:</strong> '
@@ -1085,22 +1082,22 @@ class ConfirmationForm(RegistrationFormStep):
         billing_fields += [
             HTML('<div id="cost-summary">'),
             HTML('<strong>Total due</strong>'),
-            HTML('{% if food_selection_summary %}'
+            HTML('{% if meals_summary %}'
                  '<div class="due">'
-                 '{% if food_selection_by_type.breakfast %}'
+                 '{% if meals_by_type.breakfast %}'
                  '<em>Breakfast:</em> '
                  '{{ food_price_by_type.breakfast }}<br>'
                  '{% endif %}'
-                 '{% if food_selection_by_type.lunch %}'
+                 '{% if meals_by_type.lunch %}'
                  '<em>Lunch:</em> {{ food_price_by_type.lunch }}<br>'
                  '{% endif %}'
-                 '{% if food_selection_by_type.dinner %}'
+                 '{% if meals_by_type.dinner %}'
                  '<em>Dinner:</em> '
                  '{{ food_price_by_type.dinner }}'
                  '{% endif %}'
                  '</div>'
                  '{% endif %}'),
-            HTML('{% if accomm_nights %}'
+            HTML('{% if nights %}'
                  '<div class="due">'
                  '<em>Accommodation:</em> '
                  '{{ accomm_total }}'

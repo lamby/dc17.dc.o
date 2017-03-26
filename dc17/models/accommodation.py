@@ -13,8 +13,8 @@ class AccommNight(models.Model):
 class Accomm(models.Model):
     attendee = models.OneToOneField(Attendee, related_name='accomm')
 
-    accomm_nights = models.ManyToManyField(AccommNight)
-    accomm_special_requirements = models.TextField()
+    nights = models.ManyToManyField(AccommNight)
+    requirements = models.TextField()
     alt_accomm_choice = models.CharField(max_length=16, null=True)
     childcare = models.BooleanField()
     childcare_needs = models.TextField()

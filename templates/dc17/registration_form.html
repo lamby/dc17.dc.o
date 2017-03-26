@@ -131,9 +131,9 @@ $(function() {
   hookDependentVisibility($('#tshirt-cut'), $('#tshirt-size'));
 
   hookDependentVisibility(
-    $('#bursary'), $('#bursary-details'));
+    $('#bursary-request'), $('#bursary-details'));
   hookDependentVisibility(
-    $('#bursary'), $('#travel-details'),
+    $('#bursary-request'), $('#travel-details'),
     function() { return this.value.includes('travel') });
 
   hookDependentVisibility($('#diet'), $('#special_diet'));
@@ -158,7 +158,7 @@ $(function() {
     }
   }
 
-  $('#food_selection i.fa-square-o').each(function() {
+  $('#meals i.fa-square-o').each(function() {
     var toggle = $(this);
     var checkboxes = $(this).closest('tr').find('input');
     updateSelectAllButton(toggle, checkboxes);

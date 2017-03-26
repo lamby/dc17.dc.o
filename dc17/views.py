@@ -41,24 +41,24 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
 
             context.update(context_update)
 
-            food_selection_by_day = {}
-            food_selection_by_type = {
+            meals_by_day = {}
+            meals_by_type = {
                 'breakfast': 0,
                 'dinner': 0,
                 'lunch': 0,
             }
 
-            for selection in context_update.get('food_selection'):
+            for selection in context_update.get('meals'):
                 (meal, day) = tuple(selection.split('_', 2))
 
-                if food_selection_by_day.get(day, None) is None:
-                    food_selection_by_day[day] = []
-                food_selection_by_day[day] += [meal]
-                food_selection_by_type[meal] += 1
+                if meals_by_day.get(day, None) is None:
+                    meals_by_day[day] = []
+                meals_by_day[day] += [meal]
+                meals_by_type[meal] += 1
 
-            food_selection_summary = sorted([
+            meals_summary = sorted([
                 day + ': ' + (', '.join(meals))
-                for day, meals in food_selection_by_day.items()
+                for day, meals in meals_by_day.items()
             ])
 
             context.update({
@@ -76,38 +76,38 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                     context_update.get('country'), None
                 ),
 
-                'food_selection_summary': food_selection_summary,
-                'food_selection_by_type': food_selection_by_type,
+                'meals_summary': meals_summary,
+                'meals_by_type': meals_by_type,
                 'food_price_by_type': {
                     'breakfast': '{} breakfast(s) * 3 CAD$ = {:.2f}'
                     ' CAD$'.format(
-                        food_selection_by_type.get('breakfast'),
-                        food_selection_by_type.get('breakfast') * 3
+                        meals_by_type.get('breakfast'),
+                        meals_by_type.get('breakfast') * 3
                     ),
                     'lunch': '{} lunch(es) * 7.50 CAD$ = {:.2f} CAD$'.format(
-                        food_selection_by_type.get('lunch'),
-                        food_selection_by_type.get('lunch') * 7.5
+                        meals_by_type.get('lunch'),
+                        meals_by_type.get('lunch') * 7.5
                     ),
                     'dinner': '{} dinner(s) * 7.50 CAD$ = {:.2f} CAD$'.format(
-                        food_selection_by_type.get('dinner'),
-                        food_selection_by_type.get('dinner') * 7.5
+                        meals_by_type.get('dinner'),
+                        meals_by_type.get('dinner') * 7.5
                     )
                 },
 
                 'accomm_nights_summary': ', '.join(
-                    [n[6:] for n in context_update.get('accomm_nights')]
+                    [n[6:] for n in context_update.get('nights')]
                 ),
                 'accomm_total': "{} night(s) * 30 CAD$ = {:.2f} CAD$".format(
-                    len(context_update.get('accomm_nights')),
-                    len(context_update.get('accomm_nights')) * 30
+                    len(context_update.get('nights')),
+                    len(context_update.get('nights')) * 30
                 ),
 
                 'fee_value': '{:.2f}'.format(FEES[context_update.get('fee')]),
 
-                'total_due': len(context_update.get('accomm_nights')) * 30 +
-                food_selection_by_type.get('breakfast') * 3 +
-                food_selection_by_type.get('lunch') * 7.5 +
-                food_selection_by_type.get('dinner') * 7.5 +
+                'total_due': len(context_update.get('nights')) * 30 +
+                meals_by_type.get('breakfast') * 3 +
+                meals_by_type.get('lunch') * 7.5 +
+                meals_by_type.get('dinner') * 7.5 +
                 FEES[context_update.get('fee')]
 
             })
