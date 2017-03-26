@@ -326,15 +326,16 @@ class ConferenceRegistrationForm(RegistrationFormStep):
 
     def clean(self):
         cleaned_data = super().clean()
-        paid = bool(cleaned_data.get('fee'))
 
-        if paid and not (cleaned_data.get('debcamp') or
-                         cleaned_data.get('open_day') or
-                         cleaned_data.get('debconf')):
-            self.add_error(
-                'fee',
-                "We can't collect a conference fee, if you aren't registering "
-                "attendance at the conference")
+        if not (cleaned_data.get('debcamp') or
+                cleaned_data.get('open_day') or
+                cleaned_data.get('debconf')):
+            for field in ('debcamp', 'open_day', 'debconf'):
+                # TODO: Add link to unregister
+                self.add_error(
+                    field,
+                    'You need to register for at least one section of the '
+                    'conference.')
 
         if cleaned_data.get('final_dates') == 'final':
             for field in ('arrival', 'departure'):
