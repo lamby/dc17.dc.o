@@ -1,10 +1,12 @@
 from django.db import models
 
-from dc17.models.attendee import Attendee
+from django.contrib.auth.models import User
 
 
 class Bursary(models.Model):
-    attendee = models.OneToOneField(Attendee, related_name='bursary')
+    # Linked to User rather than Attendee, so we don't lose track if someone
+    # unregisters
+    user = models.OneToOneField(User, related_name='bursary')
 
     requesting_travel_bursary = models.BooleanField()
     bursary_reason_contribution = models.TextField()
