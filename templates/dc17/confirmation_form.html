@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Registration</h1>
+<h1>Registration Confirmation</h1>
 <form action="" method="post" id="registration">{% csrf_token %}
   {{ wizard.management_form }}
   <h2 class='form-title'>{{ form.title }}</h2>
@@ -20,12 +20,11 @@
     </div>
   </div>
   {% if wizard.steps.prev %}
-    <input type="submit" id="hidden-next" value="Next page">
     <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
             value="{{ wizard.steps.first }}">First Page</button>
     <button name="wizard_goto_step" type="submit" class="btn btn-secondary"
             value="{{ wizard.steps.prev }}">Previous Page</button>
   {% endif %}
-  <input type="submit" class="btn btn-primary" value="Confirm registration">
+  <input type="submit" class="btn btn-primary" value="Confirm My Registration">
 </form>
 {% endblock %}
