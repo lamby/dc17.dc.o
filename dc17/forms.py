@@ -1266,7 +1266,7 @@ class ConfirmationForm(RegistrationFormStep):
                      '<strong>Notes</strong>'
                      '<pre>{{ notes }}</pre>'
                      '</div>'),
-            ],
+            ]
 
         billing_fields += [
             HTML('<div id="cost-summary">'),
