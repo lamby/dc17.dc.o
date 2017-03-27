@@ -258,7 +258,7 @@ class ContactInformationForm(RegistrationFormStep):
         if phone and not re.match(r'^\+', phone):
             raise forms.ValidationError(
                 "If provide a phone number, please make sure it's in "
-                "intarnational dialing format. e.g. +1 234 5678")
+                "international dialing format. e.g. +1 234 567 8999")
         return phone
 
     def clean_emergency_contact(self):
