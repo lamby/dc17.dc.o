@@ -541,7 +541,7 @@ class BursaryForm(RegistrationFormStep):
         required=False,
     )
     travel_bursary = forms.IntegerField(
-        label='My travel expense claim (in CAD)',
+        label='My travel expense claim (in USD)',
         help_text='Estimated amount required. ' + BURSARIES_LINK,
         min_value=0,
         max_value=10000,
@@ -1144,7 +1144,7 @@ class ConfirmationForm(RegistrationFormStep):
             if bursary_request == 'travel+food+accomm':
                 bursary_fields += [
                     HTML('<p><strong>My travel expense claim '
-                         '(in CAD):</strong> '
+                         '(in USD):</strong> '
                          '{{ travel_bursary }}</p>'),
                     HTML('<p><strong>Traveling from:</strong> '
                          '{{ travel_from }}'
