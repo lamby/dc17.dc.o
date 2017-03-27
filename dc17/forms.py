@@ -429,7 +429,6 @@ class PersonalInformationForm(RegistrationFormStep):
             ('l', T_SHIRT_SIZES['l']),
             ('xl', T_SHIRT_SIZES['xl']),
             ('2xl', T_SHIRT_SIZES['2xl']),
-            # TODO: Are we actually providing these sizes?
             ('3xl', T_SHIRT_SIZES['3xl']),
             ('4xl', T_SHIRT_SIZES['4xl']),
             ('5xl', T_SHIRT_SIZES['5xl']),
