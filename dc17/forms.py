@@ -59,8 +59,8 @@ PLAN_DEBCONF_LABEL = 'I plan to attend DebConf (6 August to 12 August)'
 
 FEES_LABELS = {
     'regular': 'Regular - Free',
-    'pro': 'Professional - 200 CAD$',
-    'corp': 'Corporate - 500 CAD$',
+    'pro': 'Professional - 200 CAD',
+    'corp': 'Corporate - 500 CAD',
 }
 
 FINAL_DATES_ESTIMATE_LABEL = "Estimated, I haven't booked travel yet."
@@ -541,7 +541,7 @@ class BursaryForm(RegistrationFormStep):
         required=False,
     )
     travel_bursary = forms.IntegerField(
-        label='My travel expense claim (in CAD$)',
+        label='My travel expense claim (in CAD)',
         help_text='Estimated amount required. ' + BURSARIES_LINK,
         min_value=0,
         max_value=10000,
@@ -662,7 +662,7 @@ class FoodForm(RegistrationFormStep):
         choices=meal_choices(),
         widget=forms.CheckboxSelectMultiple,
         help_text="If you don't have a food bursary, meal prices are: "
-                  "Breakfast 3 CAD$, Lunch 7.50 CAD$, Dinner 7.50 CAD$.",
+                  "Breakfast 3 CAD, Lunch 7.50 CAD, Dinner 7.50 CAD.",
         required=False,
     )
     diet = forms.ChoiceField(
@@ -823,7 +823,7 @@ class AccommForm(RegistrationFormStep):
                 '<p>By default, the accommodation provided is in <a href="'
                 'https://wiki.debconf.org/wiki/DebConf17/Accommodation#On-site'
                 '" target="_blank">shared classroom dorms on premises</a>. '
-                'The cost is 30 CAD$/night for attendees who do not receive a '
+                'The cost is 30 CAD/night for attendees who do not receive a '
                 'bursary.</p>'),
             Field('accomm', id='accomm'),
             accomm_details,
@@ -1144,7 +1144,7 @@ class ConfirmationForm(RegistrationFormStep):
             if bursary_request == 'travel+food+accomm':
                 bursary_fields += [
                     HTML('<p><strong>My travel expense claim '
-                         '(in CAD$):</strong> '
+                         '(in CAD):</strong> '
                          '{{ travel_bursary }}</p>'),
                     HTML('<p><strong>Traveling from:</strong> '
                          '{{ travel_from }}'
@@ -1297,12 +1297,12 @@ class ConfirmationForm(RegistrationFormStep):
                  '<div class="due">'
                  '<em>Fee:</em> '
                  '{{ fee_value }}'
-                 ' CAD$'
+                 ' CAD'
                  '</div>'
                  '{% endif %}'),
             HTML('<div class="total due">'
                  '<strong>Total:</strong> '
-                 '{{ total_due }} CAD$'
+                 '{{ total_due }} CAD'
                  '</div>'),
             HTML('</div>')
         ]
