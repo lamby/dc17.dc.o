@@ -319,13 +319,13 @@ class ConferenceRegistrationForm(RegistrationFormStep):
         required=False,
     )
     arrival = forms.DateTimeField(
-        label='I arrive at the venue on',
+        label='I arrive at the venue at',
         help_text="Please estimate, if you haven't booked tickets, yet, "
                   'and update it when you have final dates.',
         required=False,
     )
     departure = forms.DateTimeField(
-        label='I depart from the venue on',
+        label='I depart from the venue at',
         required=False,
     )
     final_dates = forms.BooleanField(
