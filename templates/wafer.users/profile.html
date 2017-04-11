@@ -56,13 +56,10 @@
             <a href="{% url 'wafer_user_edit' object.username %}" class="list-group-item list-group-item-action">{% trans 'Edit User' %}</a>
             <a href="{% url 'wafer_user_edit_profile' object.username %}" class="list-group-item list-group-item-action">{% trans 'Edit Profile' %}</a>
             {% if WAFER_REGISTRATION_OPEN %}
-                {% if WAFER_REGISTRATION_MODE == 'form' %}
-                    {% url 'wafer_register_view' object.username as register_url %}
-                {% elif WAFER_REGISTRATION_MODE == 'ticket' and not profile.is_registered %}
-                    {% url 'wafer_ticket_claim' as register_url %}
-                {% endif %}
-                {% if register_url %}
-                    <a href="/register" class="list-group-item list-group-item-action">{% trans 'Register' %}</a>
+                {% if not object.attendee %}
+                    <a href="{% url 'register' %}" class="list-group-item list-group-item-action">{% trans 'Register' %}</a>
+                {% else %}
+                    <a href="{% url 'register' %}" class="list-group-item list-group-item-action">{% trans 'Update Registration' %}</a>
                 {% endif %}
             {% endif %}
             <a href="{% url 'wafer_talk_submit' %}" class="list-group-item list-group-item-action">{% trans 'Submit Talk Proposal' %}</a>
@@ -77,8 +74,8 @@
 {% endif %}
 {% if can_edit %}
     {% if profile.pending_talks.exists or profile.accepted_talks.exists or profile.provisional_talks.exists%}
-        {% if profile.is_registered %}
-            <div class="tag tag-success">
+        {% if object.attendee %}
+            <div class="alert alert-success">
                 {% blocktrans %}
                     Registered
                 {% endblocktrans %}

@@ -4,5 +4,5 @@ from dc17.views import RegistrationWizard
 
 
 urlpatterns = [
-    url(r'^register/$', RegistrationWizard.as_view()),
+    url(r'^register/$', RegistrationWizard.as_view(), name='register'),
 ]
