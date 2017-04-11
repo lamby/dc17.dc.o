@@ -7,6 +7,6 @@ PyYAML
 
 # From the cheeseshop
 python-memcached
-wafer==0.5.3
+wafer==0.5.4
 django-countries==4.0
 django-formtools==1.0
