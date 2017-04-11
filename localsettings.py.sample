@@ -41,7 +41,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'class': 'logging.WatchedFileHandler',
+            'class': 'logging.handlers.WatchedFileHandler',
             'filename': os.path.join(checkout, 'wafer.log'),
             'formatter': 'default',
         },
