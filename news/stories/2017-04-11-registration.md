@@ -6,7 +6,7 @@ After much hard work on our website, we are proud to announce that you can
 now register for DebConf17!
 
 To register for DebConf17, visit our website at
-https://debconf17.debconf.org/register/.
+[https://debconf17.debconf.org/register/][reg-site].
 
 Please keep your registration information up to date. You can make changes at
 any time through our web form. Visit our [FAQ wiki page][faq] in case you have doubts
@@ -34,7 +34,7 @@ Any questions about registrations should be addressed to
 The DebConf17 team would like to thank all of our sponsors who have
 made this event possible:
     
-https://debconf17.debconf.org/sponsors/
+[https://debconf17.debconf.org/sponsors/][sponsors]
 
 We are still seeking sponsors to help us make DebConf17 a success. 
 If you or your company would like to give back to Debian, please consider
@@ -44,6 +44,8 @@ We look forward to seeing you in Montreal!
 
 The DebConf team
 
+[reg-site]: https://debconf17.debconf.org/register/
 [faq]: https://wiki.debconf.org/wiki/DebConf17/FAQ#Registration
 [coc]: https://debconf.org/codeofconduct.shtml
 [reg-mail]: mailto:registration@debconf.org
+[sponsors]: https://debconf17.debconf.org/sponsors/
