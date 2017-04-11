@@ -8,13 +8,14 @@ Important Dates
 | **February**          |                                                 |
 |-----------------------|-------------------------------------------------|
 | Tuesday, 7 February   | Call For Proposals                              |
-| **March**             |                                                 |
-| TBA                   | Opening of attendee registration                |
+| **April**             |                                                 |
+| Wednesday, 12 April   | Opening of attendee registration                |
 | **May**               |                                                 |
-| Monday, 1st May       | Last day for requesting bursaries               |
+| Wednesday, 10 May     | Last day for requesting bursaries               |
 | **June**              |                                                 |
 | Sunday, 3rd June      | Last day for submitting a talk                  |
 | **July**              |                                                 |
+| Saturday, 1st July    | Last day to confirm your attendance             |
 | Monday, 31 July       | First day of DebCamp                            |
 | **August**            |                                                 |
 | Tuesday, 1st August   | Second day of DebCamp                           |
