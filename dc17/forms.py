@@ -1109,9 +1109,9 @@ class ConfirmationForm(RegistrationFormStep):
         if bursary_request:
             bursary_fields = [
                 HTML('<p><strong>Covering:</strong> '
-                     '{% if bursary == "food+accomm" %}'
+                     '{% if request == "food+accomm" %}'
                      '' + FOOD_ACCOMM_BURSARY_LABEL + ''
-                     '{% elif bursary == "travel+food+accomm" %}'
+                     '{% elif request == "travel+food+accomm" %}'
                      '' + TRAVEL_FOOD_ACCOMM_BURSARY_LABEL + ''
                      '{% endif %}'
                      '</p>'),
