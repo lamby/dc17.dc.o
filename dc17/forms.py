@@ -48,7 +48,7 @@ PREAMBLE = (
     'We cannot guarantee availability of accommodation, catering or swag for '
     'unconfirmed registrations.</li>'
     '<li>Badges will be available for pick-up at the front desk.</li>'
-    '<li>The deadline to apply for a bursary is May 1st. After this date, '
+    '<li>The deadline to apply for a bursary is May 10th. After this date, '
     "new bursary applications won't be considered.</li>"
     '</ol>'
 )
