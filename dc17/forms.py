@@ -1303,6 +1303,10 @@ class ConfirmationForm(RegistrationFormStep):
                  '<strong>Total:</strong> '
                  '{{ total_due }} CAD'
                  '</div>'),
+            HTML('<p class="alert alert-info">'
+                 "We haven't implemented online payment collection yet, "
+                 "we'll let you know when we're ready to receive payment."
+                 '</p>'),
             HTML('</div>')
         ]
 
