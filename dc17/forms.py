@@ -40,7 +40,7 @@ PREAMBLE = (
     '<li>Nothing will be saved until the last page of the form, so be sure to '
     'work all the way through it.</li>'
     '<li>All registration, accommodation and catering fees must be paid '
-    'either trough the Stripe platform or in person at the front desk upon '
+    'either through the Stripe platform or in person at the front desk upon '
     'arrival.</li>'
     '<li>Please keep your registration information up to date. You can make '
     'changes at any time through this form.</li>'
