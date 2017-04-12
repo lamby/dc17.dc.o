@@ -150,16 +150,16 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
         context = {
             'fresh_registration': fresh_registration,
         }
-        self.send_confirmation_email(user, context)
-        return render(self.request, 'dc17/registration_confirmation.html',
+        self.send_registered_email(user, context)
+        return render(self.request, 'dc17/registration_received.html',
                       context)
 
-    def send_confirmation_email(self, user, context):
-        txt = render_to_string('dc17/registration_confirmation_email.txt',
+    def send_registered_email(self, user, context):
+        txt = render_to_string('dc17/registration_received_email.txt',
                                context)
         to = user.email
         if context['fresh_registration']:
-            subject = '[DebConf 17] Registration confirmation'
+            subject = '[DebConf 17] Registration received'
         else:
             subject = '[DebConf 17] Registration updated'
         email_message = EmailMultiAlternatives(subject, txt, to=[to])
