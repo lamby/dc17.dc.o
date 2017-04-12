@@ -17,7 +17,7 @@ It will be preceded by DebCamp, July 31st to August 4th, and Open Day, August
 
 <form method="POST" action="https://lists.debconf.org/mailman/subscribe/debconf-announce">
   <fieldset>
-    <legend>Register to the debconf-annouce mailing list</legend>
+    <legend>Register to the debconf-announce mailing list</legend>
     <label for="email">Your email address:</label>
     <input name="email" size="30" value="" type="Text">
     <input name="email-button" value="Subscribe" type="Submit">
