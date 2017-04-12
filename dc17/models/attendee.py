@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Attendee(models.Model):
-    user = models.OneToOneField(User, related_name='attendee')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='attendee')
 
     # Contact information
     nametag_2 = models.CharField(max_length=50)

@@ -1,12 +1,12 @@
+from django.conf import settings
 from django.db import models
-
-from django.contrib.auth.models import User
 
 
 class Bursary(models.Model):
     # Linked to User rather than Attendee, so we don't lose track if someone
     # unregisters
-    user = models.OneToOneField(User, related_name='bursary')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                related_name='bursary')
 
     # Request:
     request = models.CharField(max_length=32, null=True)
