@@ -1,4 +1,8 @@
+import json
+import logging
+
 from django.core.mail import EmailMultiAlternatives
+from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
@@ -140,6 +144,8 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
         for form in form_list:
             form.save(user, attendee)
 
+        self.log_registration(user, fresh_registration)
+
         context = {
             'fresh_registration': fresh_registration,
         }
@@ -157,3 +163,10 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
             subject = '[DebConf 17] Registration updated'
         email_message = EmailMultiAlternatives(subject, txt, to=[to])
         email_message.send()
+
+    def log_registration(self, user, fresh_registration):
+        log = logging.getLogger('dc17.registration')
+        form_data = json.dumps(self.get_all_cleaned_data(),
+                               cls=DjangoJSONEncoder)
+        log.info('User registered: user=%s updated=%s data=%s',
+                 user.username, not fresh_registration, form_data)
