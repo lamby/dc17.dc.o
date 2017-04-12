@@ -31,8 +31,8 @@ availability of accommodation, catering or swag for unconfirmed registrations.
 Any questions about registrations should be addressed to
 [registration@debconf.org][reg-mail].
 
-The DebConf17 team would like to thank all of our sponsors who have
-made this event possible:
+The DebConf17 team would like to thank all of our sponsors who make
+this event possible:
     
 [https://debconf17.debconf.org/sponsors/][sponsors]
 
