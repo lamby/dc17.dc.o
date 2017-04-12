@@ -14,7 +14,7 @@ class Bursary(models.Model):
     reason_plans = models.TextField()
     reason_diversity = models.TextField()
     need = models.CharField(max_length=16)
-    travel_bursary = models.IntegerField()
+    travel_bursary = models.IntegerField(null=True)
     travel_from = models.TextField()
 
     # Review:
