@@ -1,5 +1,6 @@
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from django_countries import countries
 
@@ -133,10 +134,26 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
         for form in form_list:
             attendee_data.update(form.get_attendee_data())
 
-        attendee, created = Attendee.objects.update_or_create(
+        attendee, fresh_registration = Attendee.objects.update_or_create(
             user=user, defaults=attendee_data)
 
         for form in form_list:
             form.save(user, attendee)
-        return HttpResponseRedirect(
-            reverse('wafer_user_profile', args=(self.request.user.username,)))
+
+        context = {
+            'fresh_registration': fresh_registration,
+        }
+        self.send_confirmation_email(user, context)
+        return render(self.request, 'dc17/registration_confirmation.html',
+                      context)
+
+    def send_confirmation_email(self, user, context):
+        txt = render_to_string('dc17/registration_confirmation_email.txt',
+                               context)
+        to = user.email
+        if context['fresh_registration']:
+            subject = '[DebConf 17] Registration confirmation'
+        else:
+            subject = '[DebConf 17] Registration updated'
+        email_message = EmailMultiAlternatives(subject, txt, to=[to])
+        email_message.send()

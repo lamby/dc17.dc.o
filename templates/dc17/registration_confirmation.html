@@ -1,0 +1,14 @@
+{% extends "wafer/base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-3">You are Registered</h1>
+  <p class="lead">
+    We have {% if fresh_registration %}received{% else %}updated{% endif %}
+    your registration.
+  </p>
+  <p class="lead">We look forward to seeing you in Montreal.</p>
+  <p class="lead">
+    <a class="btn btn-primary" href="{% url 'wafer_user_profile' username=user.username %}">Return to Profile</a>
+  </p>
+</div>
+{% endblock %}

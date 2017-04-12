@@ -1,0 +1,9 @@
+Thank you for registering for DebConf 17.
+
+This e-mail confirms that we have {% if fresh_registration %}received{% else %}updated{% endif %} your registration.
+You can come back and edit your registration, at any time (until
+registration closes).
+
+Regards,
+
+The DebConf 17 registration team.
