@@ -5,7 +5,7 @@ name: Registration Information
 Registration Information
 ========================
 
-Registration for DebConf17 will open in March 2017.
+Registration for DebConf17 has been open since April 12th.
 
 Registration Fees
 -----------------
@@ -23,4 +23,4 @@ We encourage all attendees to help make DebConf a success by selecting the regis
 Sponsored attendance
 --------------------
 
-Any member of the Debian community is welcome to request sponsorship to attend DebConf. As in previous years, we will do our best to offer sponsored food and accommodation to Debian contributors, but sponsorship is subject to demand and available funding. Decisions regarding sponsorship requests are expected by the end of April, 2017.
+Any member of the Debian community is welcome to request sponsorship to attend DebConf. As in previous years, we will do our best to offer sponsored food and accommodation to Debian contributors, but sponsorship is subject to demand and available funding. Decisions regarding sponsorship requests are expected by the end of May, 2017.
