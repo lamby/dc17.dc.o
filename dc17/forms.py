@@ -202,6 +202,7 @@ class ContactInformationForm(RegistrationFormStep):
         label='My contact number',
         help_text="The full number, including international dialing codes, "
                   "please. This won't be listed publicly.",
+        max_length=16,
         required=False,
     )
     emergency_contact = forms.CharField(
