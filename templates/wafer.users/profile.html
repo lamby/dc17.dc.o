@@ -60,6 +60,7 @@
                     <a href="{% url 'register' %}" class="list-group-item list-group-item-action">{% trans 'Register' %}</a>
                 {% else %}
                     <a href="{% url 'register' %}" class="list-group-item list-group-item-action">{% trans 'Update Registration' %}</a>
+                    <a href="{% url 'unregister' %}" class="list-group-item list-group-item-action">{% trans 'Unregister' %}</a>
                 {% endif %}
             {% endif %}
             <a href="{% url 'wafer_talk_submit' %}" class="list-group-item list-group-item-action">{% trans 'Submit Talk Proposal' %}</a>

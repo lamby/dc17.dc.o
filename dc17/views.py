@@ -5,6 +5,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.views.generic import TemplateView
 
 from django_countries import countries
 
@@ -12,7 +13,7 @@ from formtools.wizard.views import SessionWizardView
 from wafer.utils import LoginRequiredMixin
 
 from dc17.forms import REGISTRATION_FORMS
-from dc17.models import Attendee
+from dc17.models import Attendee, Bursary
 
 FEES = {
     '': 0,
@@ -170,3 +171,27 @@ class RegistrationWizard(LoginRequiredMixin, SessionWizardView):
                                cls=DjangoJSONEncoder)
         log.info('User registered: user=%s updated=%s data=%s',
                  user.username, not fresh_registration, form_data)
+
+
+class UnregisterView(TemplateView):
+    template_name = 'dc17/unregister.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'registered': Attendee.objects.filter(user=self.request.user)
+                                  .exists(),
+            'bursary': Bursary.objects.filter(user=self.request.user).exists(),
+        })
+        return context
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        if user.attendee:
+            user.attendee.delete()
+        if user.bursary:
+            user.bursary.request = None
+            user.bursary.save()
+
+        context = self.get_context_data()
+        return self.render_to_response(context)
